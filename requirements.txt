@@ -1,0 +1,9 @@
+python-dotenv
+langchain
+langgraph
+openai
+pandas
+pydantic
+duckdb
+langchain-openai
+pyarrow
