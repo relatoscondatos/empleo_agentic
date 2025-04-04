@@ -44,7 +44,7 @@ def run_intro(tema: str):
                 content = file.read()
             return content
         else:
-            print(f"No precomputed data found for tema '{tema}'. Running the graph.")
+            print(f"No precomputed data found for tema '{tema}'. Running the graph. File: {precomputed_file}")
             # Proceed to run the graph if precomputed data is not available
 
     # Armar grafo
