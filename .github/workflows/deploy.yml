@@ -18,9 +18,10 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
     steps:
       - name: Print environment
         run: echo "OPENAI_API_KEY=${OPENAI_API_KEY:0:10}*****"
