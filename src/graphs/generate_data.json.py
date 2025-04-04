@@ -1,4 +1,4 @@
-# generate_data.json.py v20250403.1123
+# generate_data.json.py v20250404.1754
 # This script generates a JSON file with the data fetched from the web
 import sys
 import os

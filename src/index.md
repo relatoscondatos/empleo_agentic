@@ -2,6 +2,10 @@
 
 ---
 
+```js
+//display(sourceDataForCharts)
+```
+
 # Evolución del empleo en Chile 
 ## Cifras de trimestre Diciembre-Enero-Febrero en años recientes
 ```js
@@ -15,6 +19,10 @@ md`${introOcupados}`
 
 <div class="card">
 <div>${chartOcupados}</div>
+</div><!--card-->
+
+<div class="card">
+<div>${chartOcupados_diferencias}</div>
 </div><!--card-->
 
 
@@ -32,6 +40,10 @@ md`${introInformalidad}`
 
 <div class="card">
 <div>${chartInformalidadPorcentaje}</div>
+</div><!--card-->
+
+<div class="card">
+<div>${chartInformalidad_diferencias}</div>
 </div><!--card-->
 
 
@@ -54,6 +66,10 @@ md`${introTPI}`
 <div>${chartTPIPorcentaje}</div>
 </div><!--card-->
 
+<div class="card">
+<div>${chartTPI_diferencias}</div>
+</div><!--card-->
+
 
 
 ```js
@@ -68,6 +84,10 @@ md`${introEdSup}`
 <div class="card">
 <div>${chartEdSup}</div>
 </div><!--card-->
+<div class="card">
+<div>${chartEdSup_diferencias}</div>
+</div><!--card-->
+
 
 ```js
 md`${narrativaEdSup}`
@@ -80,6 +100,9 @@ md`${introCalificacionOcupacion}`
 ```
 <div class="card">
 <div>${chartCalificacionOcupacion}</div>
+</div><!--card-->
+<div class="card">
+<div>${chartCalificacionOcupacion_diferencias}</div>
 </div><!--card-->
 
 
@@ -94,7 +117,10 @@ md`${introEdSupCalificacionOcupacion}`
 ```
 
 <div class="card">
-<div>${chartEdSupCalificacionOcupacion}</div>
+<div>${chartEduCalificacionOcupacion}</div>
+</div><!--card-->
+<div class="card">
+<div>${chartEduCalificacionOcupacion_diferencias}</div>
 </div><!--card-->
 
 ```js
@@ -111,10 +137,14 @@ md`${introSectorPublico}`
 <div>${chartSectorPublico}</div>
 </div><!--card-->
 
+<div class="card">
+<div>${chartSectorPublico_diferencias}</div>
+</div><!--card-->
+
+
 ```js
 md`${narrativaSectorPublico}`
 ```
-
 
 
 ## Personas extranjeras
@@ -124,6 +154,9 @@ md`${introNacionalidad}`
 
 <div class="card">
 <div>${chartNacionalidad}</div>
+</div><!--card-->
+<div class="card">
+<div>${chartNacionalidad_diferencias}</div>
 </div><!--card-->
 
 ```js
@@ -140,25 +173,15 @@ md`${introSexo}`
 <div>${chartSexo}</div>
 </div><!--card-->
 
+<div class="card">
+<div>${chartSexo_diferencias}</div>
+</div><!--card-->
+
+
+
 ```js
 md`${narrativaSexo}`
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ```js
 // Narrativas
@@ -208,6 +231,20 @@ const chartOcupados = (() => {
     })
 })()
 
+const chartOcupados_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.ocupados).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Personas ocupadas - Diferencia 2025 vs 2024",
+    subtitle: "Trimestre Diciembre Enero Febrero",
+    labelAliases: labelAliases,
+    marginLeft:200,
+    height: 150,
+    //referenceVariable:"ocupados"
+    })
+})()
+
+
 const chartInformalidad = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.informalidad)
   return buildChart({
@@ -216,6 +253,19 @@ const chartInformalidad = (() => {
     labelAliases: labelAliases
 
   })
+})()
+
+const chartInformalidad_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.informalidad).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Ocupación formal / informal - Diferencia 2025 vs 2024",
+    subtitle: "Trimestre Diciembre Enero Febrero",
+    labelAliases: labelAliases,
+    marginLeft:200,
+    height: 150,
+    referenceVariable:"ocupados"
+    })
 })()
 
 const chartTPI = (() => {
@@ -229,6 +279,19 @@ const chartTPI = (() => {
     })
 })()
 
+const chartTPI_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.tpi).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Personas con TPI - Diferencia 2025 vs 2024",
+    subtitle: "Trimestre Diciembre Enero Febrero",
+    labelAliases: labelAliases,
+    marginLeft:200,
+    height: 150,
+    referenceVariable:"ocupados"
+    })
+})()
+
 const chartEdSup = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.ed_sup)
   return buildChart({
@@ -236,6 +299,19 @@ const chartEdSup = (() => {
     title: "Personas con Educación Superior Completa",
     labelAliases: labelAliases,
     marginRight:160
+    })
+})()
+
+const chartEdSup_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.ed_sup).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Educación Superior - Diferencia 2025 vs 2024",
+    subtitle: "Trimestre Diciembre Enero Febrero",
+    labelAliases: labelAliases,
+    marginLeft:200,
+    height: 150,
+    referenceVariable:"ocupados"
     })
 })()
 
@@ -250,18 +326,58 @@ const chartCalificacionOcupacion = (() => {
     })
 })()
 
+const chartCalificacionOcupacion_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.calificacion_ocupacion).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Tipo calificación de la ocupación - Diferencia 2025 vs 2024",
+    subtitle: "Trimestre Diciembre Enero Febrero",
+    labelAliases: labelAliases,
+    marginLeft:200,
+    height: 150,
+    referenceVariable:"ocupados"
+    })
+})()
+
 
 const chartEdSupCalificacionOcupacion = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.ed_sup_calificacion_ocupacion)
   return buildChart({
     data:dataPlot,
-    title: "Ocupados con Educación Superior según nivel de calificación de la ocupación",
+    title: "Personas ocupadas con Educación Superior según nivel de calificación de la ocupación",
     subtitle: "Cuando la calificación es media o baja hablamos de subempleo por competencias",
     labelAliases: labelAliases,
         marginRight:200
 
     })
 })()
+
+
+const chartEduCalificacionOcupacion_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.edu_calificacion_ocupacion).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Educación & Ocupación - Diferencia 2025 vs 2024",
+    labelAliases: labelAliases,
+    marginLeft:200,
+    referenceVariable:"ocupados"
+    })
+})()
+
+
+
+const chartEduCalificacionOcupacion = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.edu_calificacion_ocupacion).filter(d => d.variable !== "ocupados")
+  return buildChart({
+    data:dataPlot,
+    title: "Educación & Ocupación",
+    title: "Personas ocupadas según nivel educacional y ivel de calificación de la ocupación",
+    subtitle: "Personas con Educación Euperior y ocupaciones con calificación media o baja se pueden considerar subempleo por competencias",
+    labelAliases: labelAliases,
+    marginRight:200
+    })
+})()
+
 
 
 const chartSectorPublico = (() => {
@@ -273,6 +389,16 @@ const chartSectorPublico = (() => {
     })
 })()
 
+const chartSectorPublico_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.sector_publico).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Personas ocupadas en sector público - Diferencia 2025 vs 2024",
+    labelAliases: labelAliases,
+    marginLeft:200,
+    referenceVariable:"ocupados"
+    })
+})()
 
 const chartNacionalidad = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.nacionalidad)
@@ -280,6 +406,17 @@ const chartNacionalidad = (() => {
     data:dataPlot,
     title: "Personas ocupadas según nacionalidad (Chilena / Extranjera)",
     labelAliases: labelAliases
+    })
+})()
+
+const chartNacionalidad_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.nacionalidad).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Personas ocupadas según nacionalidad - Diferencia 2025 vs 2024",
+    labelAliases: labelAliases,
+    marginLeft:200,
+    referenceVariable:"ocupados"
     })
 })()
 
@@ -293,13 +430,25 @@ const chartSexo = (() => {
     })
 })()
 
+const chartSexo_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.sexo).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Personas ocupadas según sexo - Diferencia 2025 vs 2024",
+    labelAliases: labelAliases,
+    marginLeft:200,
+    referenceVariable:"ocupados"
+    })
+})()
+
+
 const chartTPIPorcentaje = (() => {
   const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.tpi)
   return buildChart({
     data:dataPlot, 
     format:".2%", 
     formatAxis:".1%",
-    title: "Personas ocupadas a Tiempo Parcial Involuntario (% de opacion total)",
+    title: "Personas ocupadas a Tiempo Parcial Involuntario (% de ocupación total)",
     zero:"no",
     labelAliases: labelAliases,
     labelY: "% del total de personas ocupadas"
@@ -313,7 +462,7 @@ const chartInformalidadPorcentaje = (() => {
     data:dataPlot.filter(d => d.variable == "informal"), 
     format:".2%", 
     formatAxis:".1%",
-    title: "Personas con empleo informal (% de opacion total)",
+    title: "Personas con empleo informal (% de ocupacion total)",
     zero:"no",
     labelAliases: labelAliases,
     labelY: "% del total de personas ocupadas"
@@ -400,57 +549,19 @@ function convertDataToPlotPorcentajes(sourceData) {
 }
 ```
 
-
 ```js
-function buildChartDiferencia(options) {
-  const dataPlot = options.data;
-  const format = options && options.format || ".3s"
-  const formatAxis = options && options.format || "s"
-
-  const referenceKey = options.referenceVariable || null;
-  const keys = dataPlot.map((d) => d.variable).filter((d) => d !== referenceKey);
-  const minValue = _.chain(dataPlot).map(d => d.diferencia).min().value()
-  const maxValue = _.chain(dataPlot).map(d => d.diferencia).max().value()
-
-
-  return Plot.plot({
-    width,
-    marginLeft: 50,
-    marginRight: 150,
-    y: { tickFormat: formatAxis, domain: [minValue * 1.1, maxValue] },
-
-
-     marks: [
-   
-      Plot.barY(dataPlot, {
-        x: "año",
-        y: "diferencia",
-        fill: "variable"
-      }),
-
-      Plot.text(dataPlot, {
-        x: "año",
-        y: "diferencia",
-        text: d => d["diferencia"] > 0 ? d3.format(format)(d["diferencia"]): null,
-        fill:"black",
-        stroke:"white",
-        dy: -10
-      }),      
-      Plot.text(dataPlot, {
-        x: "año",
-        y: "diferencia",
-        text: d => d["diferencia"] < 0 ? d3.format(format)(d["diferencia"]): null,
-        fill:"black",
-        stroke:"white",
-        dy: 10
-      }),
- 
-    ]
- 
-    
-  })
+function convertDataToPlotDiferencia(sourceData) {
+  return _.chain(sourceData.diff_prev_year)
+  .map((items,variable) => _.map(items,(valor, año) => ({
+    año: año,
+    variable: variable,
+    valor: valor
+  })))
+  .flatten()
+  .value()
 }
 ```
+
 ```js
 const fuentes= "Bases de Datos de Ocupación y Desocupación, Inistituto Nacional de Estadísticas (INE)"
 ```
@@ -481,8 +592,8 @@ function buildChart(options) {
   const colorDomain = (referenceKey ? _.concat(referenceKey, keys) : keys).map(d => label(d))
 
   return Plot.plot({
-    title:title,
-    subtitle:subtitle,
+    title,
+    subtitle,
     caption:`Fuente de datos: ${fuentes}\nElaborado por @elaval`,
     width,
     height,
@@ -539,6 +650,78 @@ function buildChart(options) {
 }
 ```
 
+```js
+
+function buildChartDiferencia(options) {
+  const dataPlot = options.data;
+  const title = options && options.title || "";
+  const subtitle = options && options.subtitle || "";
+  const zero = options && options.zero == "no" ? false : true
+  const format = options && options.format || ".3s"
+  const formatAxis = options && options.format || "s"
+  const labelY = options && options.labelY || "Personas"
+  const labelAliases =  options && options.labelAliases || {}
+  const width =  options && options.width || 1000
+  const height =  options && options.height || width*0.3
+  const marginLeft =  options && options.marginLeft || 150
+  const referenceKey = options.referenceVariable || null;
+  const keys = _.chain(dataPlot).map((d) => d.variable).uniq().filter((d) => d !== referenceKey).value();
+  const años = _.chain(dataPlot).map(d => d.año).uniq().value()
+  const minAño = _.chain(dataPlot).map(d => d.año).min().value()
+  const maxAño = _.chain(dataPlot).map(d => d.año).max().value()
+
+  function label(label) {
+    return labelAliases[label] || label
+  }
+
+  const colorDomain = (referenceKey ? _.concat(referenceKey, keys) : keys).map(d => label(d))  //return dataPlot
+
+  //return colorDomain
+  return Plot.plot({
+    title,
+    subtitle,
+    caption:`Fuente de datos: ${fuentes}\nElaborado por @elaval`,
+    width,
+    height,
+    marginLeft: marginLeft,
+    marginRight: 20,
+    marginBottom: 40,
+    style:{fontSize:12},
+    x: { 
+      tickFormat: formatAxis,
+      label: "Diferencia con respecto al año anterior"
+     },
+    
+    y: {domain:colorDomain},
+    marks: [
+   
+      Plot.barX(dataPlot, {
+        x: "valor",
+        y: d => label(d["variable"]),
+        fill: d => d["variable"] == referenceKey ? "lightgrey" : d3.schemeObservable10[0]
+      }),     
+      
+      Plot.text(dataPlot, {
+        x: "valor",
+        y: d => label(d["variable"]),
+        fill: d => d["variable"] == referenceKey ? "black" : "white",
+        text: d => d.valor > 0 ? `+${d3.format(".3s")(d.valor)}` : "",
+        textAnchor: "end",
+        dx:-5
+      }),
+      
+      Plot.text(dataPlot, {
+        x: "valor",
+        y: d => label(d["variable"]),
+        fill: d => d["variable"] == referenceKey ? "black" : "white",
+        text: d => d.valor < 0 ? d3.format(".3s")(d.valor) : "",
+        textAnchor: "start",
+        dx:5
+      })
+    ]
+  })
+}
+```
 
 
 ```js

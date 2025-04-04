@@ -47,6 +47,15 @@ queries = {
         WHERE variable IN ('ocupados', 'ed_sup_competencia_alta', 'ed_sup_competencia_media_baja')
         ORDER BY variable, año
     """,
+    "edu_calificacion_ocupacion": """
+        SELECT 
+        año,
+        variable,
+        valor,
+        FROM parquet_scan(?) AS datos
+        WHERE variable IN ('ocupados','sin_ed_sup', 'ed_sup_competencia_alta', 'ed_sup_competencia_media_baja')
+        ORDER BY variable, año
+    """,
     "sector_publico": """
         SELECT 
         año,
