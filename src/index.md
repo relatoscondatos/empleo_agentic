@@ -234,7 +234,8 @@ const chartEdSup = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas con Educación Superior Completa",
-    labelAliases: labelAliases
+    labelAliases: labelAliases,
+    marginRight:160
     })
 })()
 
@@ -243,7 +244,9 @@ const chartCalificacionOcupacion = (() => {
   return buildChart({
     data:dataPlot,
     title: "Ocupados según nivel de calificación requerido para la ocupación",
-    labelAliases: labelAliases
+    labelAliases: labelAliases,
+    marginRight:200
+
     })
 })()
 
@@ -254,7 +257,9 @@ const chartEdSupCalificacionOcupacion = (() => {
     data:dataPlot,
     title: "Ocupados con Educación Superior según nivel de calificación de la ocupación",
     subtitle: "Cuando la calificación es media o baja hablamos de subempleo por competencias",
-    labelAliases: labelAliases
+    labelAliases: labelAliases,
+        marginRight:200
+
     })
 })()
 
@@ -462,7 +467,7 @@ function buildChart(options) {
   const labelAliases =  options && options.labelAliases || {}
   const width =  options && options.width || 1000
   const height =  options && options.height || width*0.4
-  const marginRight =  options && options.with || 150
+  const marginRight =  options && options.marginRight || 150
   const referenceKey = options.referenceVariable || null;
   const keys = _.chain(dataPlot).map((d) => d.variable).uniq().filter((d) => d !== referenceKey).value();
   const años = _.chain(dataPlot).map(d => d.año).uniq().value()
