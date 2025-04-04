@@ -5,8 +5,14 @@ sql:
 
 # Evolución del empleo en Chile 
 ## Cifras de trimestre Diciembre-Enero-Febrero en años recientes
+```js
+md`${introGeneral}`
+```
 
 ## Total de personas ocupadas
+```js
+md`${introOcupacion}`
+```
 
 <div class="card">
 <div>${chartOcupados}</div>
@@ -18,6 +24,9 @@ md`${narrativaOcupados}`
 ```
 
 ## Informalidad
+```js
+md`${introInformalidad}`
+```
 <div class="card">
 <div>${chartInformalidad}</div>
 </div><!--card-->
@@ -34,6 +43,10 @@ md`${narrativaInformalidad}`
 
 
 ## Subempleo por horario (Tiempo Parcial Involuntario)
+```js
+md`${introTPI}`
+```
+
 <div class="card">
 <div>${chartTPI}</div>
 </div><!--card-->
@@ -50,6 +63,9 @@ md`${narrativaTPI}`
 
 
 ## Ocupados según nivel educacional (Educación Superior vs Sin Educación Superior)
+```js
+md`${introEdSup}`
+```
 <div class="card">
 <div>${chartEdSup}</div>
 </div><!--card-->
@@ -60,6 +76,9 @@ md`${narrativaEdSup}`
 
 
 ## Ocupados según nivel de calificación asociado a la ocupación
+```js
+md`${introCalificacionOcupacion}`
+```
 <div class="card">
 <div>${chartCalificacionOcupacion}</div>
 </div><!--card-->
@@ -71,6 +90,10 @@ md`${narrativaCalificacionOcupacion}`
 
 
 ## Tipo de empleo de personas con Educación Superior
+```js
+md`${introEdSupCalificacionOcupacion}`
+```
+
 <div class="card">
 <div>${chartEdSupCalificacionOcupacion}</div>
 </div><!--card-->
@@ -81,6 +104,10 @@ md`${narrativaEdSupCalificacionOcupacion}`
 
 
 ## Ocupaciones del sector público
+```js
+md`${introSectorPublico}`
+```
+
 <div class="card">
 <div>${chartSectorPublico}</div>
 </div><!--card-->
@@ -92,6 +119,10 @@ md`${narrativaSectorPublico}`
 
 
 ## Personas extranjeras
+```js
+md`${introNacionalidad}`
+```
+
 <div class="card">
 <div>${chartNacionalidad}</div>
 </div><!--card-->
@@ -102,6 +133,10 @@ md`${narrativaNacionalidad}`
 
 
 ## Ocupaciones por sexo
+```js
+md`${introSexo}`
+```
+
 <div class="card">
 <div>${chartSexo}</div>
 </div><!--card-->
@@ -138,8 +173,24 @@ const narrativaSectorPublico  = FileAttachment("graphs/generate_narrative_sector
 const narrativaNacionalidad  = FileAttachment("graphs/generate_narrative_nacionalidad.md").text();
 const narrativaSexo  = FileAttachment("graphs/generate_narrative_sexo.md").text();
 
+
 ```
 
+```js
+// Texto introductorio
+const introGeneral  = FileAttachment("graphs/generate_intro_general.md").text();
+const introOcupacion  = FileAttachment("graphs/generate_intro_ocupacion.md").text();
+const introInformalidad  = FileAttachment("graphs/generate_intro_informalidad.md").text();
+const introTPI  = FileAttachment("graphs/generate_intro_tpi.md").text();
+const introEdSup  = FileAttachment("graphs/generate_intro_ed_sup.md").text();
+const introCalificacionOcupacion = FileAttachment("graphs/generate_intro_calificacion_ocupacion.md").text();
+const introEdSupCalificacionOcupacion = FileAttachment("graphs/generate_intro_ed_sup_calificacion_ocupacion.md").text();
+const introSectorPublico = FileAttachment("graphs/generate_intro_sector_publico.md").text();
+const introNacionalidad = FileAttachment("graphs/generate_intro_nacionalidad.md").text();
+const introSexo = FileAttachment("graphs/generate_intro_sexo.md").text();
+
+
+```
 
 ```js
 const sourceDataForCharts  = FileAttachment("graphs/generate_data.json").json();
