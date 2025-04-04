@@ -21,7 +21,7 @@ def run_narrativa(tema: str):
 
     if use_precomputed:
         # Define the path to the precomputed data file
-        precomputed_file = os.path.join(BASE_DIR, f"prebuilt_content/generate_intro_{tema}.md")
+        precomputed_file = os.path.join(BASE_DIR, f"prebuilt_content/generate_narrative_{tema}.md")
         if os.path.exists(precomputed_file):
             with open(precomputed_file, 'r', encoding='utf-8') as file:
                 content = file.read()
