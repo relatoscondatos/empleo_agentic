@@ -461,8 +461,8 @@ function buildChart(options) {
   const labelY = options && options.labelY || "Personas"
   const labelAliases =  options && options.labelAliases || {}
   const width =  options && options.width || 1000
-  const height =  options && options.height || 400
-  const marginRight =  options && options.with || 120
+  const height =  options && options.height || width*0.4
+  const marginRight =  options && options.with || 150
   const referenceKey = options.referenceVariable || null;
   const keys = _.chain(dataPlot).map((d) => d.variable).uniq().filter((d) => d !== referenceKey).value();
   const años = _.chain(dataPlot).map(d => d.año).uniq().value()
@@ -483,6 +483,7 @@ function buildChart(options) {
     height,
     marginLeft: 50,
     marginRight: marginRight,
+    style:{fontSize:12},
     y: { 
       tickFormat: formatAxis,
       zero:zero,
