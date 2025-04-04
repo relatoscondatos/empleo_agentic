@@ -460,7 +460,9 @@ function buildChart(options) {
   const formatAxis = options && options.format || "s"
   const labelY = options && options.labelY || "Personas"
   const labelAliases =  options && options.labelAliases || {}
-  const width =  options && options.with || 800
+  const width =  options && options.width || 1000
+  const height =  options && options.height || 400
+  const marginRight =  options && options.with || 120
   const referenceKey = options.referenceVariable || null;
   const keys = _.chain(dataPlot).map((d) => d.variable).uniq().filter((d) => d !== referenceKey).value();
   const años = _.chain(dataPlot).map(d => d.año).uniq().value()
@@ -478,8 +480,9 @@ function buildChart(options) {
     subtitle:subtitle,
     caption:`Fuente de datos: ${fuentes}\nElaborado por @elaval`,
     width,
+    height,
     marginLeft: 50,
-    marginRight: 200,
+    marginRight: marginRight,
     y: { 
       tickFormat: formatAxis,
       zero:zero,
