@@ -2,53 +2,31 @@
 sql:
   ene_resumen: data/parquet/ene-01-def-agregado.parquet
 ---
-```js
-// Narrativas
-const narrativaOcupados  = FileAttachment("graphs/generate_narrative_ocupados.md").text();
-const narrativaInformalidad  = FileAttachment("graphs/generate_narrative_informalidad.md").text();
-const narrativaTPI  = FileAttachment("graphs/generate_narrative_tpi.md").text();
-const narrativaEdSup  = FileAttachment("graphs/generate_narrative_ed_sup.md").text();
-const narrativaCalificacionOcupacion  = FileAttachment("graphs/generate_narrative_calificacion_ocupacion.md").text();
-const narrativaEdSupCalificacionOcupacion  = FileAttachment("graphs/generate_narrative_ed_sup_calificacion_ocupacion.md").text();
-const narrativaSectorPublico  = FileAttachment("graphs/generate_narrative_sector_publico.md").text();
-const narrativaNacionalidad  = FileAttachment("graphs/generate_narrative_nacionalidad.md").text();
-const narrativaSexo  = FileAttachment("graphs/generate_narrative_sexo.md").text();
 
-```
+# Evolución del empleo en Chile 
+## Cifras de trimestre Diciembre-Enero-Febrero en años recientes
+
+## Total de personas ocupadas
+
+<div class="card">
+<div>${chartOcupados}</div>
+</div><!--card-->
 
 
-```js
-const sourceDataForCharts  = FileAttachment("graphs/generate_data.json").json();
-```
-
-```js
-display(sourceDataForCharts)
-```
-
-## Total de personas ocupadas v20240402.1458
-```js
-(() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.ocupados)
-
-  //return [...data_formalidad]
-  //return dataPlot
-  return buildChart({data:dataPlot})
-})()
-```
 ```js
 md`${narrativaOcupados}`
 ```
 
 ## Informalidad
-```js
-(() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.informalidad)
+<div class="card">
+<div>${chartInformalidad}</div>
+</div><!--card-->
 
-  //return [...data_formalidad]
-  //return dataPlot
-  return buildChart({data:dataPlot})
-})()
-```
+<div class="card">
+<div>${chartInformalidadPorcentaje}</div>
+</div><!--card-->
+
+
 
 ```js
 md`${narrativaInformalidad}`
@@ -56,12 +34,15 @@ md`${narrativaInformalidad}`
 
 
 ## Subempleo por horario (Tiempo Parcial Involuntario)
-```js
-(() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.tpi)
-  return buildChart({data:dataPlot})
-})()
-```
+<div class="card">
+<div>${chartTPI}</div>
+</div><!--card-->
+
+<div class="card">
+<div>${chartTPIPorcentaje}</div>
+</div><!--card-->
+
+
 
 ```js
 md`${narrativaTPI}`
@@ -69,12 +50,9 @@ md`${narrativaTPI}`
 
 
 ## Ocupados según nivel educacional (Educación Superior vs Sin Educación Superior)
-```js
-(() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.ed_sup)
-  return buildChart({data:dataPlot})
-})()
-```
+<div class="card">
+<div>${chartEdSup}</div>
+</div><!--card-->
 
 ```js
 md`${narrativaEdSup}`
@@ -82,12 +60,10 @@ md`${narrativaEdSup}`
 
 
 ## Ocupados según nivel de calificación asociado a la ocupación
-```js
-(() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.calificacion_ocupacion)
-  return buildChart({data:dataPlot})
-})()
-```
+<div class="card">
+<div>${chartCalificacionOcupacion}</div>
+</div><!--card-->
+
 
 ```js
 md`${narrativaCalificacionOcupacion}`
@@ -95,12 +71,9 @@ md`${narrativaCalificacionOcupacion}`
 
 
 ## Tipo de empleo de personas con Educación Superior
-```js
-(() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.ed_sup_calificacion_ocupacion)
-  return buildChart({data:dataPlot})
-})()
-```
+<div class="card">
+<div>${chartEdSupCalificacionOcupacion}</div>
+</div><!--card-->
 
 ```js
 md`${narrativaEdSupCalificacionOcupacion}`
@@ -108,12 +81,9 @@ md`${narrativaEdSupCalificacionOcupacion}`
 
 
 ## Ocupaciones del sector público
-```js
-(() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.sector_publico)
-  return buildChart({data:dataPlot})
-})()
-```
+<div class="card">
+<div>${chartSectorPublico}</div>
+</div><!--card-->
 
 ```js
 md`${narrativaSectorPublico}`
@@ -122,12 +92,9 @@ md`${narrativaSectorPublico}`
 
 
 ## Personas extranjeras
-```js
-(() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.nacionalidad)
-  return buildChart({data:dataPlot})
-})()
-```
+<div class="card">
+<div>${chartNacionalidad}</div>
+</div><!--card-->
 
 ```js
 md`${narrativaNacionalidad}`
@@ -135,12 +102,9 @@ md`${narrativaNacionalidad}`
 
 
 ## Ocupaciones por sexo
-```js
-(() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.sexo)
-  return buildChart({data:dataPlot})
-})()
-```
+<div class="card">
+<div>${chartSexo}</div>
+</div><!--card-->
 
 ```js
 md`${narrativaSexo}`
@@ -162,111 +126,180 @@ md`${narrativaSexo}`
 
 
 
+```js
+// Narrativas
+const narrativaOcupados  = FileAttachment("graphs/generate_narrative_ocupados.md").text();
+const narrativaInformalidad  = FileAttachment("graphs/generate_narrative_informalidad.md").text();
+const narrativaTPI  = FileAttachment("graphs/generate_narrative_tpi.md").text();
+const narrativaEdSup  = FileAttachment("graphs/generate_narrative_ed_sup.md").text();
+const narrativaCalificacionOcupacion  = FileAttachment("graphs/generate_narrative_calificacion_ocupacion.md").text();
+const narrativaEdSupCalificacionOcupacion  = FileAttachment("graphs/generate_narrative_ed_sup_calificacion_ocupacion.md").text();
+const narrativaSectorPublico  = FileAttachment("graphs/generate_narrative_sector_publico.md").text();
+const narrativaNacionalidad  = FileAttachment("graphs/generate_narrative_nacionalidad.md").text();
+const narrativaSexo  = FileAttachment("graphs/generate_narrative_sexo.md").text();
+
+```
 
 
+```js
+const sourceDataForCharts  = FileAttachment("graphs/generate_data.json").json();
+```
 
 
+```js
+const chartOcupados = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.ocupados)
+  return buildChart({
+    data:dataPlot,
+    title: "Total de personas ocupadas",
+    labelAliases: labelAliases
+    })
+})()
+
+const chartInformalidad = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.informalidad)
+  return buildChart({
+    data:dataPlot,
+    title: "Personas con ocupacion formal / informal",
+    labelAliases: labelAliases
+
+  })
+})()
+
+const chartTPI = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.tpi)
+  return buildChart({
+    data:dataPlot,
+    title: "Personas ocupadas con Tiempo Parcial Invonultario (TPI)",
+    subtitle: "Subempleo por horario",
+    labelAliases: labelAliases
+
+    })
+})()
+
+const chartEdSup = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.ed_sup)
+  return buildChart({
+    data:dataPlot,
+    title: "Personas con Educación Superior Completa",
+    labelAliases: labelAliases
+    })
+})()
+
+const chartCalificacionOcupacion = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.calificacion_ocupacion)
+  return buildChart({
+    data:dataPlot,
+    title: "Ocupados según nivel de calificación requerido para la ocupación",
+    labelAliases: labelAliases
+    })
+})()
 
 
+const chartEdSupCalificacionOcupacion = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.ed_sup_calificacion_ocupacion)
+  return buildChart({
+    data:dataPlot,
+    title: "Ocupados con Educación Superior según nivel de calificación de la ocupación",
+    subtitle: "Cuando la calificación es media o baja hablamos de subempleo por competencias",
+    labelAliases: labelAliases
+    })
+})()
 
 
-```sql display
-SELECT *
-FROM ene_resumen
+const chartSectorPublico = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.sector_publico)
+  return buildChart({
+    data:dataPlot,
+    title: "Ocupados con en el sector público",
+    labelAliases: labelAliases
+    })
+})()
+
+
+const chartNacionalidad = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.nacionalidad)
+  return buildChart({
+    data:dataPlot,
+    title: "Personas ocupadas según nacionalidad (Chilena / Extranjera)",
+    labelAliases: labelAliases
+    })
+})()
+
+
+const chartSexo = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.sexo)
+  return buildChart({
+    data:dataPlot,
+    title: "Personas ocupadas según sexo",
+    labelAliases: labelAliases
+    })
+})()
+
+const chartTPIPorcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.tpi)
+  return buildChart({
+    data:dataPlot, 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Personas ocupadas a Tiempo Parcial Involuntario (% de opacion total)",
+    zero:"no",
+    labelAliases: labelAliases,
+    labelY: "% del total de personas ocupadas"
+    })
+
+})()
+
+const chartInformalidadPorcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.informalidad)
+  return buildChart({
+    data:dataPlot.filter(d => d.variable == "informal"), 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Personas con empleo informal (% de opacion total)",
+    zero:"no",
+    labelAliases: labelAliases,
+    labelY: "% del total de personas ocupadas"
+    })
+
+})()
+
+
 ```
 
 
 
 
 
-```sql id=data_sector_publico 
-SELECT 
-  año,
-  variable,
-  valor,
-  valor - LAG(valor) OVER (PARTITION BY variable ORDER BY año) AS diferencia
-FROM ene_resumen
-WHERE variable = 'sector_publico' OR variable = 'no_sector_publico'
-ORDER BY variable, año
 
-```
-
-```sql id=data_nacionalidad 
-SELECT 
-  año,
-  variable,
-  valor,
-  valor - LAG(valor) OVER (PARTITION BY variable ORDER BY año) AS diferencia
-FROM ene_resumen
-WHERE variable = 'nacionalidad_chilena' OR variable = 'nacionalidad_extranjera'
-ORDER BY variable, año
-
-```
-
-```sql id=data_sexo 
-SELECT 
-  año,
-  variable,
-  valor,
-  valor - LAG(valor) OVER (PARTITION BY variable ORDER BY año) AS diferencia
-FROM ene_resumen
-WHERE variable = 'hombre' OR variable = 'mujer'
-ORDER BY variable, año
-
-```
 
 
 
 
 
 ```js
-(() => {
-  const dataPlot = [...data_ed_sup_calificacion_ocupación]
+const labelAliases = {
+  "ocupados": "Personas Ocupadas",
+  "formal": "Ocupación Formal",
+  "informal": "Ocupación Informal",
+  "tpi": "TPI",
+  "no_tpi": "No TPI",
+  "ed_sup_completa": "Ed. Superior Completa",
+  "sin_ed_sup": "Sin Ed. Superior Completa",
+  "calificacion_media_baja": "Ocup. de Calificación Media/Baja",
+  "alta_calificacion": "Ocup. de Alta Calificación",
+  "ed_sup_competencia_alta": "Ed Sup & Alta Calificación",
+  "ed_sup_competencia_media_baja": "Ed Sup & Calificación Media/Baja",
+  "sector_publico": "Sector Público",
+  "no_sector_publico": "No en Sector Público",
+  "nacionalidad_chilena": "Nacionalidad Chilena",
+  "nacionalidad_extranjera": "Nacionalidad Extranjera",
+  "hombre": "Hombre",
+  "mujer": "Mujer",
 
-  return buildChart({data:dataPlot})
-})()
-```
-```js
-(() => {
-  const dataPlot = [...data_calificacion_ocupación]
-
-  return buildChart({data:dataPlot})
-})()
-```
-
-```js
-(() => {
-  const dataPlot = [...data_sector_publico]
-
-  return buildChart({data:dataPlot})
-})()
-```
-
-
-```js
-(() => {
-  const dataPlot = [...data_nacionalidad]
-
-  return buildChart({data:dataPlot})
-})()
+}
 ```
 
-```js
-(() => {
-  const dataPlot = [...data_nacionalidad].filter(d => d.año >= 2012 && (d.variable == "nacionalidad_extranjera"))
-
-  return buildChartDiferencia({data:dataPlot})
-})()
-```
-
-
-```js
-(() => {
-  const dataPlot = [...data_sexo]
-
-  return buildChart({data:dataPlot})
-})()
-```
 
 ```js
 const Markdown = new markdownit({html: true});
@@ -291,6 +324,19 @@ function convertDataToPlot(sourceData) {
     año: year,
     variable: variable,
     valor: d[variable]
+  })))
+  .flatten()
+  .value()
+}
+```
+
+```js
+function convertDataToPlotPorcentajes(sourceData) {
+  return _.chain(sourceData.pct_ocupados)
+  .map((items,variable) => _.map(items,(valor, año) => ({
+    año: año,
+    variable: variable,
+    valor: valor
   })))
   .flatten()
   .value()
@@ -348,42 +394,63 @@ function buildChartDiferencia(options) {
   })
 }
 ```
-
+```js
+const fuentes= "Bases de Datos de Ocupación y Desocupación, Inistituto Nacional de Estadísticas (INE)"
+```
 
 ```js
 function buildChart(options) {
   const dataPlot = options.data;
+  const title = options && options.title || "";
+  const subtitle = options && options.subtitle || "";
+  const zero = options && options.zero == "no" ? false : true
   const format = options && options.format || ".3s"
   const formatAxis = options && options.format || "s"
-
+  const labelY = options && options.labelY || "Personas"
+  const labelAliases =  options && options.labelAliases || {}
   const referenceKey = options.referenceVariable || null;
-  const keys = dataPlot.map((d) => d.variable).filter((d) => d !== referenceKey);
+  const keys = _.chain(dataPlot).map((d) => d.variable).uniq().filter((d) => d !== referenceKey).value();
+  const años = _.chain(dataPlot).map(d => d.año).uniq().value()
   const minAño = _.chain(dataPlot).map(d => d.año).min().value()
   const maxAño = _.chain(dataPlot).map(d => d.año).max().value()
 
+  function label(label) {
+    return labelAliases[label] || label
+  }
+
+  const colorDomain = (referenceKey ? _.concat(referenceKey, keys) : keys).map(d => label(d))
+
   return Plot.plot({
+    title:title,
+    subtitle:subtitle,
+    caption:`Fuente de datos: ${fuentes}\nElaborado por @elaval`,
     width,
     marginLeft: 50,
-    marginRight: 150,
-    y: { tickFormat: formatAxis },
-    x: { domain: [minAño-1, maxAño] },
+    marginRight: 200,
+    y: { 
+      tickFormat: formatAxis,
+      zero:zero,
+      label: labelY
+     },
+    x: { domain: [minAño-1, maxAño], ticks: años.length , tickFormat:"d", grid:true},
     color: {
       legend: true,
-      domain: referenceKey ? _.concat(referenceKey, keys) : keys,
-      range: referenceKey ? _.concat("lightgrey", d3.schemeObservable10) : d3.schemeObservable10
+      domain: colorDomain,
+      range: referenceKey ? _.concat("lightgrey", d3.schemeObservable10) : d3.schemeObservable10,
+      label:"Año"
     },
 
      marks: [
-      Plot.ruleY([0]),
+      //Plot.ruleY([0]),
       Plot.lineY(dataPlot, {
         x: "año",
         y: "valor",
-        stroke: "variable"
+        stroke: d => label(d.variable)
       }),
       Plot.dot(dataPlot, {
         x: "año",
         y: "valor",
-        fill: "variable"
+        fill: d => label(d.variable)
       }),
       Plot.text(dataPlot, {
         x: "año",
@@ -396,10 +463,10 @@ function buildChart(options) {
         Plot.selectLast({
           x: "año",
           y: "valor",
-          text: "variable",
+          text: d => label(d.variable),
           textAnchor: "start",
           dx: 10,
-          z: "variable"
+          z: d => label(d.variable)
         })
       )
  
@@ -409,6 +476,15 @@ function buildChart(options) {
   })
 }
 ```
+
+
+
+```js
+//display(sourceDataForCharts)
+```
+
+
+
 
 
 

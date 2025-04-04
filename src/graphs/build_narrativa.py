@@ -1,9 +1,9 @@
 import json
 from langchain_openai import ChatOpenAI
-from models.state import AnalysisState
+from graphs.state import AnalysisState
 from graphs.prompts import prompt_base, prompt_tematica
 
-llm = ChatOpenAI(model="gpt-4o-mini")
+llm = ChatOpenAI(model="gpt-4o")
 
 def build_narrativa(state: AnalysisState) -> AnalysisState:
     prompt = prompt_tematica.get(state.tema, "")

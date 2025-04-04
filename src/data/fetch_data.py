@@ -1,4 +1,4 @@
-from models.state import AnalysisState
+from graphs.state import AnalysisState
 from data.transform import run_query
 from data.queries import queries
 

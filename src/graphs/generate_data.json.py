@@ -1,4 +1,4 @@
-# generate_data.json.py v20250403.23.0509
+# generate_data.json.py v20250403.1123
 # This script generates a JSON file with the data fetched from the web
 import sys
 import os
@@ -9,7 +9,7 @@ if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
 from langgraph.graph import StateGraph, START, END
-from models.state import AnalysisState
+from graphs.state import AnalysisState
 from data.fetch_data import fetch_data
 import json
 

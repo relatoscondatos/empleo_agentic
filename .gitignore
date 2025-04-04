@@ -3,3 +3,7 @@
 node_modules/
 yarn-error.log
 .env
+*__pychache__/
+*.pyc
+/src/graphs/__pycache__
+/src/data/__pycache__

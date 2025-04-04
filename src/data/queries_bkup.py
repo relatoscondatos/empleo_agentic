@@ -25,6 +25,7 @@ queries = {
         año,
         variable,
         valor,
+        valor - LAG(valor) OVER (PARTITION BY variable ORDER BY año) AS diferencia
         FROM parquet_scan(?) AS datos
         WHERE variable IN ('ocupados', 'ed_sup_completa', 'sin_ed_sup')
         ORDER BY variable, año
