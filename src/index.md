@@ -162,6 +162,7 @@ md`${narrativaSexo}`
 
 ```js
 // Narrativas
+/*
 const narrativaOcupados  = FileAttachment("graphs/generate_narrative_ocupados.md").text();
 const narrativaInformalidad  = FileAttachment("graphs/generate_narrative_informalidad.md").text();
 const narrativaTPI  = FileAttachment("graphs/generate_narrative_tpi.md").text();
@@ -172,10 +173,11 @@ const narrativaSectorPublico  = FileAttachment("graphs/generate_narrative_sector
 const narrativaNacionalidad  = FileAttachment("graphs/generate_narrative_nacionalidad.md").text();
 const narrativaSexo  = FileAttachment("graphs/generate_narrative_sexo.md").text();
 
-
+*/
 ```
 
 ```js
+/*
 // Texto introductorio
 const introGeneral  = FileAttachment("graphs/generate_intro_general.md").text();
 const introOcupacion  = FileAttachment("graphs/generate_intro_ocupacion.md").text();
@@ -188,7 +190,7 @@ const introSectorPublico = FileAttachment("graphs/generate_intro_sector_publico.
 const introNacionalidad = FileAttachment("graphs/generate_intro_nacionalidad.md").text();
 const introSexo = FileAttachment("graphs/generate_intro_sexo.md").text();
 
-
+*/
 ```
 
 ```js
@@ -458,6 +460,7 @@ function buildChart(options) {
   const formatAxis = options && options.format || "s"
   const labelY = options && options.labelY || "Personas"
   const labelAliases =  options && options.labelAliases || {}
+  const width =  options && options.with || 800
   const referenceKey = options.referenceVariable || null;
   const keys = _.chain(dataPlot).map((d) => d.variable).uniq().filter((d) => d !== referenceKey).value();
   const años = _.chain(dataPlot).map(d => d.año).uniq().value()
