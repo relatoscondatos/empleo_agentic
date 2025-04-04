@@ -1,6 +1,5 @@
 ---
-sql:
-  ene_resumen: data/parquet/ene-01-def-agregado.parquet
+
 ---
 
 # Evolución del empleo en Chile 
@@ -543,7 +542,5 @@ function buildChart(options) {
 // Import required modules and configurations
 import moment from 'npm:moment'
 import markdownit from "npm:markdown-it";
-
-
 
 ```
