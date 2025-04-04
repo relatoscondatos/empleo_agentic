@@ -21,16 +21,16 @@ def run_narrativa(tema: str):
 
     if use_precomputed:
         # Define the path to the precomputed data file
-        precomputed_file = os.path.join(BASE_DIR, f"prebuilt_content/generate_narrative_{tema}.md")
+        precomputed_file = os.path.join(BASE_DIR, f"prebuilt_content/generate_intro_{tema}.md")
         if os.path.exists(precomputed_file):
             with open(precomputed_file, 'r', encoding='utf-8') as file:
-                narrativa = json.load(file)
-            if print_text:
-                print(narrativa)
-            return narrativa
+                content = file.read()
+            return content
         else:
             print(f"No precomputed data found for tema '{tema}'. Running the graph.")
             # Proceed to run the graph if precomputed data is not available
+
+
 
 
     # Armar grafo
