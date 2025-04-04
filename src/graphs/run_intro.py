@@ -16,7 +16,7 @@ if BASE_DIR not in sys.path:
 
 from graphs.prompts_intro import prompt_base, prompt_tematica
 
-llm = ChatOpenAI(model="gpt-4o")
+llm = ChatOpenAI(model="gpt-4o",openai_api_key=os.getenv("OPENAI_API_KEY"))
 
 
 class AnalysisState(BaseModel):
