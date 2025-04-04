@@ -5,12 +5,12 @@
 # Evolución del empleo en Chile 
 ## Cifras de trimestre Diciembre-Enero-Febrero en años recientes
 ```js
-md`${introGeneral}`
+md`${introIntroduccionGeneral}`
 ```
 
 ## Total de personas ocupadas
 ```js
-md`${introOcupacion}`
+md`${introOcupados}`
 ```
 
 <div class="card">
@@ -179,8 +179,8 @@ const narrativaSexo  = FileAttachment("graphs/generate_narrative_sexo.md").text(
 ```js
 
 // Texto introductorio
-const introGeneral  = FileAttachment("graphs/generate_intro_general.md").text();
-const introOcupacion  = FileAttachment("graphs/generate_intro_ocupacion.md").text();
+const introIntroduccionGeneral  = FileAttachment("graphs/generate_intro_introduccion_general.md").text();
+const introOcupados  = FileAttachment("graphs/generate_intro_ocupados.md").text();
 const introInformalidad  = FileAttachment("graphs/generate_intro_informalidad.md").text();
 const introTPI  = FileAttachment("graphs/generate_intro_tpi.md").text();
 const introEdSup  = FileAttachment("graphs/generate_intro_ed_sup.md").text();

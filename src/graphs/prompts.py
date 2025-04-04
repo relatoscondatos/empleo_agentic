@@ -31,7 +31,7 @@ La narrativa debe estar completamente redactada en español, con un enfoque clar
 
 prompt_dummy = "Solo di 'Hola Mundo'."
 
-prompt_ocupacion = f"""
+prompt_ocupados = f"""
 El indicador a analizar es `ocupados`, que representa el total de personas empleadas en el país.
 
 {prompt_estilo_general}
@@ -109,7 +109,7 @@ Describe cómo ha evolucionado la participación laboral de cada grupo, en térm
 prompt_tematica = {
     "base": prompt_base,
     "dummy": prompt_dummy,
-    "ocupacion": prompt_ocupacion,
+    "ocupados": prompt_ocupados,
     "informalidad": prompt_informalidad,
     "tpi": prompt_tpi,
     "ed_sup": prompt_ed_sup,
