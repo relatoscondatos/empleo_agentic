@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Print environment
-        run: echo "OPENAI_API_KEY=${OPENAI_API_KEY:0:5}*****"
+        run: echo "OPENAI_API_KEY=${OPENAI_API_KEY:0:10}*****"
 
       - uses: actions/checkout@v4
 
