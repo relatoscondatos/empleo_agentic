@@ -15,7 +15,24 @@ from data.fetch_data import fetch_data
 from graphs.build_narrativa import build_narrativa
 
 
-def run_narrativa(tema: str, output_folder: str = "src/output", print_text: bool = True):
+def run_narrativa(tema: str):
+        # Check if we should use precomputed data
+    use_precomputed = os.getenv('USE_PRECOMPUTED_DATA', 'false').lower() in ('true', '1', 'yes')
+
+    if use_precomputed:
+        # Define the path to the precomputed data file
+        precomputed_file = os.path.join(BASE_DIR, f"prebuilt_content/generate_narrative_{tema}.md")
+        if os.path.exists(precomputed_file):
+            with open(precomputed_file, 'r', encoding='utf-8') as file:
+                narrativa = json.load(file)
+            if print_text:
+                print(narrativa)
+            return narrativa
+        else:
+            print(f"No precomputed data found for tema '{tema}'. Running the graph.")
+            # Proceed to run the graph if precomputed data is not available
+
+
     # Armar grafo
     builder = StateGraph(AnalysisState)
     builder.add_node("fetch_data", fetch_data)

@@ -22,6 +22,7 @@ jobs:
       name: github-pages
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      USE_PRECOMPUTED_DATA: ${{ secrets.USE_PRECOMPUTED_DATA }}
     steps:
       - name: Print environment
         run: echo "OPENAI_API_KEY=${OPENAI_API_KEY:0:10}*****"

@@ -1,0 +1,7 @@
+Bienvenido a nuestra plataforma dedicada a ofrecer una visión clara y accesible del mercado laboral en Chile. Este sitio presenta información detallada sobre diversas áreas del empleo en el país, destacando secciones como ocupación, informalidad, subempleo, educación, calificación ocupacional, y más. Además, exploramos cómo estos aspectos se relacionan con factores como el sector público y privado, la nacionalidad y el sexo.
+
+Toda la información que encontrarás aquí proviene de la Encuesta Nacional de Empleo (ENE), llevada a cabo por el Instituto Nacional de Estadísticas (INE) de Chile. Los datos corresponden al trimestre diciembre-enero-febrero de cada año, proporcionando así una perspectiva anual consistente y sólida.
+
+Para enriquecer tu experiencia, hemos integrado gráficos visuales y narrativas generadas por un modelo de inteligencia artificial que explican y contextualizan cada sección de forma clara y comprensible. Nuestro objetivo es facilitar la comprensión de estos temas para un amplio público, sin utilizar jerga técnica ni complejidad innecesaria.
+
+Este sitio tiene un propósito divulgativo y exploratorio, sin ningún fin comercial. Queremos ofrecer una herramienta útil y objetiva para quienes deseen entender mejor el entorno laboral en Chile. Te invitamos a explorar nuestro contenido y descubrir las dinámicas del mercado laboral en el país con información actualizada y de confianza.
