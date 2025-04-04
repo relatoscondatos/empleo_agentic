@@ -12,20 +12,20 @@ Los datos corresponden al trimestre diciembre-enero-febrero de cada año (el añ
 
 
 prompt_estilo_general = """
-Analiza la evolución de los datos considerando tres períodos: 
+Analiza la evolución de los datos considerando tres períodos:
 - Prepandemia (hasta 2020)
 - Pandemia (2021 y 2022)
 - Postpandemia (desde 2023)
 
-Además, describe de manera especial los cambios entre los años 2024 y 2025, ya que son los datos más recientes disponibles.
+Incluye una sección final centrada en los cambios ocurridos entre 2024 y 2025, utilizando los datos de `diff_prev_year`. En esta sección, destaca qué variables explican en mayor medida la variación total en el empleo, e identifica aquellas que presentan cambios inusuales, significativos o en dirección contraria a la tendencia general.
 
-⚠️ Todos los datos entregados, incluyendo los años 2024 y 2025, son reales, oficiales y observados. 
-No se trata de estimaciones ni proyecciones. Por lo tanto:
+⚠️ Todos los datos entregados, incluyendo los de 2024 y 2025, son reales, oficiales y observados. No se trata de estimaciones ni proyecciones.
 
-- No utilices expresiones como "se espera que", "proyección", "estimación", "posiblemente", "podría", "se prevé" o similares.
+Por lo tanto:
+- No utilices expresiones como "se espera", "proyección", "posiblemente", "podría", "se prevé" o similares.
 - Redacta como si todos los años tuvieran datos ciertos y validados, incluso los más recientes.
 
-La narrativa debe estar completamente redactada en español, con un enfoque claro, analítico y sin referencias a la estructura técnica del objeto de datos.
+Redacta el análisis en español, de forma fluida, analítica y sin mencionar estructuras internas del objeto de datos (`by_variable`, `raw`, etc.).
 """
 
 
@@ -36,7 +36,9 @@ El indicador a analizar es `ocupados`, que representa el total de personas emple
 
 {prompt_estilo_general}
 
-Describe cómo ha evolucionado el empleo total en Chile, destacando tendencias de crecimiento o contracción. Enfatiza las caídas importantes, como las ocurridas durante la pandemia, y destaca especialmente la variación más reciente (de 2024 a 2025). No repitas los valores numéricos año a año: resume los cambios de forma agregada y comparativa.
+Describe la evolución del empleo total en Chile, identificando los principales períodos de crecimiento o contracción. Menciona de forma agregada los momentos clave, como las caídas durante la pandemia o las recuperaciones posteriores.
+
+Finaliza con un análisis específico de la variación entre 2024 y 2025. Compara este cambio con la evolución de años anteriores y considera si representa una aceleración, estabilización o reversión de la tendencia.
 """
 
 prompt_informalidad = f"""

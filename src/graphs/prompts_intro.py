@@ -29,8 +29,8 @@ También explica que las narrativas fueron generadas con un modelo de lenguaje d
 """
 
 
-prompt_ocupacion = f"""
-Redacta un texto introductorio para la sección "Ocupación" de una página web sobre el mercado laboral en Chile.
+prompt_ocupados = f"""
+Redacta un texto introductorio para la sección "Total de personas ocupadas" de una página web sobre el mercado laboral en Chile.
 
 El texto debe informar que esta sección presenta la evolución del número de personas ocupadas en Chile, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
@@ -59,7 +59,7 @@ No utilices expresiones que hagan referencia directa al lector (como "aquí ver�
 
 
 prompt_tpi = f"""
-Redacta un texto introductorio para la sección "Subempleo por horario (TPI)" de una página web sobre el mercado laboral en Chile.
+Redacta un texto introductorio para la sección "Proporción de Trabajadores en Tiempo Parcial Involuntario" de una página web sobre el mercado laboral en Chile.
 
 El texto debe indicar que esta sección presenta información sobre las personas ocupadas en empleos de tiempo parcial involuntario (TPI), según datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).  
 
@@ -73,7 +73,7 @@ Evita el uso de frases que hagan referencia directa al lector o que califiquen e
 """
 
 prompt_ed_sup = f"""
-Redacta un texto introductorio para la sección "Educación superior" de una página web sobre el mercado laboral en Chile.
+Redacta un texto introductorio para la sección "Nivel educacional de las personas ocupadas" de una página web sobre el mercado laboral en Chile.
 
 El texto debe indicar que esta sección presenta información sobre la participación de personas con y sin educación superior en el empleo en Chile, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
@@ -87,7 +87,7 @@ No deben utilizarse frases que aludan directamente al lector ni calificativos so
 """
 
 prompt_calificacion_ocupacion = f"""
-Redacta un texto introductorio para la sección "Calificación ocupacional" de una página web sobre el mercado laboral en Chile.
+Redacta un texto introductorio para la sección "Calificación de las ocupaciones" de una página web sobre el mercado laboral en Chile.
 
 El texto debe indicar que esta sección presenta información sobre el nivel de calificación de las ocupaciones desempeñadas por las personas ocupadas, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
@@ -107,7 +107,7 @@ Evita frases que califiquen el contenido o se dirijan directamente al lector. El
 
 
 prompt_ed_sup_calificacion_ocupacion = f"""
-Redacta un texto introductorio para la sección "Educación superior y calificación ocupacional" de una página web sobre el mercado laboral en Chile.
+Redacta un texto introductorio para la sección "Educación superior y tipo de ocupación" de una página web sobre el mercado laboral en Chile.
 
 El texto debe indicar que esta sección analiza la relación entre el nivel educativo y la calificación de las ocupaciones desempeñadas por personas con educación superior completa, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
@@ -123,7 +123,7 @@ Evita frases que califiquen el contenido o que se dirijan directamente al lector
 """
 
 prompt_sector_publico = f"""
-Redacta un texto introductorio para la sección "Sector público" de una página web sobre el mercado laboral en Chile.
+Redacta un texto introductorio para la sección "Ocupaciones del sector público" de una página web sobre el mercado laboral en Chile.
 
 El texto debe indicar que esta sección presenta información sobre el empleo en el sector público y ocupaciones que no corresponden al sector público (a las que nos referimos como sector no público), utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
@@ -142,7 +142,7 @@ El tono debe ser neutral, institucional y descriptivo.
 
 
 prompt_nacionalidad = f"""
-Redacta un texto introductorio para la sección "Nacionalidad" de una página web sobre el mercado laboral en Chile.
+Redacta un texto introductorio para la sección "Personas ocupadas según nacionalidad" de una página web sobre el mercado laboral en Chile.
 
 El texto debe indicar que esta sección presenta información sobre el empleo según la nacionalidad de las personas, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
@@ -156,7 +156,7 @@ Evita frases que califiquen el contenido o se dirijan directamente al lector. El
 """
 
 prompt_sexo = f"""
-Redacta un texto introductorio para la sección "Sexo" de una página web sobre el mercado laboral en Chile.
+Redacta un texto introductorio para la sección "Ocupación según sexo" de una página web sobre el mercado laboral en Chile.
 
 El texto debe indicar que esta sección presenta información sobre el empleo desagregado por sexo, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
@@ -172,7 +172,7 @@ Evita frases que califiquen el contenido o se dirijan directamente al lector. El
 prompt_tematica = {
     "dummy": prompt_dummy,
     "introduccion_general": prompt_introduccion_general,
-    "ocupacion": prompt_ocupacion,
+    "ocupados": prompt_ocupados,
     "informalidad": prompt_informalidad,
     "tpi": prompt_tpi,
     "ed_sup": prompt_ed_sup,

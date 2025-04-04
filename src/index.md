@@ -6,8 +6,9 @@
 //display(sourceDataForCharts)
 ```
 
-# Evolución del empleo en Chile 
-## Cifras de trimestre Diciembre-Enero-Febrero en años recientes
+# Evolución del empleo en Chile  de 2011 a 2025
+## Análisis de datos de la Encuesta Nacional de Empleo (ENE) para el trimestre diciembre-enero-febrero.
+
 ```js
 md`${introIntroduccionGeneral}`
 ```
@@ -53,7 +54,7 @@ md`${narrativaInformalidad}`
 ```
 
 
-## Subempleo por horario (Tiempo Parcial Involuntario)
+## Proporción de Trabajadores en Tiempo Parcial Involuntario
 ```js
 md`${introTPI}`
 ```
@@ -77,7 +78,7 @@ md`${narrativaTPI}`
 ```
 
 
-## Ocupados según nivel educacional (Educación Superior vs Sin Educación Superior)
+## Nivel educacional de las personas ocupadas
 ```js
 md`${introEdSup}`
 ```
@@ -94,7 +95,7 @@ md`${narrativaEdSup}`
 ```
 
 
-## Ocupados según nivel de calificación asociado a la ocupación
+## Calificación de las ocupaciones
 ```js
 md`${introCalificacionOcupacion}`
 ```
@@ -111,7 +112,7 @@ md`${narrativaCalificacionOcupacion}`
 ```
 
 
-## Tipo de empleo de personas con Educación Superior
+## Educación superior y tipo de ocupación
 ```js
 md`${introEdSupCalificacionOcupacion}`
 ```
@@ -147,7 +148,7 @@ md`${narrativaSectorPublico}`
 ```
 
 
-## Personas extranjeras
+## Personas ocupadas según nacionalidad
 ```js
 md`${introNacionalidad}`
 ```
@@ -164,7 +165,7 @@ md`${narrativaNacionalidad}`
 ```
 
 
-## Ocupaciones por sexo
+## Ocupación según sexo
 ```js
 md`${introSexo}`
 ```
@@ -357,7 +358,7 @@ const chartEduCalificacionOcupacion_diferencias = (() => {
   const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.edu_calificacion_ocupacion).filter(d => d.año == 2025)
   return buildChartDiferencia({
     data:dataPlot,
-    title: "Educación & Ocupación - Diferencia 2025 vs 2024",
+    title: "Cambio anual en la ocupación según nivel educativo y calificación (2025 vs. 2024)",
     labelAliases: labelAliases,
     marginLeft:200,
     referenceVariable:"ocupados"
@@ -689,7 +690,7 @@ function buildChartDiferencia(options) {
     style:{fontSize:12},
     x: { 
       tickFormat: formatAxis,
-      label: "Diferencia con respecto al año anterior"
+      label: "Variación 2025 vs 2024 (en número de personas)"
      },
     
     y: {domain:colorDomain},
