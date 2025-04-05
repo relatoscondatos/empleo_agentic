@@ -2,7 +2,7 @@ import json
 import os
 from langchain_openai import ChatOpenAI
 from graphs.state import AnalysisState
-from graphs.prompts import prompt_base, prompt_tematica
+from graphs.prompts_narrative import prompt_base, prompt_tematica
 
 llm = ChatOpenAI(model="gpt-4o",openai_api_key=os.getenv("OPENAI_API_KEY"))
 

@@ -13,7 +13,7 @@
 md`${introIntroduccionGeneral}`
 ```
 
-## Total de personas ocupadas
+## Evolución del empleo total en Chile
 ```js
 md`${introOcupados}`
 ```
@@ -31,7 +31,7 @@ md`${introOcupados}`
 md`${narrativaOcupados}`
 ```
 
-## Informalidad
+## Empleo formal e informal
 ```js
 md`${introInformalidad}`
 ```
@@ -54,7 +54,8 @@ md`${narrativaInformalidad}`
 ```
 
 
-## Proporción de Trabajadores en Tiempo Parcial Involuntario
+## Subempleo por horario (TPI)
+
 ```js
 md`${introTPI}`
 ```
@@ -112,7 +113,7 @@ md`${narrativaCalificacionOcupacion}`
 ```
 
 
-## Educación superior y tipo de ocupación
+## Educación superior y calificación de la ocupación
 ```js
 md`${introEdSupCalificacionOcupacion}`
 ```
@@ -129,7 +130,7 @@ md`${narrativaEdSupCalificacionOcupacion}`
 ```
 
 
-## Ocupaciones del sector público
+## Empleo en el sector público y no público
 ```js
 md`${introSectorPublico}`
 ```
@@ -165,7 +166,7 @@ md`${narrativaNacionalidad}`
 ```
 
 
-## Ocupación según sexo
+## Personas ocupadas según sexo
 ```js
 md`${introSexo}`
 ```
@@ -273,7 +274,7 @@ const chartTPI = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.tpi)
   return buildChart({
     data:dataPlot,
-    title: "Personas ocupadas con Tiempo Parcial Invonultario (TPI)",
+    title: "Personas ocupadas con Tiempo Parcial Involuntario (TPI)",
     subtitle: "Subempleo por horario",
     labelAliases: labelAliases
 
@@ -345,7 +346,7 @@ const chartEdSupCalificacionOcupacion = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.ed_sup_calificacion_ocupacion)
   return buildChart({
     data:dataPlot,
-    title: "Personas ocupadas con Educación Superior según nivel de calificación de la ocupación",
+    title: "Personas ocupadas según nivel educacional y calificación de la ocupación",
     subtitle: "Cuando la calificación es media o baja hablamos de subempleo por competencias",
     labelAliases: labelAliases,
         marginRight:200
@@ -371,9 +372,9 @@ const chartEduCalificacionOcupacion = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.edu_calificacion_ocupacion).filter(d => d.variable !== "ocupados")
   return buildChart({
     data:dataPlot,
-    title: "Educación & Ocupación",
-    title: "Personas ocupadas según nivel educacional y ivel de calificación de la ocupación",
-    subtitle: "Personas con Educación Euperior y ocupaciones con calificación media o baja se pueden considerar subempleo por competencias",
+    title: "Educación superior y calificación de la ocupación",
+    title: "Personas ocupadas según nivel educacional y nivel de calificación de la ocupación",
+    subtitle: "Personas con Educación Superior y ocupaciones con calificación media o baja se pueden considerar subempleo por competencias",
     labelAliases: labelAliases,
     marginRight:200
     })
@@ -385,7 +386,7 @@ const chartSectorPublico = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.sector_publico)
   return buildChart({
     data:dataPlot,
-    title: "Ocupados con en el sector público",
+    title: "Personas ocupadas en el sector público",
     labelAliases: labelAliases
     })
 })()
@@ -463,7 +464,7 @@ const chartInformalidadPorcentaje = (() => {
     data:dataPlot.filter(d => d.variable == "informal"), 
     format:".2%", 
     formatAxis:".1%",
-    title: "Personas con empleo informal (% de ocupacion total)",
+    title: "Personas con empleo informal (% de ocupación total)",
     zero:"no",
     labelAliases: labelAliases,
     labelY: "% del total de personas ocupadas"

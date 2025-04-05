@@ -12,21 +12,35 @@ Los datos corresponden al trimestre diciembre-enero-febrero de cada año (el añ
 
 
 prompt_estilo_general = """
-Analiza la evolución de los datos considerando tres períodos:
-- Prepandemia (hasta 2020)
-- Pandemia (2021 y 2022)
-- Postpandemia (desde 2023)
+Analiza la evolución de los datos considerando cuatro bloques temporales, siguiendo esta estructura:
 
-Incluye una sección final centrada en los cambios ocurridos entre 2024 y 2025, utilizando los datos de `diff_prev_year`. En esta sección, destaca qué variables explican en mayor medida la variación total en el empleo, e identifica aquellas que presentan cambios inusuales, significativos o en dirección contraria a la tendencia general.
+1. **Período Prepandemia (hasta 2020)**  
+   Describe la evolución de las variables antes del inicio de la pandemia de COVID-19. Identifica tendencias generales (crecimiento, estancamiento, retroceso) sin detallar año por año. Resume los principales cambios de forma agregada.
 
-⚠️ Todos los datos entregados, incluyendo los de 2024 y 2025, son reales, oficiales y observados. No se trata de estimaciones ni proyecciones.
+2. **Período Pandemia (2021 y 2022)**  
+   Describe los efectos de la pandemia en el empleo y cómo se manifestaron en los datos. Menciona caídas abruptas, recuperaciones parciales o transformaciones del mercado laboral. Relaciona con el contexto de restricciones sanitarias o cambios en la actividad económica.
 
-Por lo tanto:
-- No utilices expresiones como "se espera", "proyección", "posiblemente", "podría", "se prevé" o similares.
-- Redacta como si todos los años tuvieran datos ciertos y validados, incluso los más recientes.
+3. **Período Postpandemia (desde 2023)**  
+   Analiza si las tendencias anteriores se mantienen, revierten o cambian. Señala indicios de recuperación, estabilización o transformación estructural. Considera los primeros años postpandemia como una etapa de ajuste.
 
-Redacta el análisis en español, de forma fluida, analítica y sin mencionar estructuras internas del objeto de datos (`by_variable`, `raw`, etc.).
+4. **Cambios entre 2024 y 2025**  
+   Incluye una sección específica para los cambios interanuales más recientes. Usa los datos de `diff_prev_year` para señalar las variaciones de cada variable entre 2024 y 2025. Comenta qué variables contribuyen más al cambio total y contextualiza su importancia relativa usando `pct_ocupados` cuando sea pertinente.
+
+⚠️ Todos los datos entregados, incluyendo los años 2024 y 2025, son reales, oficiales y observados.  
+No se trata de estimaciones ni proyecciones. Por lo tanto:
+
+- **No utilices** expresiones como “se espera que”, “proyección”, “estimación”, “posiblemente”, “podría”, “se prevé” u otras similares.
+- Redacta como si todos los años tuvieran datos definitivos y validados.
+
+📌 Cuando se utilicen porcentajes (`pct_ocupados`), recuerda que se refieren a la proporción respecto del total de personas ocupadas (`ocupados`).
+
+🔁 Para mejorar la legibilidad, **varía la redacción inicial de cada bloque temporal**. Evita comenzar todos los párrafos con la misma estructura.
+
+🗒️ El tono debe ser profesional, explicativo y objetivo, similar al de una publicación institucional.  
+**No incluyas títulos explícitos** como “Período Prepandemia” o “Cambios 2024–2025” dentro del texto. La narrativa debe fluir de forma natural, sin encabezados.  
+**No te dirijas al lector** con frases como “en esta sección encontrarás” ni uses expresiones personales o promocionales.
 """
+
 
 
 prompt_dummy = "Solo di 'Hola Mundo'."
@@ -50,11 +64,20 @@ Describe cómo ha evolucionado la informalidad en términos absolutos (`valor`) 
 """
 
 prompt_tpi = f"""
-El análisis se enfoca en el subempleo por horario asociado al indicador Tiempo Parcial Involuntario (`tpi`). Se consideran datos de personas en ocupaciones de tiempo parcial involuntario (`tpi`) y de tiempo parcial no involuntario (`no_tpi`).
+El análisis se enfoca en el subempleo por horario en Chile, a partir del indicador de Tiempo Parcial Involuntario. Se cuenta con datos sobre el total de personas ocupadas, el total de personas en empleos clasificados como tiempo parcial involuntario y el total de personas que no se encuentran en esa categoría.
+
+Ten presente que las personas "no clasificadas como tiempo parcial involuntario" pueden incluir tanto personas con jornada completa como personas con tiempo parcial voluntario. Por lo tanto, **no deben ser interpretadas como un grupo homogéneo ni como equivalentes a empleos de tiempo parcial voluntario**.
 
 {prompt_estilo_general}
 
-Analiza la evolución del subempleo tanto en números absolutos (`valor`) como relativos (`pct_ocupados`), destacando aumentos o caídas a lo largo del tiempo. Usa las diferencias interanuales (`diff_prev_year`) para reforzar los patrones observados.
+Analiza cómo ha evolucionado el subempleo por horario a lo largo del tiempo, prestando atención a:
+
+- La evolución del número de personas en empleos de tiempo parcial involuntario (subempleo por horas)
+- La proporción de este grupo respecto del total de ocupados
+- Las diferencias interanuales (`diff_prev_year`) y los porcentajes (`pct_ocupados`) disponibles en los datos
+- Cambios notables en el último año (2024–2025)
+
+Evita usar directamente etiquetas como `tpi` o `no_tpi` en la narrativa. En su lugar, utiliza descripciones comprensibles como "tiempo parcial involuntario" o "personas fuera de esa categoría".
 """
 
 prompt_ed_sup = f"""
