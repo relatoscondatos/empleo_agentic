@@ -48,23 +48,29 @@ Redacta un texto introductorio para la sección "Empleo formal e informal" de un
 
 El texto debe indicar que esta sección presenta información sobre la evolución del empleo formal e informal en Chile, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
-Aclara que se incluyen datos del total de personas ocupadas, personas en ocupaciones formales y personas en ocupaciones informales, desde 2018 en adelante.
+Aclara que se incluyen cifras del total de personas ocupadas, personas en ocupaciones formales y personas en ocupaciones informales, y que esta información se encuentra disponible a partir del trimestre diciembre-enero-febrero de 2018, que es cuando el INE comenzó a publicar esta desagregación de forma sistemática.
 
-Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año, y que permiten observar cambios en el empleo por tipo de formalidad en distintos períodos: prepandemia, pandemia y postpandemia.
+Incluye una breve explicación sobre qué se considera una ocupación informal:
+- Para trabajadores dependientes, se trata de quienes no cotizan para salud ni previsión social.
+- Para trabajadores independientes, se considera informal si la actividad se realiza en el sector informal o si se trata de un familiar no remunerado.
 
-El tono debe ser institucional y descriptivo, sin referencias al lector ni juicios de valor.
+Indica que los datos permiten analizar la evolución del empleo formal e informal en distintos contextos: prepandemia, pandemia y postpandemia.
+
+Evita expresiones personales o dirigidas al lector. El tono debe ser institucional, claro y descriptivo.
 
 {prompt_estilo_general}
 """
 
+
+
 prompt_tpi = f"""
 Redacta un texto introductorio para la sección "Subempleo por horario (TPI)" de una página web sobre el mercado laboral.
 
-El texto debe indicar que esta sección presenta información sobre las personas ocupadas en empleos de tiempo parcial involuntario (TPI), según datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
+El texto debe indicar que esta sección presenta información sobre las personas ocupadas en empleos de tiempo parcial involuntario (TPI), utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
-Aclara que se incluyen datos de personas en TPI, personas en tiempo parcial no involuntario y el total de ocupados.
+Aclara que se presentan datos de personas en situación de TPI, así como de aquellas que **no califican como TPI**, es decir, que trabajan a jornada completa o en empleos de tiempo parcial de forma voluntaria. También se incluye el total de personas ocupadas.
 
-Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año y permiten observar cómo ha variado el subempleo por horario a lo largo del tiempo, en los períodos prepandemia, pandemia y postpandemia.
+Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año y permiten observar cómo ha variado el subempleo por horario a lo largo del tiempo, considerando los períodos prepandemia, pandemia y postpandemia.
 
 El texto debe tener un tono objetivo y descriptivo, evitando expresiones dirigidas al lector.
 

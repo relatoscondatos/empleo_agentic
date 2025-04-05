@@ -113,7 +113,7 @@ md`${narrativaCalificacionOcupacion}`
 ```
 
 
-## Educación superior y calificación de la ocupación
+## Composición del empleo según nivel educativo y calificación del trabajo
 ```js
 md`${introEduCalificacionOcupacion}`
 ```
@@ -276,7 +276,8 @@ const chartTPI = (() => {
     data:dataPlot,
     title: "Personas ocupadas con Tiempo Parcial Involuntario (TPI)",
     subtitle: "Subempleo por horario",
-    labelAliases: labelAliases
+    labelAliases: labelAliases,
+    referenceVariable:"ocupados"
 
     })
 })()
@@ -300,7 +301,8 @@ const chartEdSup = (() => {
     data:dataPlot,
     title: "Personas con Educación Superior Completa",
     labelAliases: labelAliases,
-    marginRight:160
+    marginRight:160,
+    referenceVariable:"ocupados"
     })
 })()
 
@@ -323,7 +325,8 @@ const chartCalificacionOcupacion = (() => {
     data:dataPlot,
     title: "Ocupados según nivel de calificación requerido para la ocupación",
     labelAliases: labelAliases,
-    marginRight:200
+    marginRight:200,
+    referenceVariable:"ocupados"
 
     })
 })()
@@ -375,7 +378,8 @@ const chartSectorPublico = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas ocupadas en el sector público",
-    labelAliases: labelAliases
+    labelAliases: labelAliases,
+    referenceVariable:"ocupados"
     })
 })()
 
@@ -395,7 +399,8 @@ const chartNacionalidad = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas ocupadas según nacionalidad (Chilena / Extranjera)",
-    labelAliases: labelAliases
+    labelAliases: labelAliases,
+    referenceVariable:"ocupados"
     })
 })()
 
@@ -416,7 +421,8 @@ const chartSexo = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas ocupadas según sexo",
-    labelAliases: labelAliases
+    labelAliases: labelAliases,
+    referenceVariable:"ocupados"
     })
 })()
 

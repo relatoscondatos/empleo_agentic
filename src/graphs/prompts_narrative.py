@@ -39,6 +39,14 @@ No se trata de estimaciones ni proyecciones. Por lo tanto:
 🗒️ El tono debe ser profesional, explicativo y objetivo, similar al de una publicación institucional.  
 **No incluyas títulos explícitos** como “Período Prepandemia” o “Cambios 2024–2025” dentro del texto. La narrativa debe fluir de forma natural, sin encabezados.  
 **No te dirijas al lector** con frases como “en esta sección encontrarás” ni uses expresiones personales o promocionales.
+
+🔢 Los valores numéricos entregados están expresados como cifras absolutas, por ejemplo: `9030161.59` representa nueve millones treinta mil ciento sesenta y una personas.
+
+No interpretes estos números como si estuvieran en miles. Si lo deseas, puedes expresarlos como millones (por ejemplo: “9,03 millones de personas”), asegurándote de que el redondeo mantenga dos cifras decimales.
+
+No utilices comas como separadores de miles ni interpretes las cifras en notación científica. Todas las cantidades deben representarse en formato legible y natural en español.
+
+Evita errores comunes como decir "903 mil" cuando el valor real corresponde a más de nueve millones de personas.
 """
 
 
