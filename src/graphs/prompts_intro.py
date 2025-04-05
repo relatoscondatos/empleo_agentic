@@ -88,27 +88,32 @@ El tono debe ser institucional y descriptivo, sin calificaciones ni referencias 
 prompt_calificacion_ocupacion = f"""
 Redacta un texto introductorio para la sección "Calificación de las ocupaciones" de una página web sobre el mercado laboral.
 
-El texto debe indicar que esta sección presenta información sobre el tipo de calificación requerida para las ocupaciones desempeñadas por las personas ocupadas, según datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
+Esta sección presenta información sobre el nivel de calificación de las ocupaciones desempeñadas por las personas ocupadas en Chile, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
-Aclara que se incluyen cifras de personas en ocupaciones de alta calificación (grupos 1 a 3: directivos, profesionales y técnicos) y ocupaciones de calificación media o baja (grupos 4 a 9).
+Los datos están clasificados según la Clasificación Internacional Uniforme de Ocupaciones (CIUO), utilizada por el INE. Entre los años 2011 y 2017 se utilizó la versión CIUO-88, y desde 2018 en adelante se emplea la versión CIUO-08. En ambos casos, las ocupaciones se agrupan en 10 grandes grupos.
 
-Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año y permiten analizar cómo ha evolucionado la distribución de la calificación ocupacional, considerando los períodos prepandemia, pandemia y postpandemia.
+Para efectos del análisis, se consideran como **ocupaciones de alta calificación** aquellas pertenecientes a los grupos 1 a 3 (directivos, profesionales y técnicos). Las **ocupaciones de calificación media o baja** corresponden a los grupos 4 a 9, que incluyen empleos como personal administrativo, vendedores, trabajadores de servicios, operarios, conductores, agricultores y oficios manuales. El grupo 10, correspondiente a ocupaciones no clasificadas, no se incluye en esta sección.
 
-El texto debe mantener un tono descriptivo, neutral y profesional.
+Los datos corresponden al trimestre diciembre-enero-febrero de cada año, y permiten analizar cómo ha cambiado la distribución de los tipos de ocupación entre personas ocupadas, considerando los períodos prepandemia, pandemia y postpandemia.
+
+El texto debe mantener un tono descriptivo, neutral y profesional, sin referencias al lector.
 
 {prompt_estilo_general}
 """
 
-prompt_ed_sup_calificacion_ocupacion = f"""
-Redacta un texto introductorio para la sección "Educación superior y calificación de la ocupación" de una página web sobre el mercado laboral.
+prompt_edu_calificacion_ocupacion = f"""
+Redacta un texto introductorio para la sección "Composición del empleo según nivel educativo y calificación del trabajo" de una página web sobre el mercado laboral.
 
-El texto debe indicar que esta sección muestra la relación entre el nivel educativo y la calificación del empleo, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
+El texto debe indicar que esta sección muestra la relación entre el nivel educativo y la calificación de las ocupaciones, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
 
-Aclara que se incluyen personas con educación superior en ocupaciones de alta calificación, así como personas con educación superior en ocupaciones de calificación media o baja, estas últimas asociadas al subempleo por competencias.
+Aclara que se presentan tres grupos: 
+- Personas con educación superior en ocupaciones de alta calificación.
+- Personas con educación superior en ocupaciones de calificación media o baja (asociadas al subempleo por competencias).
+- Personas sin educación superior.
 
-Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año y permiten observar cómo ha cambiado esta relación a lo largo del tiempo, considerando los períodos prepandemia, pandemia y postpandemia.
+Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año y permiten analizar cómo ha cambiado esta distribución a lo largo del tiempo, considerando los períodos prepandemia, pandemia y postpandemia.
 
-Debe evitarse el uso de expresiones personales o calificativas. El tono debe ser institucional y descriptivo.
+El texto debe evitar emitir juicios de valor, centrarse en lo descriptivo, y estar alineado con el estilo institucional del sitio.
 
 {prompt_estilo_general}
 """
@@ -163,7 +168,7 @@ prompt_tematica = {
     "tpi": prompt_tpi,
     "ed_sup": prompt_ed_sup,
     "calificacion_ocupacion": prompt_calificacion_ocupacion,
-    "ed_sup_calificacion_ocupacion": prompt_ed_sup_calificacion_ocupacion,
+    "edu_calificacion_ocupacion": prompt_edu_calificacion_ocupacion,
     "sector_publico": prompt_sector_publico,
     "nacionalidad": prompt_nacionalidad,
     "sexo": prompt_sexo,

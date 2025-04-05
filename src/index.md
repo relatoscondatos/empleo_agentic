@@ -3,7 +3,7 @@
 ---
 
 ```js
-//display(sourceDataForCharts)
+display(sourceDataForCharts)
 ```
 
 # Evolución del empleo en Chile  de 2011 a 2025
@@ -115,7 +115,7 @@ md`${narrativaCalificacionOcupacion}`
 
 ## Educación superior y calificación de la ocupación
 ```js
-md`${introEdSupCalificacionOcupacion}`
+md`${introEduCalificacionOcupacion}`
 ```
 
 <div class="card">
@@ -126,7 +126,7 @@ md`${introEdSupCalificacionOcupacion}`
 </div><!--card-->
 
 ```js
-md`${narrativaEdSupCalificacionOcupacion}`
+md`${narrativaEduCalificacionOcupacion}`
 ```
 
 
@@ -193,7 +193,7 @@ const narrativaInformalidad  = FileAttachment("graphs/generate_narrative_informa
 const narrativaTPI  = FileAttachment("graphs/generate_narrative_tpi.md").text();
 const narrativaEdSup  = FileAttachment("graphs/generate_narrative_ed_sup.md").text();
 const narrativaCalificacionOcupacion  = FileAttachment("graphs/generate_narrative_calificacion_ocupacion.md").text();
-const narrativaEdSupCalificacionOcupacion  = FileAttachment("graphs/generate_narrative_ed_sup_calificacion_ocupacion.md").text();
+const narrativaEduCalificacionOcupacion  = FileAttachment("graphs/generate_narrative_edu_calificacion_ocupacion.md").text();
 const narrativaSectorPublico  = FileAttachment("graphs/generate_narrative_sector_publico.md").text();
 const narrativaNacionalidad  = FileAttachment("graphs/generate_narrative_nacionalidad.md").text();
 const narrativaSexo  = FileAttachment("graphs/generate_narrative_sexo.md").text();
@@ -210,7 +210,7 @@ const introInformalidad  = FileAttachment("graphs/generate_intro_informalidad.md
 const introTPI  = FileAttachment("graphs/generate_intro_tpi.md").text();
 const introEdSup  = FileAttachment("graphs/generate_intro_ed_sup.md").text();
 const introCalificacionOcupacion = FileAttachment("graphs/generate_intro_calificacion_ocupacion.md").text();
-const introEdSupCalificacionOcupacion = FileAttachment("graphs/generate_intro_ed_sup_calificacion_ocupacion.md").text();
+const introEduCalificacionOcupacion = FileAttachment("graphs/generate_intro_edu_calificacion_ocupacion.md").text();
 const introSectorPublico = FileAttachment("graphs/generate_intro_sector_publico.md").text();
 const introNacionalidad = FileAttachment("graphs/generate_intro_nacionalidad.md").text();
 const introSexo = FileAttachment("graphs/generate_intro_sexo.md").text();
@@ -341,18 +341,6 @@ const chartCalificacionOcupacion_diferencias = (() => {
     })
 })()
 
-
-const chartEdSupCalificacionOcupacion = (() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.ed_sup_calificacion_ocupacion)
-  return buildChart({
-    data:dataPlot,
-    title: "Personas ocupadas según nivel educacional y calificación de la ocupación",
-    subtitle: "Cuando la calificación es media o baja hablamos de subempleo por competencias",
-    labelAliases: labelAliases,
-        marginRight:200
-
-    })
-})()
 
 
 const chartEduCalificacionOcupacion_diferencias = (() => {

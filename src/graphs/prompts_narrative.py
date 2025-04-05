@@ -99,13 +99,25 @@ El análisis se enfoca en la calificación de las ocupaciones en Chile. Se consi
 Compara la evolución de ambos grupos en términos absolutos, relativos y diferencias interanuales. Analiza si hay cambios estructurales en la composición de la fuerza laboral según la calificación.
 """
 
-prompt_ed_sup_calificacion_ocupacion = f"""
-El análisis se enfoca en las personas con educación superior completa según la calificación de sus ocupaciones. Se incluyen personas con educación superior en ocupaciones de alta calificación (`ed_sup_competencia_alta`) y personas en ocupaciones de calificación media o baja (`ed_sup_competencia_media_baja`), consideradas como casos de subempleo por competencias.
+prompt_edu_calificacion_ocupacion = f"""
+El análisis se enfoca en la relación entre el nivel educacional de las personas ocupadas y la calificación de sus ocupaciones, a partir de los datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
+
+Los datos están desagregados en tres grupos:
+- Personas con educación superior en ocupaciones de alta calificación (`ed_sup_competencia_alta`)
+- Personas con educación superior en ocupaciones de calificación media o baja (`ed_sup_competencia_media_baja`), lo que puede interpretarse como subempleo por competencias
+- Personas ocupadas sin educación superior (`sin_ed_sup`)
 
 {prompt_estilo_general}
 
-Analiza cómo ha cambiado la distribución entre ocupaciones adecuadas e inadecuadas para este grupo. Usa `diff_prev_year` y `pct_ocupados` para identificar y explicar tendencias de subempleo por competencias.
+Es importante que el análisis no se enfoque únicamente en el subempleo por competencias, sino que considere también la evolución del conjunto de personas con educación superior, así como los cambios en el grupo de personas sin educación superior.
+
+Compara la evolución de los tres grupos utilizando valores absolutos, diferencias interanuales (`diff_prev_year`) y proporciones (`pct_ocupados`). Incluye cifras específicas que permitan dimensionar los cambios más importantes, tanto en número de personas como en proporción dentro del total de ocupados.
+
+Analiza la evolución de cada grupo en los tres períodos definidos (prepandemia, pandemia y postpandemia) e incluye una descripción específica de los cambios más recientes entre los años 2024 y 2025.
+
+Evita emitir juicios de valor o conclusiones categóricas. El objetivo es describir y contextualizar los cambios observados, considerando tanto los datos absolutos como las proporciones relativas.
 """
+
 
 prompt_sector_publico = f"""
 El análisis se enfoca en el empleo en el sector público. Se considera también el empleo en el **sector no público**, que incluye: sector privado, trabajadores por cuenta propia, servicio doméstico y trabajadores familiares no remunerados.
@@ -139,7 +151,7 @@ prompt_tematica = {
     "tpi": prompt_tpi,
     "ed_sup": prompt_ed_sup,
     "calificacion_ocupacion": prompt_calificacion_ocupacion,
-    "ed_sup_calificacion_ocupacion": prompt_ed_sup_calificacion_ocupacion,
+    "edu_calificacion_ocupacion": prompt_edu_calificacion_ocupacion,
     "sector_publico": prompt_sector_publico,
     "nacionalidad": prompt_nacionalidad,
     "sexo": prompt_sexo,

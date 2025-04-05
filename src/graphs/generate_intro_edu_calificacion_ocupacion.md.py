@@ -11,5 +11,5 @@ if BASE_DIR not in sys.path:
 from graphs.run_intro import run_intro
 
 if __name__ == "__main__":
-    intro = run_intro("ed_sup_calificacion_ocupacion")
+    intro = run_intro("edu_calificacion_ocupacion")
     print(intro)

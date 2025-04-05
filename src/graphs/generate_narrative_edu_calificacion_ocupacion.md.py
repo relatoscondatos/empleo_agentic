@@ -11,5 +11,5 @@ if BASE_DIR not in sys.path:
 from graphs.run_narrativa import run_narrativa
 
 if __name__ == "__main__":
-    narrativa = run_narrativa("ed_sup_calificacion_ocupacion")
+    narrativa = run_narrativa("edu_calificacion_ocupacion")
     print(narrativa)
