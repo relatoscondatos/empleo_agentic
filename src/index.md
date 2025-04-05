@@ -565,7 +565,7 @@ function convertDataToPlotDiferencia(sourceData) {
 ```
 
 ```js
-const fuentes= "Bases de Datos de Ocupación y Desocupación, Inistituto Nacional de Estadísticas (INE)"
+const fuentes= "Bases de Datos de Ocupación y Desocupación, Instituto Nacional de Estadísticas (INE)"
 ```
 
 ```js
