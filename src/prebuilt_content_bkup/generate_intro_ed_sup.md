@@ -1,0 +1,5 @@
+Bienvenido a la sección "Nivel Educacional de las Personas Ocupadas" de nuestra página web dedicada al análisis del mercado laboral en Chile. En este espacio, proporcionamos información detallada sobre cómo se distribuyen las personas ocupadas según su nivel educativo, basándonos en los datos recabados por la Encuesta Nacional de Empleo (ENE), realizada por el Instituto Nacional de Estadísticas (INE).
+
+Esta sección ofrece cifras que distinguen entre personas con educación superior completa y aquellas sin educación superior completa. Los datos que aquí presentamos corresponden al trimestre diciembre-enero-febrero de cada año, ofreciendo una mirada comprensiva sobre cómo ha cambiado la participación en el empleo de cada grupo educativo. Esto incluye una comparación de los períodos prepandemia, durante la pandemia, y postpandemia.
+
+Con esta información, buscamos contribuir a una mejor comprensión de la relación entre el nivel educacional y el mercado laboral, y de cómo las circunstancias globales pueden influir en estas dinámicas.

@@ -18,9 +18,13 @@ Redacta un texto introductorio para una página web que presenta información so
 
 La página incluye gráficos y descripciones narrativas generadas con inteligencia artificial para distintas secciones: ocupación, informalidad, subempleo, educación, calificación ocupacional, sector público, nacionalidad y sexo.
 
-Aclara que los datos corresponden al trimestre diciembre-enero-febrero de cada año y provienen de la Encuesta Nacional de Empleo (ENE) elaborada por el Instituto Nacional de Estadísticas (INE).
+Aclara que los datos corresponden al trimestre diciembre-enero-febrero de cada año y provienen de la Encuesta Nacional de Empleo (ENE), elaborada por el Instituto Nacional de Estadísticas (INE).
 
-También explica que las narrativas fueron generadas con un modelo de lenguaje de inteligencia artificial y que el sitio tiene un fin divulgativo y exploratorio, sin fines comerciales.
+Indica que la comparación se realiza siempre para el mismo trimestre de cada año, con el fin de evitar distorsiones provocadas por factores estacionales, como vacaciones, ciclos productivos o actividades específicas de ciertos meses.
+
+Explica que el foco del análisis está puesto en las **personas ocupadas**, es decir, quienes se encuentran trabajando durante el período de referencia. El sitio no analiza indicadores como desempleo, participación laboral ni fuerza de trabajo, sino que se concentra en cómo ha cambiado la **composición del empleo ocupado** a lo largo del tiempo.
+
+También indica que las narrativas fueron generadas con un modelo de lenguaje de inteligencia artificial y que el sitio tiene un propósito exploratorio y divulgativo, sin fines comerciales.
 
 {prompt_estilo_general}
 

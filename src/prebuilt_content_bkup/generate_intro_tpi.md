@@ -1,0 +1,5 @@
+La sección "Subempleo por horario (TPI)" de nuestra página web ofrece información detallada sobre las personas que trabajan en empleos de tiempo parcial de manera involuntaria (TPI) en Chile. Los datos provienen de la Encuesta Nacional de Empleo (ENE) desarrollada por el Instituto Nacional de Estadísticas (INE). 
+
+En esta sección, se presentan datos de personas que se encuentran trabajando en tiempo parcial involuntario, así como de aquellas que lo hacen en tiempo parcial no involuntario, junto con el total de personas ocupadas. Los datos comprenden el trimestre diciembre-enero-febrero de cada año y permiten observar cómo ha cambiado el subempleo por horario en diferentes periodos, desde antes de la pandemia, durante y después de ella.
+
+Esta información es vital para entender las dinámicas del mercado laboral en Chile, proporcionando una visión clara y objetiva de las tendencias y cambios en el subempleo a lo largo del tiempo. Al presentar estos datos de manera accesible, buscamos contribuir a una comprensión más profunda de las realidades laborales que afectan a las personas en el país.

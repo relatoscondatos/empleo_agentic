@@ -1,0 +1,5 @@
+Bienvenido a la sección "Empleo formal e informal" de nuestra página web sobre el mercado laboral en Chile. Aquí se presenta un análisis detallado de la evolución del empleo formal e informal en el país, basado en datos provenientes de la Encuesta Nacional de Empleo (ENE) elaborada por el Instituto Nacional de Estadísticas (INE).
+
+Esta sección proporciona información sobre el número total de personas ocupadas, así como aquellos que se encuentran en ocupaciones formales e informales, desde el año 2018 en adelante. Los datos considerados corresponden al trimestre diciembre-enero-febrero de cada año, lo que ofrece una perspectiva clara sobre las tendencias y cambios en el empleo en distintos contextos temporales, incluyendo los períodos prepandemia, pandemia y postpandemia.
+
+A través de este análisis se busca comprender la dinámica del mercado laboral chileno en términos de formalidad, proporcionando una valiosa herramienta para el estudio de los cambios estructurales que han afectado a la fuerza laboral en los últimos años.
