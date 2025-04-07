@@ -186,6 +186,19 @@ md`${introSexo}`
 md`${narrativaSexo}`
 ```
 
+---
+
+## Nota del autor
+
+Esta página fue construida por **Ernesto Laval** ([`@elaval`](https://x.com/elaval)) con fines de divulgación pública.
+
+El autor cuenta con experiencia en visualización y presentación de datos, pero **no es especialista en economía ni en empleo**. Aunque se ha puesto especial cuidado en el uso de fuentes oficiales y el procesamiento riguroso de los datos, es posible que el sitio contenga errores o interpretaciones mejorables. Si detectas alguna inconsistencia o tienes sugerencias para mejorar el contenido, puedes contactar al autor mediante mensaje directo en X ([@elaval](https://x.com/elaval)).
+
+Este sitio es también un **experimento en el uso de inteligencia artificial (IA)** para generar contenidos de forma automatizada. Todas las narrativas e introducciones han sido generadas mediante modelos de lenguaje (GPT-4o de OpenAI) coordinados a través de agentes construidos con [LangGraph](https://www.langgraph.dev/). Estas herramientas permiten orquestar la ejecución de consultas SQL, el procesamiento de datos en Python y la generación de texto natural para cada sección.
+
+El sitio fue desarrollado con el **Observable Framework**, utilizando **Plot** para la creación de los gráficos interactivos. Los datos procesados se cargan dinámicamente mediante *data loaders* y se visualizan directamente en el navegador, facilitando la exploración y el análisis de las tendencias del empleo en Chile.
+
+
 ```js
 // Narrativas
 
