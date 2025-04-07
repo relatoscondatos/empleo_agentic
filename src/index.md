@@ -76,7 +76,7 @@ md`${narrativaEdu}`
 ```
 
 
-## Calificación de las ocupaciones
+## Nivel de calificación de las ocupaciones
 ```js
 md`${introCalificacionOcupacion}`
 ```
@@ -120,7 +120,7 @@ md`${introTPI}`
 md`${narrativaTPI}`
 ```
 
-## Subempleo 
+## Subempleo por competencias y/o insuficiencia horaria 
 ```js
 md`${introSubempleoGeneral}`
 ```
@@ -219,7 +219,7 @@ El autor cuenta con experiencia en visualización y presentación de datos, pero
 
 Este sitio es también un **experimento en el uso de inteligencia artificial (IA)** para generar contenidos de forma automatizada. Todas las narrativas e introducciones han sido generadas mediante modelos de lenguaje (GPT-4o de OpenAI), coordinados a través de agentes construidos con **LangGraph**. Estas herramientas permiten orquestar la ejecución de consultas de base de datos, el procesamiento de los datos y la generación de textos en lenguaje natural para cada sección.
 
-El sitio fue desarrollado con el **Framework Observablehq**, utilizando **Plot** para la creación de gráficos interactivos. Los datos procesados se cargan dinámicamente mediante *data loaders* y se visualizan directamente en el navegador, facilitando la exploración y el análisis de las tendencias del empleo en Chile.
+El sitio fue desarrollado con el **Framework Observablehq**, utilizando **Plot** para la creación de gráficos. Los datos procesados se cargan dinámicamente mediante *data loaders* y se visualizan directamente en el navegador, facilitando la exploración y el análisis de las tendencias del empleo en Chile.
 
 📄 Si te interesa conocer más sobre las fuentes de datos, las variables utilizadas y el procesamiento detrás del sitio, revisa la [página con información técnica](./info_tecnica).
 
@@ -290,7 +290,7 @@ const chartInformalidad = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.informalidad)
   return buildChart({
     data:dataPlot,
-    title: "Personas con ocupacion formal / informal",
+    title: "Personas con ocupación formal e informal",
     labelAliases: labelAliases
 
   })
@@ -431,7 +431,7 @@ const chartCalificacionOcupacion_diferencias = (() => {
   const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.calificacion_ocupacion).filter(d => d.año == 2025)
   return buildChartDiferencia({
     data:dataPlot,
-    title: "Tipo calificación de la ocupación - Diferencia 2025 vs 2024",
+    title: "Nivel de calificación de la ocupación – Diferencia 2025 vs 2024",
     subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginLeft:200,
@@ -472,7 +472,7 @@ const chartSubempleoGeneral_diferencias = (() => {
   const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.subempleo_general).filter(d => d.año == 2025)
   return buildChartDiferencia({
     data:dataPlot,
-    title: "Cambio anual en la ocupación según subempleo (2025 vs. 2024)",
+    title: "Diferencia anual según situación de subempleo (2025 vs 2024)",
     labelAliases: labelAliases,
     marginLeft:300,
     referenceVariable:"ocupados"
@@ -627,11 +627,10 @@ const labelAliases = {
 
   "subempleo_total":"Subempleo Total",
   "subempleo_calificaciones_excluyendo_subempleo_horas":"Subempleo Competencias (excl. Subempleo horas)",
-  "subempleo_calificaciones_y_subempleo_horas":"Subempleo Competencias y Horas",
+  "subempleo_calificaciones_y_subempleo_horas":"Subempleo por competencias y horas",
   "subempleo_horas_excluyendo_subempleo_calificaciones":"Subempleo Horas (excl. Subempleo competencias)",
   "ed_sup_alta_calificacion_excluyendo_subempleo_horas":"Ed Sup y altas calificaciones (sin subempleo)",
   "sin_ed_sup_excluyendo_subempleo_horas": "Sin Educación Superior (sin subempleo)",
-
 
   "sector_publico": "Sector Público",
   "no_sector_publico": "No en Sector Público",
