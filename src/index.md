@@ -225,7 +225,6 @@ const introInformalidad  = FileAttachment("graphs/generate_intro_informalidad.md
 const introTPI  = FileAttachment("graphs/generate_intro_tpi.md").text();
 const introEdu  = FileAttachment("graphs/generate_intro_edu.md").text();
 const introCalificacionOcupacion = FileAttachment("graphs/generate_intro_calificacion_ocupacion.md").text();
-const introEduCalificacionOcupacion = FileAttachment("graphs/generate_intro_edu_calificacion_ocupacion.md").text();
 const introSubempleoGeneral = FileAttachment("graphs/generate_intro_subempleo_general.md").text();
 
 const introSectorPublico = FileAttachment("graphs/generate_intro_sector_publico.md").text();
