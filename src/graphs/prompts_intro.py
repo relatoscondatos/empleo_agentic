@@ -1,8 +1,3 @@
-prompt_base = """Hemos construido una página web que entrega información sobre el mercado laboral en Chile. La información está organizada en secciones como ocupación, informalidad, subempleo, educación, calificación ocupacional, sector público y no público, nacionalidad y sexo.
-
-Los datos provienen de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE), y corresponden al trimestre diciembre-enero-febrero de cada año. Las narrativas fueron generadas con un modelo de lenguaje de inteligencia artificial.
-"""
-
 prompt_estilo_general = """
 El texto debe ser claro, conciso y fácil de entender para el público en general.
 Evita el uso de jerga técnica y asegúrate de que cualquier término especializado esté explicado de manera sencilla.
@@ -16,15 +11,22 @@ prompt_dummy = "Solo di 'Hola Mundo'."
 prompt_introduccion_general = f"""
 Redacta un texto introductorio para una página web que presenta información sobre el mercado laboral en Chile.
 
-La página incluye gráficos y descripciones narrativas generadas con inteligencia artificial para distintas secciones: ocupación, informalidad, subempleo, educación, calificación ocupacional, sector público, nacionalidad y sexo.
+La información está organizada en secciones como:
+- Evolución del empleo total en Chile
+- Empleo formal e informal
+- Subempleo por horario (TPI)
+- Nivel educacional de las personas ocupadas
+- Calificación de las ocupaciones
+- Composición del empleo según nivel educativo y calificación del trabajo
+- Empleo en el sector público y no público
+- Personas ocupadas según nacionalidad
+- Personas ocupadas según sexo
 
-Aclara que los datos corresponden al trimestre diciembre-enero-febrero de cada año y provienen de la Encuesta Nacional de Empleo (ENE), elaborada por el Instituto Nacional de Estadísticas (INE).
+Los datos provienen de la Encuesta Nacional de Empleo (ENE), elaborada por el Instituto Nacional de Estadísticas (INE), y corresponden al trimestre diciembre-enero-febrero de cada año. La comparación se realiza siempre para ese mismo trimestre con el fin de evitar distorsiones provocadas por factores estacionales como vacaciones, ciclos productivos o actividades específicas de ciertos meses.
 
-Indica que la comparación se realiza siempre para el mismo trimestre de cada año, con el fin de evitar distorsiones provocadas por factores estacionales, como vacaciones, ciclos productivos o actividades específicas de ciertos meses.
+El foco del análisis está puesto en las **personas ocupadas**, es decir, quienes se encuentran trabajando durante el período de referencia. El sitio no incluye indicadores como desempleo, participación laboral o fuerza de trabajo, sino que se concentra en cómo ha cambiado la **composición del empleo ocupado** a lo largo del tiempo.
 
-Explica que el foco del análisis está puesto en las **personas ocupadas**, es decir, quienes se encuentran trabajando durante el período de referencia. El sitio no analiza indicadores como desempleo, participación laboral ni fuerza de trabajo, sino que se concentra en cómo ha cambiado la **composición del empleo ocupado** a lo largo del tiempo.
-
-También indica que las narrativas fueron generadas con un modelo de lenguaje de inteligencia artificial y que el sitio tiene un propósito exploratorio y divulgativo, sin fines comerciales.
+Las narrativas fueron generadas con un modelo de lenguaje de inteligencia artificial. El sitio tiene un propósito exploratorio y divulgativo, sin fines comerciales.
 
 {prompt_estilo_general}
 
@@ -32,11 +34,9 @@ También indica que las narrativas fueron generadas con un modelo de lenguaje de
 """
 
 prompt_ocupados = f"""
-Redacta un texto introductorio para la sección "Evolución del empleo total en Chile" de una página web sobre el mercado laboral.
+Redacta un texto introductorio para la sección que presenta la evolución del número total de personas ocupadas a lo largo del tiempo.
 
-El texto debe informar que esta sección muestra cómo ha cambiado el número total de personas ocupadas en el país a lo largo del tiempo, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
-
-Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año, y que permiten identificar variaciones en el empleo considerando los períodos prepandemia, pandemia y postpandemia.
+Explica que permite observar cambios generales en el nivel de empleo entre los distintos períodos: prepandemia, pandemia y postpandemia.
 
 Evita expresiones que aludan al lector o califiquen el contenido. El tono debe ser institucional, objetivo y descriptivo.
 
@@ -44,11 +44,9 @@ Evita expresiones que aludan al lector o califiquen el contenido. El tono debe s
 """
 
 prompt_informalidad = f"""
-Redacta un texto introductorio para la sección "Empleo formal e informal" de una página web sobre el mercado laboral.
+Redacta un texto introductorio para la sección que presenta datos sobre empleo formal e informal, incluyendo el total de personas ocupadas, personas en empleos formales y personas en empleos informales.
 
-El texto debe indicar que esta sección presenta información sobre la evolución del empleo formal e informal en Chile, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
-
-Aclara que se incluyen cifras del total de personas ocupadas, personas en ocupaciones formales y personas en ocupaciones informales, y que esta información se encuentra disponible a partir del trimestre diciembre-enero-febrero de 2018, que es cuando el INE comenzó a publicar esta desagregación de forma sistemática.
+Aclara que esta información se encuentra disponible a partir del trimestre julio-agosto-septiembre de 2017 , cuando el INE comenzó a publicar esta desagregación de forma sistemática.
 
 Incluye una breve explicación sobre qué se considera una ocupación informal:
 - Para trabajadores dependientes, se trata de quienes no cotizan para salud ni previsión social.
@@ -61,30 +59,23 @@ Evita expresiones personales o dirigidas al lector. El tono debe ser institucion
 {prompt_estilo_general}
 """
 
-
-
 prompt_tpi = f"""
-Redacta un texto introductorio para la sección "Subempleo por horario (TPI)" de una página web sobre el mercado laboral.
+Redacta un texto introductorio para la sección que presenta datos sobre personas en empleos de Tiempo Parcial Involuntario (TPI), aquellas que no califican como TPI (porque trabajan jornada completa o parcial voluntaria), y el total de personas ocupadas.
 
-El texto debe indicar que esta sección presenta información sobre las personas ocupadas en empleos de tiempo parcial involuntario (TPI), utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
+Aclara que el TPI corresponde a personas que trabajan menos de 30 horas semanales y que desean trabajar más horas, pero no pueden hacerlo por razones ajenas a su voluntad. Este indicador se utiliza en Chile para medir el subempleo por insuficiencia horaria.
 
-Aclara que se presentan datos de personas en situación de TPI, así como de aquellas que **no califican como TPI**, es decir, que trabajan a jornada completa o en empleos de tiempo parcial de forma voluntaria. También se incluye el total de personas ocupadas.
+Explica que, según la definición de la Organización Internacional del Trabajo (OIT), el subempleo visible se refiere a personas ocupadas que trabajan menos horas de las que desean y están disponibles para trabajar más, lo que indica una subutilización de su capacidad laboral. Aunque la OIT no especifica un umbral de horas concreto, en el caso chileno se aplica el criterio de menos de 30 horas semanales para definir el tiempo parcial involuntario.
 
-Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año y permiten observar cómo ha variado el subempleo por horario a lo largo del tiempo, considerando los períodos prepandemia, pandemia y postpandemia.
+Señala que el análisis de este indicador permite observar situaciones de subutilización de la fuerza laboral, lo que puede reflejar rigideces en el mercado de trabajo o falta de oportunidades suficientes para empleos de jornada completa.
 
-El texto debe tener un tono objetivo y descriptivo, evitando expresiones dirigidas al lector.
+El texto debe tener un tono institucional, descriptivo y objetivo. Evita expresiones dirigidas al lector o juicios de valor sobre los datos.
 
 {prompt_estilo_general}
 """
 
-prompt_ed_sup = f"""
-Redacta un texto introductorio para la sección "Nivel educacional de las personas ocupadas" de una página web sobre el mercado laboral.
 
-El texto debe indicar que esta sección presenta información sobre la distribución de las personas ocupadas según su nivel educativo, con datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
-
-Aclara que se incluyen cifras de personas con educación superior completa y personas sin educación superior completa.
-
-Menciona que los datos corresponden al trimestre diciembre-enero-febrero de cada año y permiten observar cómo ha cambiado la participación de cada grupo educativo en el empleo, considerando los períodos prepandemia, pandemia y postpandemia.
+prompt_edu = f"""
+Redacta un texto introductorio para la sección que compara personas ocupadas según su nivel de educación (superior, media, básica o sin educación básica completa).
 
 El tono debe ser institucional y descriptivo, sin calificaciones ni referencias al lector.
 
@@ -92,46 +83,44 @@ El tono debe ser institucional y descriptivo, sin calificaciones ni referencias 
 """
 
 prompt_calificacion_ocupacion = f"""
-Redacta un texto introductorio para la sección "Calificación de las ocupaciones" de una página web sobre el mercado laboral.
+Redacta un texto introductorio para la sección que analiza la calificación de las ocupaciones según la Clasificación Internacional Uniforme de Ocupaciones (CIUO), usada por el INE.
 
-Esta sección presenta información sobre el nivel de calificación de las ocupaciones desempeñadas por las personas ocupadas en Chile, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
+Entre los años 2011 y 2017 se utilizó la versión CIUO-88, y desde 2018 en adelante se emplea la versión CIUO-08. En ambos casos, las ocupaciones se agrupan en 10 grandes grupos.
 
-Los datos están clasificados según la Clasificación Internacional Uniforme de Ocupaciones (CIUO), utilizada por el INE. Entre los años 2011 y 2017 se utilizó la versión CIUO-88, y desde 2018 en adelante se emplea la versión CIUO-08. En ambos casos, las ocupaciones se agrupan en 10 grandes grupos.
+Para el análisis se consideran como **ocupaciones de alta calificación** aquellas pertenecientes a los grupos 1 a 3 (directivos, profesionales y técnicos). 
+Las **ocupaciones de calificación media** corresponden a los grupos 4 a 8, que incluyen empleos como personal administrativo, vendedores, trabajadores de servicios, operarios, conductores, agricultores.
+Y las **ocupaciones de calificación baja** corresponden al grupo 9, que corresponde a ocupaciones elementales.
+El grupo 10, correspondiente a ocupaciones no clasificadas, no se incluye (abarca menos de un 1% de las ocupaciones).
 
-Para efectos del análisis, se consideran como **ocupaciones de alta calificación** aquellas pertenecientes a los grupos 1 a 3 (directivos, profesionales y técnicos). Las **ocupaciones de calificación media o baja** corresponden a los grupos 4 a 9, que incluyen empleos como personal administrativo, vendedores, trabajadores de servicios, operarios, conductores, agricultores y oficios manuales. El grupo 10, correspondiente a ocupaciones no clasificadas, no se incluye en esta sección.
+El texto debe mantener un tono descriptivo, neutral y profesional.
 
-Los datos corresponden al trimestre diciembre-enero-febrero de cada año, y permiten analizar cómo ha cambiado la distribución de los tipos de ocupación entre personas ocupadas, considerando los períodos prepandemia, pandemia y postpandemia.
+{prompt_estilo_general}
+"""
 
-El texto debe mantener un tono descriptivo, neutral y profesional, sin referencias al lector.
+prompt_subempleo_general = f"""
+Redacta un texto introductorio para una sección que analiza el subempleo en el mercado laboral chileno desde una perspectiva integral, considerando dos dimensiones complementarias:
+
+1. El **subempleo por insuficiencia de horas**, medido a través del indicador de Tiempo Parcial Involuntario (TPI), que identifica a personas ocupadas que trabajan menos de 30 horas semanales y desean trabajar más, pero no pueden hacerlo por motivos ajenos a su voluntad.
+
+2. El **subempleo por competencias**, que corresponde a personas con educación superior que están empleadas en ocupaciones de calificación media o baja, es decir, en trabajos que no requieren el nivel formativo que poseen.
+
+Ambas dimensiones conforman el **subempleo total**, entendido como la suma de personas que enfrentan limitaciones tanto en la cantidad de horas trabajadas como en la adecuación entre su nivel educativo y el tipo de ocupación.
+
+Aclara que el concepto de subempleo por competencias ha sido promovido en Chile por el economista Juan Bravo, actual investigador del Observatorio del Contexto Económico de la Universidad Diego Portales (OCEC UDP) y exmiembro de Clapes UC. Si bien esta noción no forma parte de los indicadores oficiales del Instituto Nacional de Estadísticas (INE), ha sido utilizada en diversos análisis académicos y de política pública. En este caso, su uso es exploratorio y se basa en datos públicos disponibles.
+
+Indica además que el análisis incluye a personas ocupadas que **no presentan condiciones de subempleo**, diferenciando entre quienes tienen educación superior y desempeñan ocupaciones de alta calificación, y quienes no tienen educación superior. Esta comparación permite observar cómo ha evolucionado la estructura del empleo más allá del subempleo, aportando una visión más completa sobre la transformación del mercado laboral chileno.
+
+El tono del texto debe ser institucional, claro y descriptivo. No deben incluirse juicios de valor, recomendaciones ni expresiones dirigidas al lector.
 
 {prompt_estilo_general}
 """
 
-prompt_edu_calificacion_ocupacion = f"""
-Redacta un texto introductorio para la sección "Composición del empleo según nivel educativo y calificación del trabajo" de una página web sobre el mercado laboral.
 
-El texto debe indicar que esta sección muestra la relación entre el nivel educativo y la calificación de las ocupaciones, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
-
-Aclara que se presentan tres grupos: 
-- Personas con educación superior en ocupaciones de alta calificación.
-- Personas con educación superior en ocupaciones de calificación media o baja (asociadas al subempleo por competencias).
-- Personas sin educación superior.
-
-Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año y permiten analizar cómo ha cambiado esta distribución a lo largo del tiempo, considerando los períodos prepandemia, pandemia y postpandemia.
-
-El texto debe evitar emitir juicios de valor, centrarse en lo descriptivo, y estar alineado con el estilo institucional del sitio.
-
-{prompt_estilo_general}
-"""
 
 prompt_sector_publico = f"""
-Redacta un texto introductorio para la sección "Empleo en el sector público y no público" de una página web sobre el mercado laboral.
+Redacta un texto introductorio para la sección que presenta la evolución del empleo en el sector público y en el sector no público.
 
-El texto debe indicar que esta sección presenta información sobre la evolución del empleo en el sector público y el sector no público, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
-
-Aclara que el sector no público incluye empleo en el sector privado, por cuenta propia, en servicio doméstico o como trabajadores familiares no remunerados.
-
-Menciona que los datos corresponden al trimestre diciembre-enero-febrero de cada año, y permiten analizar cómo ha cambiado la participación relativa de ambos sectores a lo largo del tiempo, considerando los períodos prepandemia, pandemia y postpandemia.
+Aclara que el sector no público incluye empleo en el sector privado, por cuenta propia, en servicio doméstico y en trabajos familiares no remunerados.
 
 Evita expresiones dirigidas al lector o calificativos sobre el contenido. El tono debe ser institucional y descriptivo.
 
@@ -139,13 +128,7 @@ Evita expresiones dirigidas al lector o calificativos sobre el contenido. El ton
 """
 
 prompt_nacionalidad = f"""
-Redacta un texto introductorio para la sección "Personas ocupadas según nacionalidad" de una página web sobre el mercado laboral.
-
-El texto debe indicar que esta sección presenta información sobre la distribución del empleo según la nacionalidad de las personas, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
-
-Aclara que se incluyen cifras de personas ocupadas con nacionalidad chilena y extranjera.
-
-Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año, y permiten observar cómo ha evolucionado la participación de personas extranjeras en el empleo a lo largo del tiempo, considerando los períodos prepandemia, pandemia y postpandemia.
+Redacta un texto introductorio para la sección que presenta la distribución de personas ocupadas según su nacionalidad (chilena o extranjera).
 
 El texto debe evitar expresiones subjetivas o dirigidas al lector. El tono debe ser objetivo e institucional.
 
@@ -153,13 +136,7 @@ El texto debe evitar expresiones subjetivas o dirigidas al lector. El tono debe 
 """
 
 prompt_sexo = f"""
-Redacta un texto introductorio para la sección "Personas ocupadas según sexo" de una página web sobre el mercado laboral.
-
-El texto debe indicar que esta sección presenta información sobre el empleo desagregado por sexo, utilizando datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
-
-Aclara que se incluyen cifras de hombres y mujeres ocupados.
-
-Indica que los datos corresponden al trimestre diciembre-enero-febrero de cada año y que permiten observar cómo ha evolucionado la participación laboral de hombres y mujeres en distintos períodos: prepandemia, pandemia y postpandemia.
+Redacta un texto introductorio para la sección que presenta la evolución del empleo según sexo, con cifras de hombres y mujeres ocupadas.
 
 Evita expresiones personales, calificativas o dirigidas al lector. El tono debe ser institucional y descriptivo.
 
@@ -172,9 +149,9 @@ prompt_tematica = {
     "ocupados": prompt_ocupados,
     "informalidad": prompt_informalidad,
     "tpi": prompt_tpi,
-    "ed_sup": prompt_ed_sup,
+    "edu": prompt_edu,
     "calificacion_ocupacion": prompt_calificacion_ocupacion,
-    "edu_calificacion_ocupacion": prompt_edu_calificacion_ocupacion,
+    "subempleo_general": prompt_subempleo_general,
     "sector_publico": prompt_sector_publico,
     "nacionalidad": prompt_nacionalidad,
     "sexo": prompt_sexo,

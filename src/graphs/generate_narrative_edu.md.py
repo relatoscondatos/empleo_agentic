@@ -8,8 +8,8 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
-from graphs.run_intro import run_intro
+from graphs.run_narrativa import run_narrativa
 
 if __name__ == "__main__":
-    intro = run_intro("edu_calificacion_ocupacion")
-    print(intro)
+    narrativa = run_narrativa("edu")
+    print(narrativa)

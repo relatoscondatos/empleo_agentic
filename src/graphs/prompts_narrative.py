@@ -88,8 +88,8 @@ Analiza cómo ha evolucionado el subempleo por horario a lo largo del tiempo, pr
 Evita usar directamente etiquetas como `tpi` o `no_tpi` en la narrativa. En su lugar, utiliza descripciones comprensibles como "tiempo parcial involuntario" o "personas fuera de esa categoría".
 """
 
-prompt_ed_sup = f"""
-El análisis se enfoca en el nivel educacional de las personas ocupadas en Chile. Se incluyen personas con educación superior completa (`ed_sup_completa`) y personas sin educación superior (`sin_ed_sup`).
+prompt_edu = f"""
+El análisis se enfoca en el nivel educacional de las personas ocupadas en Chile. Se incluyen personas con educación superior completa (`ed_sup`), personas con educación media ('ed_media'), personas con educación básica (ed_básica) y personas sin educación básica completa (sin_ed_basica).
 
 {prompt_estilo_general}
 
@@ -97,34 +97,42 @@ Compara la evolución de ambos grupos usando valores absolutos (`valor`), difere
 """
 
 prompt_calificacion_ocupacion = f"""
-El análisis se enfoca en la calificación de las ocupaciones en Chile. Se consideran personas con alta calificación (`alta_calificacion`) y personas con calificación media o baja (`calificacion_media_baja`), según la CIUO 08.CL.
+El análisis se enfoca en la calificación de las ocupaciones en Chile. Se consideran personas con alta calificación (`alta_calificacion`), personas con calificación media (`calificacion_media`) y personas con calificación baja (`calificacion_baja`), según la CIUO 08.CL.
 
 - Alta calificación: Grupos 1 a 3 (directivos, profesionales, técnicos)
-- Media o baja: Grupos 4 a 9
+- Calificación Media: Grupos 4 a 8 (personal administrativo, vendedores, trabajadores de servicios, operarios, conductores, agricultores)
+- Calificación Baja: Grupoo 9 (ocupaciones elementales)
 
 {prompt_estilo_general}
 
 Compara la evolución de ambos grupos en términos absolutos, relativos y diferencias interanuales. Analiza si hay cambios estructurales en la composición de la fuerza laboral según la calificación.
 """
 
-prompt_edu_calificacion_ocupacion = f"""
-El análisis se enfoca en la relación entre el nivel educacional de las personas ocupadas y la calificación de sus ocupaciones, a partir de los datos de la Encuesta Nacional de Empleo (ENE) del Instituto Nacional de Estadísticas (INE).
+prompt_subempleo_general = f"""
+El análisis se enfoca en el subempleo total en Chile. Este concepto agrupa dos fenómenos laborales que ya han sido abordados en secciones anteriores:
 
-Los datos están desagregados en tres grupos:
-- Personas con educación superior en ocupaciones de alta calificación (`ed_sup_competencia_alta`)
-- Personas con educación superior en ocupaciones de calificación media o baja (`ed_sup_competencia_media_baja`), lo que puede interpretarse como subempleo por competencias
-- Personas ocupadas sin educación superior (`sin_ed_sup`)
+- El **subempleo por insuficiencia horaria**, también conocido como Tiempo Parcial Involuntario (TPI), que corresponde a personas que trabajan menos de 30 horas semanales y desean trabajar más horas, pero no encuentran una oportunidad para hacerlo.
+
+- El **subempleo por competencias**, que corresponde a personas con educación superior empleadas en ocupaciones de calificación media o baja, es decir, en trabajos que no requieren el nivel educativo que poseen.
+
+La suma de ambos grupos permite observar la evolución del **subempleo total**, que está disponible como variable agregada en los datos (`subempleo_total`).
+
+Analiza cómo ha evolucionado este indicador en los tres períodos definidos (prepandemia, pandemia y postpandemia), e incluye una descripción específica de los cambios más recientes entre los años 2024 y 2025. Utiliza tanto los valores absolutos como las diferencias interanuales (`diff_prev_year`) y las proporciones respecto al total de personas ocupadas (`pct_ocupados`) para contextualizar los cambios observados.
+
+🔍 Además, incorpora una sección final que describa los cambios más recientes en los grupos **que no califican como subempleo**, en particular:
+- Personas con educación superior en ocupaciones de alta calificación (`ed_sup_alta_calificacion_excluyendo_subempleo_horas`)
+- Personas sin educación superior sin subempleo (`sin_ed_sup_excluyendo_subempleo_horas`)
+
+
+Este análisis complementario debe mostrar si ha habido aumentos o disminuciones en estos grupos entre 2024 y 2025 (indicar la cifras absolutas de cambio). La intención es proporcionar un contexto más amplio que permita interpretar de manera más completa el cambio neto en el empleo, considerando tanto el subempleo como otras formas de ocupación.
+
+Evita interpretaciones simplistas del tipo "todo el empleo nuevo es subempleo", y no emitas juicios de valor ni conclusiones categóricas. El objetivo es entregar una descripción clara, equilibrada y basada en evidencia sobre cómo ha cambiado el empleo en su conjunto.
 
 {prompt_estilo_general}
-
-Es importante que el análisis no se enfoque únicamente en el subempleo por competencias, sino que considere también la evolución del conjunto de personas con educación superior, así como los cambios en el grupo de personas sin educación superior.
-
-Compara la evolución de los tres grupos utilizando valores absolutos, diferencias interanuales (`diff_prev_year`) y proporciones (`pct_ocupados`). Incluye cifras específicas que permitan dimensionar los cambios más importantes, tanto en número de personas como en proporción dentro del total de ocupados.
-
-Analiza la evolución de cada grupo en los tres períodos definidos (prepandemia, pandemia y postpandemia) e incluye una descripción específica de los cambios más recientes entre los años 2024 y 2025.
-
-Evita emitir juicios de valor o conclusiones categóricas. El objetivo es describir y contextualizar los cambios observados, considerando tanto los datos absolutos como las proporciones relativas.
 """
+
+
+
 
 
 prompt_sector_publico = f"""
@@ -157,9 +165,9 @@ prompt_tematica = {
     "ocupados": prompt_ocupados,
     "informalidad": prompt_informalidad,
     "tpi": prompt_tpi,
-    "ed_sup": prompt_ed_sup,
+    "edu": prompt_edu,
     "calificacion_ocupacion": prompt_calificacion_ocupacion,
-    "edu_calificacion_ocupacion": prompt_edu_calificacion_ocupacion,
+    "subempleo_general": prompt_subempleo_general,
     "sector_publico": prompt_sector_publico,
     "nacionalidad": prompt_nacionalidad,
     "sexo": prompt_sexo,

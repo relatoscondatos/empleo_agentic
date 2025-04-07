@@ -1,4 +1,4 @@
-# generate_narative_ocupacion.md.py v20250403.1151
+# generate_narative_ocupacion.md.py v20250403.2005
 import os
 import sys
 
@@ -8,8 +8,8 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
-from graphs.run_narrativa import run_narrativa
+from graphs.run_intro import run_intro
 
 if __name__ == "__main__":
-    narrativa = run_narrativa("edu_calificacion_ocupacion")
-    print(narrativa)
+    intro = run_intro("edu")
+    print(intro)

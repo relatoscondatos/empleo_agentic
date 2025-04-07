@@ -14,7 +14,7 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
-from graphs.prompts_intro import prompt_base, prompt_tematica
+from graphs.prompts_intro import  prompt_tematica
 
 llm = ChatOpenAI(model="gpt-4o",openai_api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -27,7 +27,7 @@ class AnalysisState(BaseModel):
 
 def build_intro(state: AnalysisState) -> AnalysisState:
     prompt = prompt_tematica.get(state.tema, "")
-    full_prompt = f"{prompt_base}\n\n{prompt}"
+    full_prompt = f"{prompt}"
 
     return state.model_copy(update={"intro": llm.invoke(full_prompt).content})
 

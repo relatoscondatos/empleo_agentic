@@ -3,7 +3,7 @@
 ---
 
 ```js
-display(sourceDataForCharts)
+//display(sourceDataForCharts)
 ```
 
 # Evolución del empleo en Chile  de 2011 a 2025
@@ -54,7 +54,43 @@ md`${narrativaInformalidad}`
 ```
 
 
-## Subempleo por horario (TPI)
+
+
+## Nivel educacional de las personas ocupadas
+```js
+md`${introEdu}`
+```
+<div class="card">
+<div>${chartEdu}</div>
+</div><!--card-->
+<div class="card">
+<div>${chartEdu_diferencias}</div>
+</div><!--card-->
+
+
+```js
+md`${narrativaEdu}`
+```
+
+
+## Calificación de las ocupaciones
+```js
+md`${introCalificacionOcupacion}`
+```
+<div class="card">
+<div>${chartCalificacionOcupacion}</div>
+</div><!--card-->
+<div class="card">
+<div>${chartCalificacionOcupacion_diferencias}</div>
+</div><!--card-->
+
+
+```js
+md`${narrativaCalificacionOcupacion}`
+```
+
+
+## Empleo a Tiempo Parcial Involuntario (TPI)
 
 ```js
 md`${introTPI}`
@@ -78,55 +114,20 @@ md`${introTPI}`
 md`${narrativaTPI}`
 ```
 
-
-## Nivel educacional de las personas ocupadas
+## Subempleo 
 ```js
-md`${introEdSup}`
-```
-<div class="card">
-<div>${chartEdSup}</div>
-</div><!--card-->
-<div class="card">
-<div>${chartEdSup_diferencias}</div>
-</div><!--card-->
-
-
-```js
-md`${narrativaEdSup}`
-```
-
-
-## Calificación de las ocupaciones
-```js
-md`${introCalificacionOcupacion}`
-```
-<div class="card">
-<div>${chartCalificacionOcupacion}</div>
-</div><!--card-->
-<div class="card">
-<div>${chartCalificacionOcupacion_diferencias}</div>
-</div><!--card-->
-
-
-```js
-md`${narrativaCalificacionOcupacion}`
-```
-
-
-## Composición del empleo según nivel educativo y calificación del trabajo
-```js
-md`${introEduCalificacionOcupacion}`
+md`${introSubempleoGeneral}`
 ```
 
 <div class="card">
-<div>${chartEduCalificacionOcupacion}</div>
+<div>${chartSubempleoGeneral}</div>
 </div><!--card-->
 <div class="card">
-<div>${chartEduCalificacionOcupacion_diferencias}</div>
+<div>${chartSubempleoGeneral_diferencias}</div>
 </div><!--card-->
 
 ```js
-md`${narrativaEduCalificacionOcupacion}`
+md`${narrativaSubempleoGeneral}`
 ```
 
 
@@ -191,9 +192,9 @@ md`${narrativaSexo}`
 const narrativaOcupados  = FileAttachment("graphs/generate_narrative_ocupados.md").text();
 const narrativaInformalidad  = FileAttachment("graphs/generate_narrative_informalidad.md").text();
 const narrativaTPI  = FileAttachment("graphs/generate_narrative_tpi.md").text();
-const narrativaEdSup  = FileAttachment("graphs/generate_narrative_ed_sup.md").text();
+const narrativaEdu  = FileAttachment("graphs/generate_narrative_edu.md").text();
 const narrativaCalificacionOcupacion  = FileAttachment("graphs/generate_narrative_calificacion_ocupacion.md").text();
-const narrativaEduCalificacionOcupacion  = FileAttachment("graphs/generate_narrative_edu_calificacion_ocupacion.md").text();
+const narrativaSubempleoGeneral  = FileAttachment("graphs/generate_narrative_subempleo_general.md").text();
 const narrativaSectorPublico  = FileAttachment("graphs/generate_narrative_sector_publico.md").text();
 const narrativaNacionalidad  = FileAttachment("graphs/generate_narrative_nacionalidad.md").text();
 const narrativaSexo  = FileAttachment("graphs/generate_narrative_sexo.md").text();
@@ -208,9 +209,11 @@ const introIntroduccionGeneral  = FileAttachment("graphs/generate_intro_introduc
 const introOcupados  = FileAttachment("graphs/generate_intro_ocupados.md").text();
 const introInformalidad  = FileAttachment("graphs/generate_intro_informalidad.md").text();
 const introTPI  = FileAttachment("graphs/generate_intro_tpi.md").text();
-const introEdSup  = FileAttachment("graphs/generate_intro_ed_sup.md").text();
+const introEdu  = FileAttachment("graphs/generate_intro_edu.md").text();
 const introCalificacionOcupacion = FileAttachment("graphs/generate_intro_calificacion_ocupacion.md").text();
 const introEduCalificacionOcupacion = FileAttachment("graphs/generate_intro_edu_calificacion_ocupacion.md").text();
+const introSubempleoGeneral = FileAttachment("graphs/generate_intro_subempleo_general.md").text();
+
 const introSectorPublico = FileAttachment("graphs/generate_intro_sector_publico.md").text();
 const introNacionalidad = FileAttachment("graphs/generate_intro_nacionalidad.md").text();
 const introSexo = FileAttachment("graphs/generate_intro_sexo.md").text();
@@ -295,10 +298,10 @@ const chartTPI_diferencias = (() => {
     })
 })()
 
-const chartEdSup = (() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.ed_sup)
+const chartEdu = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.edu)
   return buildChart({
-    data:dataPlot,
+    data:dataPlot.filter(d => d.variable !== 'ocupados'),
     title: "Personas con Educación Superior Completa",
     labelAliases: labelAliases,
     marginRight:160,
@@ -306,8 +309,8 @@ const chartEdSup = (() => {
     })
 })()
 
-const chartEdSup_diferencias = (() => {
-  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.ed_sup).filter(d => d.año == 2025)
+const chartEdu_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.edu).filter(d => d.año == 2025)
   return buildChartDiferencia({
     data:dataPlot,
     title: "Educación Superior - Diferencia 2025 vs 2024",
@@ -322,7 +325,7 @@ const chartEdSup_diferencias = (() => {
 const chartCalificacionOcupacion = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.calificacion_ocupacion)
   return buildChart({
-    data:dataPlot,
+    data:dataPlot.filter(d => d.variable !== 'ocupados'),
     title: "Ocupados según nivel de calificación requerido para la ocupación",
     labelAliases: labelAliases,
     marginRight:200,
@@ -344,30 +347,51 @@ const chartCalificacionOcupacion_diferencias = (() => {
     })
 })()
 
+/*
 
-
-const chartEduCalificacionOcupacion_diferencias = (() => {
-  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.edu_calificacion_ocupacion).filter(d => d.año == 2025)
+const chartSubempleoGeneral_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.s).filter(d => d.año == 2025)
   return buildChartDiferencia({
     data:dataPlot,
     title: "Cambio anual en la ocupación según nivel educativo y calificación (2025 vs. 2024)",
     labelAliases: labelAliases,
-    marginLeft:200,
+    marginLeft:220,
     referenceVariable:"ocupados"
     })
 })()
 
 
 
-const chartEduCalificacionOcupacion = (() => {
+const chartSubempleoGeneral = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.edu_calificacion_ocupacion).filter(d => d.variable !== "ocupados")
   return buildChart({
     data:dataPlot,
-    title: "Educación superior y calificación de la ocupación",
     title: "Personas ocupadas según nivel educacional y nivel de calificación de la ocupación",
     subtitle: "Personas con Educación Superior y ocupaciones con calificación media o baja se pueden considerar subempleo por competencias",
     labelAliases: labelAliases,
-    marginRight:200
+    marginRight:250
+    })
+})()
+*/
+const chartSubempleoGeneral = (() => {
+  const dataPlot = convertDataToPlot(sourceDataForCharts.data.subempleo_general).filter(d => d.variable !== "ocupados")
+  return buildChart({
+    data:dataPlot,
+    title: "Personas subempleadas por competencia y/o insuficiencia horaria",
+    labelAliases: labelAliases,
+    marginRight:300
+    })
+})()
+
+
+const chartSubempleoGeneral_diferencias = (() => {
+  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.subempleo_general).filter(d => d.año == 2025)
+  return buildChartDiferencia({
+    data:dataPlot,
+    title: "Cambio anual en la ocupación según subempleo (2025 vs. 2024)",
+    labelAliases: labelAliases,
+    marginLeft:300,
+    referenceVariable:"ocupados"
     })
 })()
 
@@ -470,32 +494,48 @@ const chartInformalidadPorcentaje = (() => {
 ```
 
 
-
-
-
-
-
-
-
-
-
 ```js
 const labelAliases = {
   "ocupados": "Personas Ocupadas",
+
   "formal": "Ocupación Formal",
   "informal": "Ocupación Informal",
+
   "tpi": "TPI",
   "no_tpi": "No TPI",
+
+  "ed_sup": "Ed. Superior",
+  "ed_media": "Ed. Media",
+  "ed_basica": "Ed. Basica",
+  "sin_ed_basica": "Sin Ed. Basica completa",
+
   "ed_sup_completa": "Ed. Superior Completa",
   "sin_ed_sup": "Sin Ed. Superior Completa",
+
   "calificacion_media_baja": "Ocup. de Calificación Media/Baja",
-  "alta_calificacion": "Ocup. de Alta Calificación",
+  "calificacion_baja": "Ocup. de Calificación Baja",
+  "calificacion_media": "Ocup. de Calificación Media",
+  "alta_calificacion": "Ocup. de Calificación Alta",
+
   "ed_sup_competencia_alta": "Ed Sup & Alta Calificación",
-  "ed_sup_competencia_media_baja": "Ed Sup & Calificación Media/Baja",
+  "ed_sup_competencia_media_baja": "Ed Sup & Calificación Media/Baja",  
+  "sin_ed_sup_competencia_alta": "Sin Ed Sup & Alta Calificación",
+  "sin_ed_sup_competencia_media_baja": "Sin Ed Sup & Calificación Media/Baja",
+
+  "subempleo_total":"Subempleo Total",
+  "subempleo_calificaciones_excluyendo_subempleo_horas":"Subempleo Competencias (excl. Subempleo horas)",
+  "subempleo_calificaciones_y_subempleo_horas":"Subempleo Competencias y Horas",
+  "subempleo_horas_excluyendo_subempleo_calificaciones":"Subempleo Horas (excl. Subempleo competencias)",
+  "ed_sup_alta_calificacion_excluyendo_subempleo_horas":"Ed Sup y altas calificaciones (sin subempleo)",
+  "sin_ed_sup_excluyendo_subempleo_horas": "Sin Educación Superior (sin subempleo)",
+
+
   "sector_publico": "Sector Público",
   "no_sector_publico": "No en Sector Público",
+
   "nacionalidad_chilena": "Nacionalidad Chilena",
   "nacionalidad_extranjera": "Nacionalidad Extranjera",
+
   "hombre": "Hombre",
   "mujer": "Mujer",
 
@@ -660,11 +700,25 @@ function buildChartDiferencia(options) {
   const width =  options && options.width || 1000
   const height =  options && options.height || width*0.3
   const marginLeft =  options && options.marginLeft || 150
+  const marginRight =  options && options.marginRight || 20
   const referenceKey = options.referenceVariable || null;
   const keys = _.chain(dataPlot).map((d) => d.variable).uniq().filter((d) => d !== referenceKey).value();
   const años = _.chain(dataPlot).map(d => d.año).uniq().value()
   const minAño = _.chain(dataPlot).map(d => d.año).min().value()
   const maxAño = _.chain(dataPlot).map(d => d.año).max().value()
+
+  const maxValue = _.chain(dataPlot).map(d => d.valor).max().value()
+  const minValue = _.chain(dataPlot).map(d => d.valor).min().value()
+
+  const valueRange = minValue < 0 && maxValue > 0 ? maxValue - minValue : _.max(Math.abs(maxValue), Math.abs(minValue))
+
+
+  function smallBar(value) {
+    const plotWidth = width - marginLeft - marginRight;
+    const barSize = plotWidth * Math.abs(value) / valueRange;
+    return barSize < 40;
+  }
+  
 
   function label(label) {
     return labelAliases[label] || label
@@ -680,7 +734,7 @@ function buildChartDiferencia(options) {
     width,
     height,
     marginLeft: marginLeft,
-    marginRight: 20,
+    marginRight: marginRight,
     marginBottom: 40,
     style:{fontSize:12},
     x: { 
@@ -697,20 +751,29 @@ function buildChartDiferencia(options) {
         fill: d => d["variable"] == referenceKey ? "lightgrey" : d3.schemeObservable10[0]
       }),     
       
-      Plot.text(dataPlot, {
+      Plot.text(dataPlot.filter(d => !smallBar(d.valor) && d.valor > 0), {
         x: "valor",
         y: d => label(d["variable"]),
-        fill: d => d["variable"] == referenceKey ? "black" : "white",
-        text: d => d.valor > 0 ? `+${d3.format(".3s")(d.valor)}` : "",
+        fill: d => d["variable"] == referenceKey ? "black" : smallBar(d.valor) ? "black" : "white", 
+        text: d =>  `+${d3.format(".3s")(d.valor)}` ,
         textAnchor: "end",
         dx:-5
       }),
       
-      Plot.text(dataPlot, {
+      Plot.text(dataPlot.filter(d => !smallBar(d.valor) && d.valor < 0), {
         x: "valor",
         y: d => label(d["variable"]),
-        fill: d => d["variable"] == referenceKey ? "black" : "white",
-        text: d => d.valor < 0 ? d3.format(".3s")(d.valor) : "",
+        fill: d => d["variable"] == referenceKey ? "black" : smallBar(d.valor) ? "black" : "white", 
+        text: d =>  d3.format(".3s")(d.valor) ,
+        textAnchor: "start",
+        dx:5
+      }),
+
+      Plot.text(dataPlot.filter(d => smallBar(d.valor)), {
+        x: "valor",
+        y: d => label(d["variable"]),
+        fill: d => "black",
+        text: d =>  d.valor > 0 ? `+${d3.format(".3s")(d.valor)}` : `${d3.format(".3s")(d.valor)}` ,
         textAnchor: "start",
         dx:5
       })

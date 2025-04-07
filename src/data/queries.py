@@ -20,13 +20,13 @@ queries = {
         WHERE variable IN ('ocupados', 'tpi', 'no_tpi')
         ORDER BY variable, año
     """,
-    "ed_sup": """
+    "edu": """
         SELECT 
         año,
         variable,
         valor,
         FROM parquet_scan(?) AS datos
-        WHERE variable IN ('ocupados', 'ed_sup_completa', 'sin_ed_sup')
+        WHERE variable IN ('ocupados', 'ed_sup', 'ed_media', 'ed_basica', 'sin_ed_basica')
         ORDER BY variable, año
     """,
     "calificacion_ocupacion": """
@@ -35,7 +35,7 @@ queries = {
         variable,
         valor,
         FROM parquet_scan(?) AS datos
-        WHERE variable IN ('ocupados', 'alta_calificacion', 'calificacion_media_baja')
+        WHERE variable IN ('ocupados', 'alta_calificacion', 'calificacion_media', 'calificacion_baja')
         ORDER BY variable, año
     """,
     "ed_sup_calificacion_ocupacion": """
@@ -53,7 +53,16 @@ queries = {
         variable,
         valor,
         FROM parquet_scan(?) AS datos
-        WHERE variable IN ('ocupados','sin_ed_sup', 'ed_sup_competencia_alta', 'ed_sup_competencia_media_baja')
+        WHERE variable IN ('ocupados','sin_ed_sup_competencia_alta','sin_ed_sup_competencia_media_baja', 'ed_sup_competencia_alta', 'ed_sup_competencia_media_baja')
+        ORDER BY variable, año
+    """,
+    "subempleo_general": """
+        SELECT 
+        año,
+        variable,
+        valor,
+        FROM parquet_scan(?) AS datos
+        WHERE variable IN ('ocupados','subempleo_calificaciones_excluyendo_subempleo_horas', 'subempleo_calificaciones_y_subempleo_horas', 'subempleo_horas_excluyendo_subempleo_calificaciones', 'ed_sup_alta_calificacion_excluyendo_subempleo_horas', 'sin_ed_sup_excluyendo_subempleo_horas','subempleo_total' )
         ORDER BY variable, año
     """,
     "sector_publico": """
