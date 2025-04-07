@@ -9,29 +9,32 @@ Usa un lenguaje inclusivo y evita estereotipos de género o culturales.
 prompt_dummy = "Solo di 'Hola Mundo'."
 
 prompt_introduccion_general = f"""
-Redacta un texto introductorio para una página web que presenta información sobre el mercado laboral en Chile.
+Redacta un texto introductorio para una página web que presenta información sobre el mercado laboral en Chile entre los años 2011 y 2025.
 
-La información está organizada en secciones como:
+La información está organizada en secciones que abordan distintos aspectos del empleo:
 - Evolución del empleo total en Chile
 - Empleo formal e informal
-- Subempleo por horario (TPI)
 - Nivel educacional de las personas ocupadas
 - Calificación de las ocupaciones
-- Composición del empleo según nivel educativo y calificación del trabajo
+- Empleo a Tiempo Parcial Involuntario (TPI)
+- Subempleo
 - Empleo en el sector público y no público
 - Personas ocupadas según nacionalidad
 - Personas ocupadas según sexo
 
-Los datos provienen de la Encuesta Nacional de Empleo (ENE), elaborada por el Instituto Nacional de Estadísticas (INE), y corresponden al trimestre diciembre-enero-febrero de cada año. La comparación se realiza siempre para ese mismo trimestre con el fin de evitar distorsiones provocadas por factores estacionales como vacaciones, ciclos productivos o actividades específicas de ciertos meses.
+Los datos provienen de la Encuesta Nacional de Empleo (ENE), elaborada por el Instituto Nacional de Estadísticas (INE), y corresponden al trimestre diciembre-enero-febrero de cada año. Se utiliza siempre ese mismo trimestre para evitar distorsiones estacionales asociadas a vacaciones, ciclos productivos o actividades específicas de ciertos meses.
 
-El foco del análisis está puesto en las **personas ocupadas**, es decir, quienes se encuentran trabajando durante el período de referencia. El sitio no incluye indicadores como desempleo, participación laboral o fuerza de trabajo, sino que se concentra en cómo ha cambiado la **composición del empleo ocupado** a lo largo del tiempo.
+Es importante considerar que los datos del año 2020 abarcan hasta febrero de ese año, es decir, antes de la detección del primer caso de COVID-19 en Chile (reportado en marzo). Por lo tanto, en este análisis, el año 2020 se considera parte del período **prepandemia**.
 
-Las narrativas fueron generadas con un modelo de lenguaje de inteligencia artificial. El sitio tiene un propósito exploratorio y divulgativo, sin fines comerciales.
+El análisis se enfoca exclusivamente en las personas ocupadas, es decir, aquellas que estaban trabajando en el período de referencia. No se abordan indicadores como el desempleo o la participación laboral, sino que se explora cómo ha cambiado la **composición del empleo ocupado** en distintos contextos.
+
+Las narrativas fueron generadas mediante un modelo de lenguaje de inteligencia artificial, procurando mantener un enfoque claro, accesible y riguroso. Este sitio tiene un carácter exploratorio y divulgativo, sin fines comerciales, y busca facilitar el acceso a datos públicos relevantes para comprender mejor la evolución del empleo en Chile.
 
 {prompt_estilo_general}
 
 **Importante**: El texto debe presentarse como introducción al contenido del sitio, no como una recomendación ni como una sugerencia para su desarrollo. No uses expresiones como "Aquí tienes un texto" o "Te recomiendo". Solo redacta la introducción que irá en la página.
 """
+
 
 prompt_ocupados = f"""
 Redacta un texto introductorio para la sección que presenta la evolución del número total de personas ocupadas a lo largo del tiempo.
