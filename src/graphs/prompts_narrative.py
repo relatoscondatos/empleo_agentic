@@ -15,12 +15,13 @@ prompt_estilo_general = """
 Analiza la evolución de los datos considerando cuatro bloques temporales, siguiendo esta estructura:
 
 1. **Período Prepandemia (hasta 2020)**  
-   Describe la evolución de las variables antes del inicio de la pandemia de COVID-19. Identifica tendencias generales (crecimiento, estancamiento, retroceso) sin detallar año por año. Resume los principales cambios de forma agregada.
+   Describe la evolución de las variables antes del inicio de la pandemia de COVID-19. Identifica tendencias generales (crecimiento, estancamiento, retroceso) sin detallar año por año. Resume los principales cambios de forma agregada.  
+   Aclara que los datos del año 2020 corresponden al trimestre diciembre–enero–febrero, por lo que **representan un período anterior a la pandemia en Chile**.
 
 2. **Período Pandemia (2021 y 2022)**  
    Describe los efectos de la pandemia en el empleo y cómo se manifestaron en los datos. Menciona caídas abruptas, recuperaciones parciales o transformaciones del mercado laboral. Relaciona con el contexto de restricciones sanitarias o cambios en la actividad económica.
 
-3. **Período Postpandemia (desde 2023)**  
+3. **Período Postpandemia (desde 2023 a 2025)**  
    Analiza si las tendencias anteriores se mantienen, revierten o cambian. Señala indicios de recuperación, estabilización o transformación estructural. Considera los primeros años postpandemia como una etapa de ajuste.
 
 4. **Cambios entre 2024 y 2025**  
@@ -40,14 +41,33 @@ No se trata de estimaciones ni proyecciones. Por lo tanto:
 **No incluyas títulos explícitos** como “Período Prepandemia” o “Cambios 2024–2025” dentro del texto. La narrativa debe fluir de forma natural, sin encabezados.  
 **No te dirijas al lector** con frases como “en esta sección encontrarás” ni uses expresiones personales o promocionales.
 
-🔢 Los valores numéricos entregados están expresados como cifras absolutas, por ejemplo: `9030161.59` representa nueve millones treinta mil ciento sesenta y una personas.
+📕 **Evita expresiones poco comunes o marcadamente técnicas** que puedan dificultar la comprensión por parte del público general en Chile. Por ejemplo, **no uses el adjetivo “acusado” para describir cambios**. Prefiere términos más accesibles como “notable”, “marcado”, “significativo”, “claro” o similares. Puedes usar también adjetivos como “leve”, “moderado” o “considerable” cuando corresponda.
 
-No interpretes estos números como si estuvieran en miles. Si lo deseas, puedes expresarlos como millones (por ejemplo: “9,03 millones de personas”), asegurándote de que el redondeo mantenga dos cifras decimales.
+🔢 **Formato de números y cantidades**:
 
-No utilices comas como separadores de miles ni interpretes las cifras en notación científica. Todas las cantidades deben representarse en formato legible y natural en español.
+- Todos los valores deben ser tratados como cifras absolutas.  
+  Por ejemplo: `9030161.59` representa **nueve millones treinta mil ciento sesenta y una personas**.
 
-Evita errores comunes como decir "903 mil" cuando el valor real corresponde a más de nueve millones de personas.
+- Para valores entre **100.000 y 999.999**, exprésalos en **miles**, redondeando al múltiplo de **10 mil** más cercano.  
+  ✅ Ejemplo: `793456` → “790 mil personas”  
+  ✅ Ejemplo: `423156` → “420 mil personas”  
+  ❌ Evita: “0,79 millones”, “0.79 millones de personas”, o “aproximadamente 793 mil”
+
+- Para valores entre **10.000 y 99.999**, redondea al múltiplo de **mil** más cercano.  
+  ✅ Ejemplo: `17456` → “17 mil personas”
+
+- Para valores **menores a 10.000**, puedes escribir el número completo.  
+  ✅ Ejemplo: `8260` → “8260 personas”
+
+- Siempre evita notación científica y expresiones como “aproximadamente 0.42 millones”.
+
+- Puedes mencionar el sustantivo “personas” o “trabajadores/as” si es necesario, pero evita repetirlo innecesariamente.
+
+- Para porcentajes, utiliza hasta **dos cifras decimales** si están disponibles, e indica claramente que corresponden al total de personas ocupadas.
+
 """
+
+
 
 
 

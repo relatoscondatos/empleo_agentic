@@ -305,7 +305,9 @@ const chartInformalidad_porcentaje = (() => {
     title: "Porcentaje de personas con ocupación informal",
     zero:"no",
     labelAliases: labelAliases,
-    labelY: "% del total de personas ocupadas"
+    labelY: "% del total de personas ocupadas",
+    marginLeft:60,
+
     })
 
 })()
@@ -344,7 +346,8 @@ const chartTPI_porcentaje = (() => {
     title: "Porcentaje de personas ocupadas a Tiempo Parcial Involuntario",
     zero:"no",
     labelAliases: labelAliases,
-    labelY: "% del total de personas ocupadas"
+    labelY: "% del total de personas ocupadas",
+    marginLeft:60,
     })
 
 })()
@@ -395,7 +398,8 @@ const chartEdu_porcentaje = (() => {
     title: "Porcentaje de personas ocupadas según nivel educacional",
     zero:"no",
     labelAliases: labelAliases,
-    labelY: "% del total de personas ocupadas"
+    labelY: "% del total de personas ocupadas",
+    marginLeft:60,
     })
 
 })()
@@ -422,7 +426,8 @@ const chartCalificacionOcupacion_porcentaje = (() => {
     zero:"no",
     labelAliases: labelAliases,
     marginRight:200,
-    labelY: "% del total de personas ocupadas"
+    labelY: "% del total de personas ocupadas",
+    marginLeft:60,
     })
 
 })()
