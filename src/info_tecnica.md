@@ -1,33 +1,33 @@
 # Evolución del empleo en Chile (2011–2025)  
 ## Información técnica
 
-Este sitio presenta un análisis exploratorio sobre cómo ha cambiado la composición del empleo en Chile entre los años 2011 y 2025, utilizando datos oficiales y métodos reproducibles. A continuación, se detallan las fuentes de información, los procesos de tratamiento de datos, las definiciones utilizadas para construir los indicadores y la arquitectura técnica del sistema.
+Esta página presenta entrega información técnica sobre la cosntrucción de la página [Evolución del empleo en Chile  de 2011 a 2025](.). A continuación, se detalla el origen de los datos, el procesamiento realizado y las definiciones utilizadas para construir los indicadores presentados.
 
 ---
 
-## Fuentes de datos
+## Fuente de los datos
 
-Los datos provienen de la **Encuesta Nacional de Empleo (ENE)**, elaborada por el **Instituto Nacional de Estadísticas (INE)**. Esta encuesta es la fuente oficial de estadísticas laborales en Chile y entrega información sobre personas ocupadas, desocupadas y fuera de la fuerza de trabajo.
+Los datos provienen de la **Encuesta Nacional de Empleo (ENE)**, elaborada por el **Instituto Nacional de Estadísticas (INE)**. Esta encuesta es la fuente oficial de estadísticas laborales en Chile y entrega información detallada sobre las personas ocupadas, desocupadas y fuera de la fuerza de trabajo.
 
-El conjunto de datos utilizado corresponde a los microdatos publicados por el INE en su sitio web:
+Para este análisis, se utiliza la base de datos publicada por el INE en su sitio oficial:
 
 🔗 [Serie Ocupación y Desocupación - INE](https://www.ine.gob.cl/estadisticas/sociales/mercado-laboral/ocupacion-y-desocupacion)
 
 ---
 
-## Periodo de análisis
+## Periodo y cobertura temporal
 
-El análisis se basa exclusivamente en los datos correspondientes al trimestre **diciembre–enero–febrero** de cada año. Esta elección permite comparar años completos en condiciones similares, evitando distorsiones por estacionalidad asociadas a vacaciones o ciclos productivos específicos.
+El análisis considera el trimestre **diciembre–enero–febrero** de cada año, lo que permite comparar años completos evitando distorsiones por estacionalidad. Este enfoque asegura una base homogénea para evaluar tendencias de mediano y largo plazo.
 
-Se cubre el período desde el **trimestre diciembre 2010 – febrero 2011** hasta el **trimestre diciembre 2024 – febrero 2025**.
+Se incluyen los datos desde el **trimestre diciembre 2010 – febrero 2011** hasta el **trimestre diciembre 2024 – febrero 2025**.
 
 ---
 
-## Procesamiento de datos
+## Procesamiento y metodología
 
-Los archivos CSV publicados por el INE fueron convertidos a formato Parquet para facilitar su procesamiento. Luego, se aplicaron transformaciones utilizando consultas SQL y scripts en Python para generar tablas agregadas con el número total de personas ocupadas según diversas características.
+Los datos fueron descargados en formato CSV y convertidos a formato Parquet para facilitar su procesamiento. Luego, se aplicaron transformaciones utilizando consultas SQL y scripts en Python para obtener los indicadores agregados que se presentan en las visualizaciones.
 
-Cada fila representa una persona encuestada, y se utiliza el factor de expansión `fact_cal` para estimar la población total.
+Cada fila del conjunto de datos corresponde a una persona, y cada persona tiene asociado un factor de expansión (`fact_cal`) que permite estimar el total de la población ocupada.
 
 ---
 
@@ -35,92 +35,203 @@ Cada fila representa una persona encuestada, y se utiliza el factor de expansió
 
 Se construyen indicadores a partir de variables disponibles en los microdatos de la ENE. Las principales dimensiones consideradas son:
 
-### Personas ocupadas
-- Criterio: `cae_especifico` entre 1 y 7  
-```sql
+### Personas ocupadas  
+**Criterio**: `cae_especifico` entre 1 y 7  
+```
 WHERE cae_especifico BETWEEN 1 AND 7
 ```
 
-### Empleo formal e informal
-- Variable: `ocup_form`  
-```sql
-ocup_form = 1  → Formal  
-ocup_form = 2  → Informal
+---
+
+### Empleo formal e informal  
+**Variable**: `ocup_form`  
+- Formal: `ocup_form = 1`  
+- Informal: `ocup_form = 2`  
+```
+SUM(CASE WHEN ocup_form = 1 THEN fact_cal ELSE 0 END) as formal
+SUM(CASE WHEN ocup_form = 2 THEN fact_cal ELSE 0 END) as informal
 ```
 
-### Subempleo por horario (TPI)
-- Variable: `tpi`  
-```sql
-tpi = 1 → Tiempo parcial involuntario  
-tpi = 0 → No TPI
+---
+
+### Subempleo por horario (TPI)  
+**Variable**: `tpi`  
+- TPI: `tpi = 1`  
+- No TPI: `tpi = 0`  
+```
+SUM(CASE WHEN tpi = 1 THEN fact_cal ELSE 0 END) as tpi
+SUM(CASE WHEN tpi = 0 THEN fact_cal ELSE 0 END) as no_tpi
 ```
 
-### Nivel educacional
-- Variables: `nivel`, `termino_nivel`  
-Se definen rangos para agrupar educación básica, media, superior e incompleta.
+---
 
-### Calificación de la ocupación
-- Variable: `b1` o `b1_ciuo88`, según el año  
-```sql
-b1_int = CASE WHEN ano_trimestre >= 2018 THEN b1 ELSE b1_ciuo88 END
+### Nivel educacional  
+**Variables**: `nivel`, `termino_nivel`  
 ```
-- Alta calificación: grupos 1 a 3  
-- Media/baja: grupos 4 a 9
+-- Educación superior completa (CFT, IP, universidad, postgrados)
+SUM(CASE 
+    WHEN (nivel BETWEEN 7 AND 9 AND termino_nivel = 1) 
+        OR (nivel BETWEEN 10 and 12)
+    THEN fact_cal 
+    ELSE 0 
+END) AS ed_sup,
 
-### Sector público
-- Variable: `categoria_ocupacion`  
-```sql
-categoria_ocupacion = 4 → Sector público  
-categoria_ocupacion ≠ 4 → No público
+-- Educación media completa o superior incompleta
+SUM(CASE 
+    WHEN ((nivel BETWEEN 4 AND 6 OR nivel = 14 ) AND termino_nivel = 1) 
+        OR (nivel BETWEEN 7 AND 9 AND termino_nivel <> 1) 
+    THEN fact_cal 
+    ELSE 0 
+END) AS ed_media,
+    
+-- Educación básica completa o media incompleta
+SUM(CASE 
+    WHEN (nivel = 3 AND termino_nivel = 1) 
+        OR (nivel IN (4, 5, 6, 14) AND termino_nivel <> 1)
+    THEN fact_cal 
+    ELSE 0 
+END) AS ed_basica, 
+
+-- Sin Educación básica completa
+SUM(CASE 
+    WHEN (nivel = 3 AND termino_nivel <> 1) OR (nivel NOT BETWEEN 3 AND 14)
+    THEN fact_cal 
+    ELSE 0 
+END) AS sin_ed_basica,
+
+```
+---
+
+### Calificación de la ocupación  
+**Variables**: `b1` (CIUO-08) y `b1_ciuo88` (CIUO-88)  según el año correspondiente 
+```
+SUM(CASE WHEN  b1 BETWEEN 1 AND 3 THEN fact_cal else 0 END) as alta_calificacion,
+SUM(CASE WHEN  b1 BETWEEN 4 AND 9 THEN fact_cal else 0 END) as calificacion_media_baja,
+SUM(CASE WHEN  b1 BETWEEN 4 AND 8 THEN fact_cal else 0 END) as calificacion_media,
+SUM(CASE WHEN  b1 = 9 THEN fact_cal else 0 END) as calificacion_baja,
 ```
 
-### Nacionalidad
-- Variable: `nacionalidad`  
-```sql
-nacionalidad = 152 → Chilena  
-nacionalidad ≠ 152 → Extranjera
+
+---
+
+### Sector público  
+**Variable**: `categoria_ocupacion`  
+
+```
+SUM(CASE WHEN  categoria_ocupacion = 4 THEN fact_cal else 0 END) as sector_publico,
+SUM(CASE WHEN  categoria_ocupacion <> 4 THEN fact_cal else 0 END) as no_sector_publico,
 ```
 
-### Sexo
-- Variable: `sexo`  
-```sql
-sexo = 1 → Hombre  
-sexo = 2 → Mujer
+---
+
+### Nacionalidad  
+**Variable**: `nacionalidad`  
+```
+SUM(CASE WHEN  nacionalidad = 152 THEN fact_cal else 0 END) as nacionalidad_chilena,
+SUM(CASE WHEN  nacionalidad <> 152 THEN fact_cal else 0 END) as nacionalidad_extranjera,
+```
+
+---
+
+### Sexo  
+**Variable**: `sexo`  
+```
+SUM(CASE WHEN  sexo = 1 THEN fact_cal else 0 END) as hombre,
+SUM(CASE WHEN  sexo = 2 THEN fact_cal else 0 END) as mujer,
 ```
 
 ---
 
 ## Indicadores combinados
 
-Se han construido variables adicionales que permiten analizar combinaciones de dimensiones relevantes:
+### Educación y calificación  
+Se calcula el cruce entre nivel educacional y calificación ocupacional para distinguir:
 
-### Educación y calificación
-- Personas con educación superior en:
-  - Ocupaciones de alta calificación
-  - Ocupaciones de media o baja calificación
-- Mismo cruce para personas sin educación superior
-
-### Subempleo total
-Incluye a personas que presentan:
-- Subempleo por competencias  
-- Subempleo por insuficiencia horaria  
-- Ambos tipos simultáneamente
-
-También se consideran los grupos que no califican como subempleo, distinguiendo entre:
 - Personas con educación superior en ocupaciones de alta calificación  
-- Personas sin educación superior y sin subempleo
+- Personas con educación superior en ocupaciones de media o baja calificación  
+- Personas sin educación superior, también clasificadas por calificación de la ocupación
+
+```
+/* Ed sup según calificación de ocupación */
+SUM(CASE WHEN  ((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 and 12)) AND b1 BETWEEN 1 AND 3 THEN fact_cal else 0 END) as ed_sup_competencia_alta,
+SUM(CASE WHEN  ((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 and 12)) AND b1 BETWEEN 4 AND 9 THEN fact_cal else 0 END) as ed_sup_competencia_media_baja,
+
+/* Sin Ed sup segun calificacion de ocupacion */
+SUM(CASE WHEN (NOT ((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 and 12))) AND b1 BETWEEN 1 AND 3 THEN fact_cal else 0 END) as sin_ed_sup_competencia_alta,
+SUM(CASE WHEN (NOT ((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 and 12))) AND b1 BETWEEN 4 AND 9 THEN fact_cal else 0 END) assin_ed_sup_competencia_media_baja,
+```
 
 ---
 
-## Arquitectura técnica y herramientas utilizadas
+### Subempleo por competencias y/u horas  
+Se construyen tres categorías mutuamente excluyentes:
 
-Este sitio ha sido desarrollado con el framework [Observable Framework](https://observablehq.com/framework), que permite integrar visualizaciones interactivas, análisis de datos y narrativas generadas automáticamente.
+- Subempleo por **competencias**:  
+```
+SUM(CASE WHEN  ((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 and 12)) AND b1 BETWEEN 4 AND 9 THEN fact_cal else 0 END) as ed_sup_competencia_media_baja,
+```
 
-### Visualizaciones  
-Los gráficos fueron construidos utilizando [Plot](https://observablehq.com/plot), una herramienta del ecosistema Observable, diseñada para generar visualizaciones claras, accesibles y personalizables.
+- Subempleo por **horas**:  
+```
+SUM(CASE WHEN tpi = 1 THEN fact_cal ELSE 0 END) as tpi
 
-### Generación de datos  
-Para cada sección, se utiliza un agente basado en [LangGraph](https://www.langgraph.dev/), que ejecuta consultas SQL específicas para seleccionar y agregar las variables correspondientes. Los datos resultantes se procesan en Python y se entregan en formato JSON mediante un módulo *data generator*, que alimenta los *data loaders* definidos en la página Observable.
+```
 
-### Generación de contenido  
-Tanto las descripciones introductorias como las narrativas analíticas son generadas por un modelo de lenguaje (GPT-4o de OpenAI), bajo la coordinación de un agente LangGraph que orquesta la lectura de datos, el análisis de tendencias y la redacción de textos, de acuerdo con directrices específicas predefinidas para mantener consistencia, claridad y rigurosidad.
+- Subempleo combinado: personas que cumplen ambas condiciones.
+```
+SUM(CASE 
+    WHEN (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) 
+    AND TPI <> 1 THEN fact_cal  
+    ELSE 0 
+END) as subempleo_calificaciones_excluyendo_subempleo_horas,
+SUM(CASE 
+    WHEN (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) 
+    AND TPI = 1 
+    THEN fact_cal  
+    ELSE 0 
+END) as subempleo_calificaciones_y_subempleo_horas,
+SUM(CASE 
+    WHEN NOT (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) 
+    AND TPI = 1 
+    THEN fact_cal  
+    ELSE 0 
+END) as subempleo_horas_excluyendo_subempleo_calificaciones,
+SUM(CASE 
+    WHEN  (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  1 AND 3) 
+    AND TPI <> 1 
+    THEN fact_cal  
+    ELSE 0 
+END) as ed_sup_alta_calificacion_excluyendo_subempleo_horas,
+SUM(CASE 
+    WHEN  (NOT((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12))) 
+    AND TPI <> 1 
+    THEN fact_cal  
+    ELSE 0 
+END) as sin_ed_sup_excluyendo_subempleo_horas,
+```  
+- Subempleo total: unión de todos los subempleos  
+```
+SUM(CASE 
+    WHEN 
+        (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) 
+        OR TPI = 1 
+    THEN fact_cal  
+    ELSE 0 
+END) as subempleo_total,
+```
+---
+
+## Plataforma y herramientas utilizadas
+
+Esta página ha sido desarrollada con el **Observable Framework**, utilizando la librería de gráficos [**Plot**](https://observablehq.com/plot) para la visualización de datos.
+
+Los datos se procesan mediante un **agente LangGraph** que ejecuta consultas SQL y transforma los resultados en archivos JSON mediante Python. Estos archivos son cargados en la página a través de *data loaders* personalizados.
+
+Los textos introductorios y narrativas fueron generados automáticamente con el modelo de lenguaje **GPT-4o** de OpenAI, mediante otro agente LangGraph encargado de orquestar la consulta de datos y la redacción de contenido.
+
+---
+
+## Reproducibilidad
+
+El proyecto utiliza herramientas de código abierto. El código de procesamiento y configuración puede ponerse a disposición para su revisión en futuras versiones. Si deseas conocer más detalles técnicos, visita la sección:  
+👉 [Información técnica detallada](./info_tecnica)
