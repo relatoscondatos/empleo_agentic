@@ -40,7 +40,7 @@ md`${introInformalidad}`
 </div><!--card-->
 
 <div class="card">
-<div>${chartInformalidadPorcentaje}</div>
+<div>${chartInformalidad_porcentaje}</div>
 </div><!--card-->
 
 <div class="card">
@@ -296,6 +296,20 @@ const chartInformalidad = (() => {
   })
 })()
 
+const chartInformalidad_porcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.informalidad)
+  return buildChart({
+    data:dataPlot.filter(d => d.variable == "informal"), 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Porcentaje de personas con ocupación informal",
+    zero:"no",
+    labelAliases: labelAliases,
+    labelY: "% del total de personas ocupadas"
+    })
+
+})()
+
 const chartInformalidad_diferencias = (() => {
   const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.informalidad).filter(d => d.año == 2025)
   return buildChartDiferencia({
@@ -327,7 +341,7 @@ const chartTPI_porcentaje = (() => {
     data:dataPlot.filter(d=> d.variable !== "no_tpi"), 
     format:".2%", 
     formatAxis:".1%",
-    title: "Personas ocupadas a Tiempo Parcial Involuntario (% de ocupación total)",
+    title: "Porcentaje de personas ocupadas a Tiempo Parcial Involuntario",
     zero:"no",
     labelAliases: labelAliases,
     labelY: "% del total de personas ocupadas"
@@ -378,7 +392,7 @@ const chartEdu_porcentaje = (() => {
     data:dataPlot, 
     format:".2%", 
     formatAxis:".1%",
-    title: "Personas ocupadas según nivel educacional (% de ocupación total)",
+    title: "Porcentaje de personas ocupadas según nivel educacional",
     zero:"no",
     labelAliases: labelAliases,
     labelY: "% del total de personas ocupadas"
@@ -390,7 +404,7 @@ const chartCalificacionOcupacion = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.calificacion_ocupacion)
   return buildChart({
     data:dataPlot.filter(d => d.variable !== 'ocupados'),
-    title: "Ocupados según nivel de calificación requerido para la ocupación",
+    title: "Ocupación según nivel de calificación requerido para la ocupación",
     labelAliases: labelAliases,
     marginRight:200,
     referenceVariable:"ocupados"
@@ -404,7 +418,7 @@ const chartCalificacionOcupacion_porcentaje = (() => {
     data:dataPlot, 
     format:".2%", 
     formatAxis:".1%",
-    title: "Calificación de la ocupación (% de ocupación total)",
+    title: "Porcentaje de personas según calificación de la ocupación",
     zero:"no",
     labelAliases: labelAliases,
     marginRight:200,
@@ -443,7 +457,7 @@ const cchartSubempleoGeneral_porcentaje = (() => {
     data:dataPlot.filter(d => !d.variable.match(/subempleo_calificaciones/)), 
     format:".2%", 
     formatAxis:".1%",
-    title: "Subempleo (% de ocupación total)",
+    title: "Porcentaje de personas con subempleo y sin subempleo",
     zero:"no",
     labelAliases: labelAliases,
     marginLeft:60,
@@ -452,21 +466,6 @@ const cchartSubempleoGeneral_porcentaje = (() => {
     })
 
 })()
-
-/*
-   SUM(CASE WHEN (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) AND TPI <> 1 THEN fact_cal  ELSE 0 END) as subempleo_calificaciones_excluyendo_subempleo_horas,
-    SUM(CASE WHEN (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) AND TPI = 1 THEN fact_cal  ELSE 0 END) as subempleo_calificaciones_y_subempleo_horas,
-    SUM(CASE WHEN NOT (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) AND TPI = 1 THEN fact_cal  ELSE 0 END) as subempleo_horas_excluyendo_subempleo_calificaciones,
-    SUM(CASE WHEN  (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  1 AND 3) AND TPI <> 1 THEN fact_cal  ELSE 0 END) as ed_sup_alta_calificacion_excluyendo_subempleo_horas,
-    SUM(CASE WHEN  (NOT((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12))) AND TPI <> 1 THEN fact_cal  ELSE 0 END) as sin_ed_sup_excluyendo_subempleo_horas,
-    SUM(CASE 
-        WHEN 
-            (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) 
-            OR TPI = 1 
-        THEN fact_cal  
-        ELSE 0 
-    END) as subempleo_total,
-*/
 
 
 const chartSubempleoGeneral_diferencias = (() => {
@@ -498,7 +497,7 @@ const chartSectorPublico_porcentaje = (() => {
     data:dataPlot.filter(d => d.variable !== "no_sector_publico"), 
     format:".2%", 
     formatAxis:".1%",
-    title: "Sector público (% de ocupación total)",
+    title: "Porcentaje de personas en sector público",
     zero:"no",
     labelAliases: labelAliases,
     marginLeft:60,
@@ -536,7 +535,7 @@ const chartNacionalidad_porcentaje = (() => {
     data:dataPlot.filter(d => !d.variable.match(/chilena/)), 
     format:".2%", 
     formatAxis:".1%",
-    title: "Nacionalidad (% de ocupación total)",
+    title: "Porcentaje de personas extranjeras ocupadas",
     zero:"no",
     labelAliases: labelAliases,
     marginLeft:60,
@@ -574,7 +573,7 @@ const chartSexo_porcentaje = (() => {
     data:dataPlot.filter(d => !d.variable.match(/hombre/)), 
     format:".2%", 
     formatAxis:".1%",
-    title: "Ocupación mujeres (% de ocupación total)",
+    title: "Porcentaje de mujeres ocupadas",
     zero:"no",
     labelAliases: labelAliases,
     marginLeft:60,
@@ -594,24 +593,6 @@ const chartSexo_diferencias = (() => {
     referenceVariable:"ocupados"
     })
 })()
-
-
-
-
-const chartInformalidadPorcentaje = (() => {
-  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.informalidad)
-  return buildChart({
-    data:dataPlot.filter(d => d.variable == "informal"), 
-    format:".2%", 
-    formatAxis:".1%",
-    title: "Personas con empleo informal (% de ocupación total)",
-    zero:"no",
-    labelAliases: labelAliases,
-    labelY: "% del total de personas ocupadas"
-    })
-
-})()
-
 
 ```
 
