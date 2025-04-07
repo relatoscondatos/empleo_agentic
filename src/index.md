@@ -64,6 +64,9 @@ md`${introEdu}`
 <div>${chartEdu}</div>
 </div><!--card-->
 <div class="card">
+<div>${chartEdu_porcentaje}</div>
+</div><!--card-->
+<div class="card">
 <div>${chartEdu_diferencias}</div>
 </div><!--card-->
 
@@ -81,8 +84,11 @@ md`${introCalificacionOcupacion}`
 <div>${chartCalificacionOcupacion}</div>
 </div><!--card-->
 <div class="card">
+<div>${chartCalificacionOcupacion_porcentaje}</div>
+</div><!--card--><div class="card">
 <div>${chartCalificacionOcupacion_diferencias}</div>
 </div><!--card-->
+
 
 
 ```js
@@ -101,7 +107,7 @@ md`${introTPI}`
 </div><!--card-->
 
 <div class="card">
-<div>${chartTPIPorcentaje}</div>
+<div>${chartTPI_porcentaje}</div>
 </div><!--card-->
 
 <div class="card">
@@ -122,6 +128,10 @@ md`${introSubempleoGeneral}`
 <div class="card">
 <div>${chartSubempleoGeneral}</div>
 </div><!--card-->
+
+<div class="card">
+<div>${cchartSubempleoGeneral_porcentaje}</div>
+</div><!--card-->
 <div class="card">
 <div>${chartSubempleoGeneral_diferencias}</div>
 </div><!--card-->
@@ -138,6 +148,10 @@ md`${introSectorPublico}`
 
 <div class="card">
 <div>${chartSectorPublico}</div>
+</div><!--card-->
+
+<div class="card">
+<div>${chartSectorPublico_porcentaje}</div>
 </div><!--card-->
 
 <div class="card">
@@ -159,8 +173,12 @@ md`${introNacionalidad}`
 <div>${chartNacionalidad}</div>
 </div><!--card-->
 <div class="card">
+<div>${chartNacionalidad_porcentaje}</div>
+</div><!--card--><div class="card">
 <div>${chartNacionalidad_diferencias}</div>
 </div><!--card-->
+
+
 
 ```js
 md`${narrativaNacionalidad}`
@@ -175,6 +193,11 @@ md`${introSexo}`
 <div class="card">
 <div>${chartSexo}</div>
 </div><!--card-->
+
+<div class="card">
+<div>${chartSexo_porcentaje}</div>
+</div><!--card-->
+
 
 <div class="card">
 <div>${chartSexo_diferencias}</div>
@@ -298,6 +321,20 @@ const chartTPI = (() => {
     })
 })()
 
+const chartTPI_porcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.tpi)
+  return buildChart({
+    data:dataPlot.filter(d=> d.variable !== "no_tpi"), 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Personas ocupadas a Tiempo Parcial Involuntario (% de ocupación total)",
+    zero:"no",
+    labelAliases: labelAliases,
+    labelY: "% del total de personas ocupadas"
+    })
+
+})()
+
 const chartTPI_diferencias = (() => {
   const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.tpi).filter(d => d.año == 2025)
   return buildChartDiferencia({
@@ -315,7 +352,7 @@ const chartEdu = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.edu)
   return buildChart({
     data:dataPlot.filter(d => d.variable !== 'ocupados'),
-    title: "Personas con Educación Superior Completa",
+    title: "Personas ocupadas según nivel educacional",
     labelAliases: labelAliases,
     marginRight:160,
     referenceVariable:"ocupados"
@@ -326,13 +363,27 @@ const chartEdu_diferencias = (() => {
   const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.edu).filter(d => d.año == 2025)
   return buildChartDiferencia({
     data:dataPlot,
-    title: "Educación Superior - Diferencia 2025 vs 2024",
+    title: "Personas ocupadas según nivel educacional - Diferencia 2025 vs 2024",
     subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginLeft:200,
     height: 150,
     referenceVariable:"ocupados"
     })
+})()
+
+const chartEdu_porcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.edu)
+  return buildChart({
+    data:dataPlot, 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Personas ocupadas según nivel educacional (% de ocupación total)",
+    zero:"no",
+    labelAliases: labelAliases,
+    labelY: "% del total de personas ocupadas"
+    })
+
 })()
 
 const chartCalificacionOcupacion = (() => {
@@ -345,6 +396,21 @@ const chartCalificacionOcupacion = (() => {
     referenceVariable:"ocupados"
 
     })
+})()
+
+const chartCalificacionOcupacion_porcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.calificacion_ocupacion)
+  return buildChart({
+    data:dataPlot, 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Calificación de la ocupación (% de ocupación total)",
+    zero:"no",
+    labelAliases: labelAliases,
+    marginRight:200,
+    labelY: "% del total de personas ocupadas"
+    })
+
 })()
 
 const chartCalificacionOcupacion_diferencias = (() => {
@@ -360,32 +426,7 @@ const chartCalificacionOcupacion_diferencias = (() => {
     })
 })()
 
-/*
 
-const chartSubempleoGeneral_diferencias = (() => {
-  const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.s).filter(d => d.año == 2025)
-  return buildChartDiferencia({
-    data:dataPlot,
-    title: "Cambio anual en la ocupación según nivel educativo y calificación (2025 vs. 2024)",
-    labelAliases: labelAliases,
-    marginLeft:220,
-    referenceVariable:"ocupados"
-    })
-})()
-
-
-
-const chartSubempleoGeneral = (() => {
-  const dataPlot = convertDataToPlot(sourceDataForCharts.data.edu_calificacion_ocupacion).filter(d => d.variable !== "ocupados")
-  return buildChart({
-    data:dataPlot,
-    title: "Personas ocupadas según nivel educacional y nivel de calificación de la ocupación",
-    subtitle: "Personas con Educación Superior y ocupaciones con calificación media o baja se pueden considerar subempleo por competencias",
-    labelAliases: labelAliases,
-    marginRight:250
-    })
-})()
-*/
 const chartSubempleoGeneral = (() => {
   const dataPlot = convertDataToPlot(sourceDataForCharts.data.subempleo_general).filter(d => d.variable !== "ocupados")
   return buildChart({
@@ -395,6 +436,37 @@ const chartSubempleoGeneral = (() => {
     marginRight:300
     })
 })()
+
+const cchartSubempleoGeneral_porcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.subempleo_general)
+  return buildChart({
+    data:dataPlot.filter(d => !d.variable.match(/subempleo_calificaciones/)), 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Subempleo (% de ocupación total)",
+    zero:"no",
+    labelAliases: labelAliases,
+    marginLeft:60,
+    marginRight:270,
+    labelY: "% del total de personas ocupadas"
+    })
+
+})()
+
+/*
+   SUM(CASE WHEN (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) AND TPI <> 1 THEN fact_cal  ELSE 0 END) as subempleo_calificaciones_excluyendo_subempleo_horas,
+    SUM(CASE WHEN (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) AND TPI = 1 THEN fact_cal  ELSE 0 END) as subempleo_calificaciones_y_subempleo_horas,
+    SUM(CASE WHEN NOT (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) AND TPI = 1 THEN fact_cal  ELSE 0 END) as subempleo_horas_excluyendo_subempleo_calificaciones,
+    SUM(CASE WHEN  (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  1 AND 3) AND TPI <> 1 THEN fact_cal  ELSE 0 END) as ed_sup_alta_calificacion_excluyendo_subempleo_horas,
+    SUM(CASE WHEN  (NOT((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12))) AND TPI <> 1 THEN fact_cal  ELSE 0 END) as sin_ed_sup_excluyendo_subempleo_horas,
+    SUM(CASE 
+        WHEN 
+            (((nivel BETWEEN 7 AND 9 AND termino_nivel = 1) OR (nivel BETWEEN 10 AND 12)) AND b1_int BETWEEN  4 AND 9) 
+            OR TPI = 1 
+        THEN fact_cal  
+        ELSE 0 
+    END) as subempleo_total,
+*/
 
 
 const chartSubempleoGeneral_diferencias = (() => {
@@ -420,6 +492,23 @@ const chartSectorPublico = (() => {
     })
 })()
 
+const chartSectorPublico_porcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.sector_publico)
+  return buildChart({
+    data:dataPlot.filter(d => d.variable !== "no_sector_publico"), 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Sector público (% de ocupación total)",
+    zero:"no",
+    labelAliases: labelAliases,
+    marginLeft:60,
+    marginRight:150,
+    labelY: "% del total de personas ocupadas"
+    })
+
+})()
+
+
 const chartSectorPublico_diferencias = (() => {
   const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.sector_publico).filter(d => d.año == 2025)
   return buildChartDiferencia({
@@ -439,6 +528,22 @@ const chartNacionalidad = (() => {
     labelAliases: labelAliases,
     referenceVariable:"ocupados"
     })
+})()
+
+const chartNacionalidad_porcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.nacionalidad)
+  return buildChart({
+    data:dataPlot.filter(d => !d.variable.match(/chilena/)), 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Nacionalidad (% de ocupación total)",
+    zero:"no",
+    labelAliases: labelAliases,
+    marginLeft:60,
+    marginRight:150,
+    labelY: "% del total de personas ocupadas"
+    })
+
 })()
 
 const chartNacionalidad_diferencias = (() => {
@@ -463,6 +568,22 @@ const chartSexo = (() => {
     })
 })()
 
+const chartSexo_porcentaje = (() => {
+  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.sexo)
+  return buildChart({
+    data:dataPlot.filter(d => !d.variable.match(/hombre/)), 
+    format:".2%", 
+    formatAxis:".1%",
+    title: "Ocupación mujeres (% de ocupación total)",
+    zero:"no",
+    labelAliases: labelAliases,
+    marginLeft:60,
+    marginRight:150,
+    labelY: "% del total de personas ocupadas"
+    })
+
+})()
+
 const chartSexo_diferencias = (() => {
   const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.sexo).filter(d => d.año == 2025)
   return buildChartDiferencia({
@@ -475,19 +596,7 @@ const chartSexo_diferencias = (() => {
 })()
 
 
-const chartTPIPorcentaje = (() => {
-  const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.tpi)
-  return buildChart({
-    data:dataPlot, 
-    format:".2%", 
-    formatAxis:".1%",
-    title: "Personas ocupadas a Tiempo Parcial Involuntario (% de ocupación total)",
-    zero:"no",
-    labelAliases: labelAliases,
-    labelY: "% del total de personas ocupadas"
-    })
 
-})()
 
 const chartInformalidadPorcentaje = (() => {
   const dataPlot = convertDataToPlotPorcentajes(sourceDataForCharts.data.informalidad)
@@ -627,6 +736,7 @@ function buildChart(options) {
   const labelAliases =  options && options.labelAliases || {}
   const width =  options && options.width || 1000
   const height =  options && options.height || width*0.4
+  const marginLeft =  options && options.marginLeft || 50
   const marginRight =  options && options.marginRight || 150
   const referenceKey = options.referenceVariable || null;
   const keys = _.chain(dataPlot).map((d) => d.variable).uniq().filter((d) => d !== referenceKey).value();
@@ -646,7 +756,7 @@ function buildChart(options) {
     caption:`Fuente de datos: ${fuentes}\nElaborado por @elaval`,
     width,
     height,
-    marginLeft: 50,
+    marginLeft: marginLeft,
     marginRight: marginRight,
     style:{fontSize:12},
     y: { 
