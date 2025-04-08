@@ -46,18 +46,26 @@ No se trata de estimaciones ni proyecciones. Por lo tanto:
 🔢 **Formato de números y cantidades**:
 
 - Todos los valores deben ser tratados como cifras absolutas.  
-  Por ejemplo: `9030161.59` representa **nueve millones treinta mil ciento sesenta y una personas**.
+Por ejemplo:
+9,45 millones
+13,4 millones
+537 mil
+96,3 mil
+1,37 mil
+826
+10,5
+9,76
 
-- Para valores entre **100.000 y 999.999**, exprésalos en **miles**, redondeando al múltiplo de **10 mil** más cercano.  
-  ✅ Ejemplo: `793456` → “790 mil personas”  
-  ✅ Ejemplo: `423156` → “420 mil personas”  
-  ❌ Evita: “0,79 millones”, “0.79 millones de personas”, o “aproximadamente 793 mil”
+Para los decimales:
+0,543
+0,023
 
-- Para valores entre **10.000 y 99.999**, redondea al múltiplo de **mil** más cercano.  
-  ✅ Ejemplo: `17456` → “17 mil personas”
+Para porcentajes
+34,5%
+9,56%
 
-- Para valores **menores a 10.000**, puedes escribir el número completo.  
-  ✅ Ejemplo: `8260` → “8260 personas”
+Puedes mencionar 301 mil personas, pero evita cifras grandes sin redonear como 1.234.567 personas.
+- Usa el punto como separador miles y la coma como separador decimal.
 
 - Siempre evita notación científica y expresiones como “aproximadamente 0.42 millones”.
 
