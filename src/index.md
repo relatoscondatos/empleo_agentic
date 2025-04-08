@@ -300,6 +300,7 @@ const chartInformalidad = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas con ocupación formal e informal",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases
 
   })
@@ -312,6 +313,7 @@ const chartInformalidad_porcentaje = (() => {
     format:".2%", 
     formatAxis:".1%",
     title: "Porcentaje de personas con ocupación informal",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     zero:"no",
     labelAliases: labelAliases,
     labelY: "% del total de personas ocupadas",
@@ -325,7 +327,7 @@ const chartInformalidad_diferencias = (() => {
   const dataPlot = convertDataToPlotDiferencia(sourceDataForCharts.data.informalidad).filter(d => d.año == 2025)
   return buildChartDiferencia({
     data:dataPlot,
-    title: "Ocupación formal / informal - Diferencia 2025 vs 2024",
+    title: "Personas con ocupación formal e informal - Diferencia 2025 vs 2024",
     subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginLeft:200,
@@ -339,7 +341,7 @@ const chartTPI = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas ocupadas con Tiempo Parcial Involuntario (TPI)",
-    subtitle: "Subempleo por horario",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     referenceVariable:"ocupados"
 
@@ -353,6 +355,7 @@ const chartTPI_porcentaje = (() => {
     format:".2%", 
     formatAxis:".1%",
     title: "Porcentaje de personas ocupadas a Tiempo Parcial Involuntario",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     zero:"no",
     labelAliases: labelAliases,
     labelY: "% del total de personas ocupadas",
@@ -379,6 +382,7 @@ const chartEdu = (() => {
   return buildChart({
     data:dataPlot.filter(d => d.variable !== 'ocupados'),
     title: "Personas ocupadas según nivel educacional",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginRight:160,
     referenceVariable:"ocupados"
@@ -405,6 +409,7 @@ const chartEdu_porcentaje = (() => {
     format:".2%", 
     formatAxis:".1%",
     title: "Porcentaje de personas ocupadas según nivel educacional",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     zero:"no",
     labelAliases: labelAliases,
     labelY: "% del total de personas ocupadas",
@@ -418,6 +423,7 @@ const chartCalificacionOcupacion = (() => {
   return buildChart({
     data:dataPlot.filter(d => d.variable !== 'ocupados'),
     title: "Ocupación según nivel de calificación requerido para la ocupación",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginRight:200,
     referenceVariable:"ocupados"
@@ -432,6 +438,7 @@ const chartCalificacionOcupacion_porcentaje = (() => {
     format:".2%", 
     formatAxis:".1%",
     title: "Porcentaje de personas según calificación de la ocupación",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     zero:"no",
     labelAliases: labelAliases,
     marginRight:200,
@@ -460,6 +467,7 @@ const chartSubempleoGeneral = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas subempleadas por competencia y/o insuficiencia horaria",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginRight:300
     })
@@ -472,6 +480,7 @@ const cchartSubempleoGeneral_porcentaje = (() => {
     format:".2%", 
     formatAxis:".1%",
     title: "Porcentaje de personas con subempleo y sin subempleo",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     zero:"no",
     labelAliases: labelAliases,
     marginLeft:60,
@@ -487,6 +496,7 @@ const chartSubempleoGeneral_diferencias = (() => {
   return buildChartDiferencia({
     data:dataPlot,
     title: "Diferencia anual según situación de subempleo (2025 vs 2024)",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginLeft:300,
     referenceVariable:"ocupados"
@@ -500,6 +510,7 @@ const chartSectorPublico = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas ocupadas en el sector público",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     referenceVariable:"ocupados"
     })
@@ -512,6 +523,7 @@ const chartSectorPublico_porcentaje = (() => {
     format:".2%", 
     formatAxis:".1%",
     title: "Porcentaje de personas en sector público",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     zero:"no",
     labelAliases: labelAliases,
     marginLeft:60,
@@ -527,6 +539,7 @@ const chartSectorPublico_diferencias = (() => {
   return buildChartDiferencia({
     data:dataPlot,
     title: "Personas ocupadas en sector público - Diferencia 2025 vs 2024",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginLeft:200,
     referenceVariable:"ocupados"
@@ -538,6 +551,7 @@ const chartNacionalidad = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas ocupadas según nacionalidad (Chilena / Extranjera)",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     referenceVariable:"ocupados"
     })
@@ -550,6 +564,7 @@ const chartNacionalidad_porcentaje = (() => {
     format:".2%", 
     formatAxis:".1%",
     title: "Porcentaje de personas extranjeras ocupadas",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     zero:"no",
     labelAliases: labelAliases,
     marginLeft:60,
@@ -564,6 +579,7 @@ const chartNacionalidad_diferencias = (() => {
   return buildChartDiferencia({
     data:dataPlot,
     title: "Personas ocupadas según nacionalidad - Diferencia 2025 vs 2024",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginLeft:200,
     referenceVariable:"ocupados"
@@ -576,6 +592,7 @@ const chartSexo = (() => {
   return buildChart({
     data:dataPlot,
     title: "Personas ocupadas según sexo",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     referenceVariable:"ocupados"
     })
@@ -588,6 +605,7 @@ const chartSexo_porcentaje = (() => {
     format:".2%", 
     formatAxis:".1%",
     title: "Porcentaje de mujeres ocupadas",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     zero:"no",
     labelAliases: labelAliases,
     marginLeft:60,
@@ -602,6 +620,7 @@ const chartSexo_diferencias = (() => {
   return buildChartDiferencia({
     data:dataPlot,
     title: "Personas ocupadas según sexo - Diferencia 2025 vs 2024",
+    subtitle: "Trimestre Diciembre Enero Febrero",
     labelAliases: labelAliases,
     marginLeft:200,
     referenceVariable:"ocupados"
