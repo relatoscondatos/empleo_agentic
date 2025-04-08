@@ -25,56 +25,61 @@ Analiza la evolución de los datos considerando cuatro bloques temporales, sigui
    Analiza si las tendencias anteriores se mantienen, revierten o cambian. Señala indicios de recuperación, estabilización o transformación estructural. Considera los primeros años postpandemia como una etapa de ajuste.
 
 4. **Cambios entre 2024 y 2025**  
-   Incluye una sección específica para los cambios interanuales más recientes. Usa los datos de `diff_prev_year` para señalar las variaciones de cada variable entre 2024 y 2025. Comenta qué variables contribuyen más al cambio total y contextualiza su importancia relativa usando `pct_ocupados` cuando sea pertinente.
+   Incluye una sección específica para los cambios interanuales más recientes. Usa los datos de `diff_prev_year` para señalar las variaciones de cada variable entre 2024 y 2025 (recondeando de manera consistente con las otras secciones). Comenta qué variables contribuyen más al cambio total y contextualiza su importancia relativa usando `pct_ocupados` cuando sea pertinente.
 
-⚠️ Todos los datos entregados, incluyendo los años 2024 y 2025, son reales, oficiales y observados.  
+Todos los datos entregados, incluyendo los años 2024 y 2025, son reales, oficiales y observados.  
 No se trata de estimaciones ni proyecciones. Por lo tanto:
 
 - **No utilices** expresiones como “se espera que”, “proyección”, “estimación”, “posiblemente”, “podría”, “se prevé” u otras similares.
 - Redacta como si todos los años tuvieran datos definitivos y validados.
 
-📌 Cuando se utilicen porcentajes (`pct_ocupados`), recuerda que se refieren a la proporción respecto del total de personas ocupadas (`ocupados`).
+Cuando se utilicen porcentajes (`pct_ocupados`), recuerda que se refieren a la proporción respecto del total de personas ocupadas (`ocupados`).
 
-🔁 Para mejorar la legibilidad, **varía la redacción inicial de cada bloque temporal**. Evita comenzar todos los párrafos con la misma estructura.
+Para mejorar la legibilidad, **varía la redacción inicial de cada bloque temporal**. Evita comenzar todos los párrafos con la misma estructura.
 
-🗒️ El tono debe ser profesional, explicativo y objetivo, similar al de una publicación institucional.  
+El tono debe ser profesional, explicativo y objetivo, similar al de una publicación institucional.  
 **No incluyas títulos explícitos** como “Período Prepandemia” o “Cambios 2024–2025” dentro del texto. La narrativa debe fluir de forma natural, sin encabezados.  
 **No te dirijas al lector** con frases como “en esta sección encontrarás” ni uses expresiones personales o promocionales.
 
-📕 **Evita expresiones poco comunes o marcadamente técnicas** que puedan dificultar la comprensión por parte del público general en Chile. Por ejemplo, **no uses el adjetivo “acusado” para describir cambios**. Prefiere términos más accesibles como “notable”, “marcado”, “significativo”, “claro” o similares. Puedes usar también adjetivos como “leve”, “moderado” o “considerable” cuando corresponda.
+**Evita expresiones poco comunes o marcadamente técnicas** que puedan dificultar la comprensión por parte del público general en Chile. Por ejemplo, **no uses el adjetivo “acusado” para describir cambios**. Prefiere términos más accesibles como “notable”, “marcado”, “significativo”, “claro” o similares. Puedes usar también adjetivos como “leve”, “moderado” o “considerable” cuando corresponda.
 
-🔢 **Formato de números y cantidades**:
+**Formato de números y cantidades**:
 
 - Todos los valores deben ser tratados como cifras absolutas.  
-Por ejemplo:
+Sobre 1.000.000 personas, usa la forma redondeada aproximado a la decena de miles:
 9,45 millones
-13,4 millones
-537 mil
-96,3 mil
-1,37 mil
-826
-10,5
-9,76
+13,33 millones
 
-Para los decimales:
-0,543
-0,023
+Entre 100.000 y 1.000.000 personas, usa la forma redondeada aproximando a la decena de mil:
+530 mil
+270 mil (evita "270.300")
 
-Para porcentajes
+Entre 10.000 y 100.000 personas, usa la forma redondeada aproximando a los miles:
+87 mil (evita "87.266" o "87.000")
+13 mil
+
+Entre 1.000 y 10.000 personas, usa la forma redondeada aproximando a la centena:
+8900
+1200
+
+Bajo 1.000 usa cifras exactas
+837
+24
+
+
+Para porcentajes usa un decimal
 34,5%
-9,56%
+9,7%
 
-Puedes mencionar 301 mil personas, pero evita cifras grandes sin redonear como 1.234.567 personas.
+Puedes mencionar 330 mil personas, pero evita figuras como  234.567 personas.
+
 - Usa el punto como separador miles y la coma como separador decimal.
 
 - Siempre evita notación científica y expresiones como “aproximadamente 0.42 millones”.
 
-- Puedes mencionar el sustantivo “personas” o “trabajadores/as” si es necesario, pero evita repetirlo innecesariamente.
-
-- Para porcentajes, utiliza hasta **dos cifras decimales** si están disponibles, e indica claramente que corresponden al total de personas ocupadas.
+- Para porcentajes, indica claramente que corresponden al total de personas ocupadas.
 
 """
-
 
 
 

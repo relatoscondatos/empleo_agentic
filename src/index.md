@@ -223,6 +223,15 @@ El sitio fue desarrollado con el **Framework Observablehq**, utilizando **Plot**
 
 📄 Si te interesa conocer más sobre las fuentes de datos, las variables utilizadas y el procesamiento detrás del sitio, revisa la [página con información técnica](./info_tecnica).
 
+<!-----
+## Resumen de cambios en diemnsiones seleccionadas
+-->
+```js
+//md`${narrativaPosts}`
+```
+
+
+
 ```js
 // Narrativas
 
@@ -236,7 +245,7 @@ const narrativaSectorPublico  = FileAttachment("graphs/generate_narrative_sector
 const narrativaNacionalidad  = FileAttachment("graphs/generate_narrative_nacionalidad.md").text();
 const narrativaSexo  = FileAttachment("graphs/generate_narrative_sexo.md").text();
 
-
+const narrativaPosts  = FileAttachment("graphs/generate_posts.md").text();
 ```
 
 ```js
