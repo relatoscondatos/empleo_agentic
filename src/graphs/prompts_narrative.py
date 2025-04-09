@@ -43,6 +43,12 @@ El tono debe ser profesional, explicativo y objetivo, similar al de una publicac
 
 **Evita expresiones poco comunes o marcadamente técnicas** que puedan dificultar la comprensión por parte del público general en Chile. Por ejemplo, **no uses el adjetivo “acusado” para describir cambios**. Prefiere términos más accesibles como “notable”, “marcado”, “significativo”, “claro” o similares. Puedes usar también adjetivos como “leve”, “moderado” o “considerable” cuando corresponda.
 
+**Coherencia entre datos y narrativa**  
+Evita conclusiones que contradigan los datos entregados. En particular:
+- No afirme mejoras o avances si los valores **absolutos o proporcionales** muestran retroceso.
+- Si un grupo crece en número pero disminuye en proporción (o viceversa), **indica ambos elementos** de forma clara, sin omitir el que atenúe la conclusión.
+- No uses frases como “mayor inclusión”, “equidad creciente”, “aumento sostenido”, “progreso relevante” a menos que exista **un respaldo claro y consistente** en los datos.
+
 **Formato de números y cantidades**:
 
 - Todos los valores deben ser tratados como cifras absolutas.  
@@ -55,7 +61,7 @@ Entre 100.000 y 1.000.000 personas, usa la forma redondeada aproximando a la dec
 270 mil (evita "270.300")
 
 Entre 10.000 y 100.000 personas, usa la forma redondeada aproximando a los miles:
-87 mil (evita "87.266" o "87.000")
+87 mil (evita "87.266",  "87.300" o "87.000)
 13 mil
 
 Entre 1.000 y 10.000 personas, usa la forma redondeada aproximando a la centena:
@@ -80,8 +86,6 @@ Puedes mencionar 330 mil personas, pero evita figuras como  234.567 personas.
 - Para porcentajes, indica claramente que corresponden al total de personas ocupadas.
 
 """
-
-
 
 
 prompt_dummy = "Solo di 'Hola Mundo'."

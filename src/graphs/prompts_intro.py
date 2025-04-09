@@ -1,12 +1,17 @@
+
 prompt_estilo_general = """
 El texto debe ser claro, conciso y fácil de entender para el público en general.
 Evita el uso de jerga técnica y asegúrate de que cualquier término especializado esté explicado de manera sencilla.
 Usa un tono neutral y objetivo, evitando opiniones personales o juicios de valor.
 No uses frases largas o complejas. Mantén las oraciones cortas y directas.
 Usa un lenguaje inclusivo y evita estereotipos de género o culturales.
+Evita frases genéricas como “panorama claro”, “visión integral” o “presentación accesible”, ya que ya se menciona el carácter divulgativo del sitio en la introducción general.
+
+Si la informacion es clara, presentada de manera sencilla y útil para faciltar la comprensión debiera ser una interpretación del lector y no una declaración en el documento.
 """
 
 prompt_dummy = "Solo di 'Hola Mundo'."
+
 
 prompt_introduccion_general = f"""
 Redacta un texto introductorio para una página web que presenta información sobre el mercado laboral en Chile entre los años 2011 y 2025.
@@ -35,7 +40,6 @@ Las narrativas fueron generadas mediante un modelo de lenguaje de inteligencia a
 **Importante**: El texto debe presentarse como introducción al contenido del sitio, no como una recomendación ni como una sugerencia para su desarrollo. No uses expresiones como "Aquí tienes un texto" o "Te recomiendo". Solo redacta la introducción que irá en la página.
 """
 
-
 prompt_ocupados = f"""
 Redacta un texto introductorio para la sección que presenta la evolución del número total de personas ocupadas a lo largo del tiempo.
 
@@ -52,8 +56,12 @@ Redacta un texto introductorio para la sección que presenta datos sobre empleo 
 Aclara que esta información se encuentra disponible a partir del trimestre julio-agosto-septiembre de 2017 , cuando el INE comenzó a publicar esta desagregación de forma sistemática.
 
 Incluye una breve explicación sobre qué se considera una ocupación informal:
-- Para trabajadores dependientes, se trata de quienes no cotizan para salud ni previsión social.
-- Para trabajadores independientes, se considera informal si la actividad se realiza en el sector informal o si se trata de un familiar no remunerado.
+(Según un documento del INE esta es la definición aplicada para Chile: "Son todos aquellos Asalariados o Trabajadores del Servicio Doméstico que no
+cuentan con cotizaciones de salud (Isapre o Fonasa) y previsión social (AFP) por
+concepto de su vínculo laboral con un Empleador. Asimismo, se consideran como
+Ocupados Informales por definición a todos los Familiares no Remunerados del
+Hogar, además de los Trabajadores por Cuenta Propia y Empleadores propietarios
+de una unidad económica del Sector Informal")
 
 Indica que los datos permiten analizar la evolución del empleo formal e informal en distintos contextos: prepandemia, pandemia y postpandemia.
 
@@ -76,7 +84,6 @@ El texto debe tener un tono institucional, descriptivo y objetivo. Evita expresi
 {prompt_estilo_general}
 """
 
-
 prompt_edu = f"""
 Redacta un texto introductorio para la sección que compara personas ocupadas según su nivel de educación (superior, media, básica o sin educación básica completa).
 
@@ -90,10 +97,14 @@ Redacta un texto introductorio para la sección que analiza la calificación de 
 
 Entre los años 2011 y 2017 se utilizó la versión CIUO-88, y desde 2018 en adelante se emplea la versión CIUO-08. En ambos casos, las ocupaciones se agrupan en 10 grandes grupos.
 
-Para el análisis se consideran como **ocupaciones de alta calificación** aquellas pertenecientes a los grupos 1 a 3 (directivos, profesionales y técnicos). 
-Las **ocupaciones de calificación media** corresponden a los grupos 4 a 8, que incluyen empleos como personal administrativo, vendedores, trabajadores de servicios, operarios, conductores, agricultores.
-Y las **ocupaciones de calificación baja** corresponden al grupo 9, que corresponde a ocupaciones elementales.
-El grupo 10, correspondiente a ocupaciones no clasificadas, no se incluye (abarca menos de un 1% de las ocupaciones).
+Para efectos de este análisis, se ha realizado una **agrupación simplificada en tres niveles de calificación**:
+- **Alta calificación**: Grupos 1 a 3 (directivos, profesionales y técnicos).
+- **Calificación media**: Grupos 4 a 8, que incluyen empleos como personal administrativo, vendedores, trabajadores de servicios, operarios, conductores y agricultores.
+- **Calificación baja**: Grupo 9, correspondiente a ocupaciones elementales.
+
+El grupo 10, correspondiente a ocupaciones no clasificadas, no se incluye en el análisis, ya que representa una proporción menor al 1% de los casos.
+
+⚠️ Dado que se utilizan dos versiones distintas de la CIUO en la serie temporal, es importante advertir que **pueden existir diferencias en la codificación entre CIUO-88 y CIUO-08**, lo que podría afectar la comparabilidad directa de algunos grupos entre los años anteriores y posteriores a 2018. Además, la división en tres niveles de calificación **no forma parte de la estructura oficial de la CIUO**, sino que corresponde a una simplificación adoptada exclusivamente para facilitar el análisis.
 
 El texto debe mantener un tono descriptivo, neutral y profesional.
 
@@ -109,7 +120,7 @@ Redacta un texto introductorio para una sección que analiza el subempleo en el 
 
 Ambas dimensiones conforman el **subempleo total**, entendido como la suma de personas que enfrentan limitaciones tanto en la cantidad de horas trabajadas como en la adecuación entre su nivel educativo y el tipo de ocupación.
 
-Aclara que el concepto de subempleo por competencias ha sido promovido en Chile por el economista Juan Bravo, actual investigador del Observatorio del Contexto Económico de la Universidad Diego Portales (OCEC UDP) y exmiembro de Clapes UC. Si bien esta noción no forma parte de los indicadores oficiales del Instituto Nacional de Estadísticas (INE), ha sido utilizada en diversos análisis académicos y de política pública. En este caso, su uso es exploratorio y se basa en datos públicos disponibles.
+Aclara que el concepto de subempleo por competencias ha sido difundido en Chile por el economista Juan Bravo, actual investigador del Observatorio del Contexto Económico de la Universidad Diego Portales (OCEC UDP) y exmiembro de Clapes UC. Si bien esta noción no forma parte de los indicadores oficiales del Instituto Nacional de Estadísticas (INE), ha sido utilizada en diversos análisis académicos y de política pública. En este caso, su uso es exploratorio y se basa en datos públicos disponibles.
 
 Indica además que el análisis incluye a personas ocupadas que **no presentan condiciones de subempleo**, diferenciando entre quienes tienen educación superior y desempeñan ocupaciones de alta calificación, y quienes no tienen educación superior. Esta comparación permite observar cómo ha evolucionado la estructura del empleo más allá del subempleo, aportando una visión más completa sobre la transformación del mercado laboral chileno.
 
@@ -117,8 +128,6 @@ El tono del texto debe ser institucional, claro y descriptivo. No deben incluirs
 
 {prompt_estilo_general}
 """
-
-
 
 prompt_sector_publico = f"""
 Redacta un texto introductorio para la sección que presenta la evolución del empleo en el sector público y en el sector no público.
